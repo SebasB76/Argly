@@ -17,25 +17,36 @@ from src.nlp.narrative import pares_similares
 from src.ai_agent.agent import responder
 from src.channels.pdf_dossier import generar_dossier
 from src.channels import notify
+from src.features.build_features import construir_features
+from src.models.ml_model import entrenar, FEATURES, _X
+from src.rules.fraud_rules import evaluar_reglas
+from src.scoring.score import puntuar, contribucion_ml
 
 app = FastAPI(title="Argly API", version="0.1.0",
               description="Detección de posible fraude en siniestros. Alertas, no acusaciones.")
 
 _DFS = None
 _BANDEJA = None
+_MODELO = None
 
 
 def _datos():
-    """Genera los datos y construye la bandeja una sola vez (cache en memoria)."""
-    global _DFS, _BANDEJA
+    """Genera los datos, entrena el modelo y construye la bandeja una vez (cache)."""
+    global _DFS, _BANDEJA, _MODELO
     if _BANDEJA is None:
         _DFS = generar()
+        _MODELO, _ = entrenar(construir_features(_DFS))
         _BANDEJA = construir_bandeja(_DFS)
     return _DFS, _BANDEJA
 
 
 def _bandeja():
     return _datos()[1]
+
+
+def _modelo():
+    _datos()
+    return _MODELO
 
 
 CASO_COLS = ["id_siniestro", "score", "nivel", "gate", "motivo_principal", "n_alertas",
@@ -152,3 +163,64 @@ def push(id_siniestro: str):
     d = _detalle(id_siniestro)
     return {"ok": True, "id_siniestro": d["id_siniestro"], "score": d["score"], "nivel": d["nivel"],
             "mensaje": f"Score {d['score']} ({d['nivel']}) enviado al core de siniestros (receptor mock)."}
+
+
+class NuevoSiniestro(BaseModel):
+    ramo: str = "Vehículos"
+    cobertura: str = "Choque"
+    monto_reclamado: float = 10000
+    suma_asegurada: float = 15000
+    dias_desde_inicio_poliza: int = 5         # 1 = siniestro al día siguiente de contratar
+    dias_entre_ocurrencia_reporte: int = 1
+    historial_siniestros_asegurado: int = 1
+    documentos_completos: bool = True
+    proveedor_en_lista: bool = False
+    clima_inconsistente: bool = False
+    doc_inconsistente: bool = False
+    distancia_geo_km: float = 0.0
+    freq_vehiculo: int = 1
+
+
+def _features_de_input(c: NuevoSiniestro) -> dict:
+    suma = c.suma_asegurada or 1.0
+    return {
+        "dias_desde_inicio_poliza": c.dias_desde_inicio_poliza,
+        "dias_entre_ocurrencia_reporte": c.dias_entre_ocurrencia_reporte,
+        "historial_siniestros_asegurado": c.historial_siniestros_asegurado,
+        "es_robo": c.cobertura == "Robo",
+        "ratio_monto_suma": round(c.monto_reclamado / suma, 3),
+        "proveedor_en_lista": c.proveedor_en_lista,
+        "asegurado_en_lista": False,
+        "freq_proveedor": 1,
+        "freq_vehiculo": c.freq_vehiculo,
+        "distancia_geo_km": c.distancia_geo_km,
+        "clima_inconsistente": c.clima_inconsistente,
+        "documentos_completos": c.documentos_completos,
+        "doc_inconsistente": c.doc_inconsistente,
+        "doc_no_entregado": not c.documentos_completos,
+        "narrativa_repetidos": 1,
+        "ramo": c.ramo,
+        "cobertura": c.cobertura,
+    }
+
+
+def _prob_ml(fila: dict) -> float:
+    import pandas as pd
+    df = pd.DataFrame([{k: fila.get(k) for k in FEATURES}])
+    return float(_modelo().predict_proba(_X(df))[0, 1])
+
+
+@app.post("/api/scorear")
+def scorear(c: NuevoSiniestro):
+    """Puntúa un siniestro NUEVO en vivo y explica el riesgo (prueba de fuego del jurado)."""
+    fila = _features_de_input(c)
+    contribs = evaluar_reglas(fila)
+    prob = _prob_ml(fila)
+    cml = contribucion_ml(prob)
+    if cml:
+        contribs.append(cml)
+    res = puntuar(contribs)
+    res["probabilidad_ml"] = round(prob, 3)
+    res["recomendacion"] = _recomendacion(res["nivel"])
+    res["aviso"] = AVISO
+    return res

@@ -88,7 +88,21 @@
 .agente-resp p { margin: 0; color: #e6edf3; font-size: 14px; line-height: 1.5; }
 .agente-meta { margin-top: 8px; font-size: 11px; color: #7c8db5; }
 
+.scorear { background: #0f1626; border: 1px solid #1e2a44; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.scorear-h { font-weight: 700; color: #cdd9f0; margin-bottom: 10px; }
+.scorear-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.scorear-grid label { display: flex; flex-direction: column; font-size: 11px; color: #8b9bc0; gap: 4px; }
+.scorear-grid input, .scorear-grid select { background: #0c1018; border: 1px solid #243150; color: #e6edf3; border-radius: 6px; padding: 7px 9px; font-size: 13px; }
+.scorear-checks { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
+.scorear-checks label { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #cdd9f0; }
+.scorear-btns { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.scorear-btns button { background: #2451d6; border: none; color: #fff; border-radius: 8px; padding: 8px 16px; cursor: pointer; font-weight: 600; font-size: 13px; }
+.scorear-btns .preset { background: #141b2b; border: 1px solid #243150; color: #9fb0d4; }
+.scorear-res { display: flex; gap: 14px; margin-top: 14px; background: #11182a; border: 1px solid #1e2a44; border-radius: 8px; padding: 12px 14px; }
+.scorear-res-body { flex: 1; }
+
 @media (max-width: 900px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
   .layout { grid-template-columns: 1fr; }
+  .scorear-grid { grid-template-columns: 1fr 1fr; }
 }

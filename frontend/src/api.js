@@ -25,3 +25,12 @@ export async function preguntar(pregunta) {
   })
   return r.json()
 }
+
+export async function scorear(caso) {
+  const r = await fetch(`${BASE}/scorear`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(caso),
+  })
+  return r.json()
+}
