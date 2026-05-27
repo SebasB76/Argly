@@ -37,3 +37,23 @@ Cada señal aporta puntos al score. El total se normaliza a 0-100.
 | 0-40 | 🟢 Verde | Flujo normal |
 | 41-75 | 🟡 Amarillo | Revisión documental (Unidad Antifraude) |
 | 76-100 | 🔴 Rojo | Revisión especializada de campo |
+
+## Política de scoring (versionada · v1)
+
+El score **NO es solo la suma** de señales. Orden de evaluación:
+
+1. **Hard gates (precedencia máxima):** si se dispara una regla crítica Rojo
+   (RF-01 PTxRB, RF-02 adulteración documental, RF-03 Lista Restrictiva,
+   RF-04 dinámica imposible) → el caso es **Rojo** sin importar la suma.
+2. **Suma de contribuciones:** cada señal aporta sus puntos (ver arriba).
+3. **Topes (caps):** ninguna señal supera su máximo; el total se capa a 100.
+   Evita que una sola señal domine o que el score se desborde.
+4. **Semáforo:** se aplica el corte (0-40 / 41-75 / 76-100).
+
+**Racional de umbrales:** 40 y 75 vienen de la sección 13 del reto. Son
+referenciales y **versionados**: si se cambian, se documenta el porqué.
+
+**Contrafactual (demo de explicabilidad):** para cada regla clave, mostrar cómo
+cambia el score al cambiar un dato. Ej.: siniestro a 24h de la póliza = +8
+(borde ≤10 días); si fuera a 40 días = +0, y el caso baja de Rojo a Amarillo.
+Responde en vivo el *"¿por qué rojo y no amarillo?"* del jurado.

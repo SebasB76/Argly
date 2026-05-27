@@ -19,10 +19,12 @@ siniestros ni decide pagos. Toda decisión final es de un analista humano.
 - Posibles **falsos positivos**: por eso se mantiene la revisión humana.
 - Riesgo de **sesgo** en los datos: se audita por ciudad/segmento y se usan
   variables explicables.
-- Entrenado sobre datos sintéticos: las métricas no representan la realidad
-  operativa de una aseguradora.
-- Dependencia de APIs externas (LLM, mapas, clima): se documentan y se prevé
-  un modo de demostración alternativo.
+- Entrenado sobre datos sintéticos: el ML **rankea dentro de escenarios
+  sintéticos**, no prueba generalización al mundo real. Para no inflar métricas,
+  el test set usa variantes de patrón **no vistas** en entrenamiento, y se
+  compara `solo-reglas` vs `híbrido`.
+- Dependencia de API externa: solo el LLM del agente; geo/clima/lista están
+  precomputados en la DB. Si el LLM falla, hay **fallback determinista**.
 
 ## Riesgos y mitigaciones
 
