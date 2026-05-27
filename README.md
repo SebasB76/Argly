@@ -17,12 +17,12 @@ revisión humana.
 | **E1** | Features + motor de reglas + score con gates/topes + bandeja | ✅ |
 | **E2** | ML (RandomForest) + anomalías (Isolation Forest) + métricas | ✅ |
 | **E3** | API FastAPI + front React (war-room) | ✅ |
-| E4 | Grafo de redes + NLP (similitud) + geo/clima | ⏳ |
-| E5 | Agente de IA (consultas en lenguaje natural + dossier) | ⏳ |
-| E6 | PDF, push al core, notificaciones | ⏳ |
+| **E4** | Grafo de redes (anillos) + NLP de similitud + geo/clima | ✅ |
+| **E5** | Agente de IA (consultas en lenguaje natural, 12 preguntas del reto) | ✅ |
+| **E6** | PDF dossier + push al core (mock) + avisos WhatsApp/correo | ✅ |
 
 **Métricas (test held-out, 422 casos):** AUC solo-reglas 0.82 → **híbrido 0.90** (modelo ML 0.93) · **precisión 0.92** · recall 0.74 · F1 0.82.
-**Distribución:** 1131 🟢 · 164 🟡 · 97 🔴 · 48 tests verdes.
+**Distribución:** 1131 🟢 · 164 🟡 · 97 🔴 · **64 tests verdes** · reproducible (semilla fija).
 
 ## Quickstart
 
@@ -36,7 +36,7 @@ Requisitos: Python 3.12, Node 18+.
 Abre **http://localhost:5173**. Otros comandos:
 
 ```bash
-./run.sh test      # corre la suite (48 tests)
+./run.sh test      # corre la suite (64 tests)
 ./run.sh pipeline  # genera la bandeja + imprime métricas
 ./run.sh api       # solo la API (docs en /docs)
 ```
@@ -54,7 +54,9 @@ El desglose ES la lista de contribuciones (explicable por diseño).
 - **Reglas** — rúbrica de señales del reto + RF-02/03/04 como gates.
 - **ML supervisado** — RandomForest (entrenado en train held-out).
 - **Anomalías** — Isolation Forest para lo "no evidente".
-- **Agente de IA** (E5) — LLM barato compatible-OpenAI (DeepSeek/Groq) + fallback.
+- **Agente de IA** — consultas en lenguaje natural (las 12 preguntas del reto); herramientas deterministas + LLM barato compatible-OpenAI (DeepSeek/Groq) opcional, con fallback.
+- **Redes (grafo)** — networkx detecta anillos (proveedores que concentran alertas).
+- **NLP** — similitud de narrativas (TF-IDF + coseno) para detectar clonadas.
 
 ## API
 
@@ -63,6 +65,12 @@ El desglose ES la lista de contribuciones (explicable por diseño).
 | `GET /api/resumen` | totales por semáforo + monto en revisión |
 | `GET /api/casos?nivel=&limit=` | bandeja priorizada |
 | `GET /api/casos/{id}` | score + desglose + evidencia + recomendación |
+| `POST /api/preguntar` | agente: respuesta en lenguaje natural |
+| `GET /api/redes` | anillos (proveedores que concentran alertas) |
+| `GET /api/narrativas-similares` | pares de narrativas casi idénticas |
+| `GET /api/casos/{id}/dossier` | PDF de investigación |
+| `GET /api/casos/{id}/aviso` | preview de notificación WhatsApp/correo |
+| `POST /api/casos/{id}/push` | push del score al core (mock) |
 
 ## Estructura
 
@@ -77,10 +85,13 @@ argly/
 │   ├── anomaly/     # Isolation Forest                                  (E2)
 │   ├── app/         # API FastAPI                                       (E3)
 │   ├── pipeline.py  # datos -> features -> score -> bandeja + métricas
-│   ├── graph/ nlp/ ai_agent/ enrichment/ channels/   # E4-E6 (pendiente)
+│   ├── graph/       # redes/anillos (networkx)                       (E4)
+│   ├── nlp/         # similitud de narrativas (TF-IDF + coseno)       (E4)
+│   ├── ai_agent/    # agente NL + herramientas deterministas          (E5)
+│   ├── channels/    # PDF dossier + avisos WhatsApp/correo            (E6)
 ├── frontend/        # React (Vite) war-room                            (E3)
 ├── docs/            # arquitectura, modelo de datos, reglas, uso IA, límites, requerimientos
-├── tests/           # 48 tests
+├── tests/           # 64 tests
 └── docker-compose.yml
 ```
 
