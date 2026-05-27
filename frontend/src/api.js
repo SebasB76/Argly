@@ -16,3 +16,12 @@ export async function getCaso(id) {
   const r = await fetch(`${BASE}/casos/${id}`)
   return r.json()
 }
+
+export async function preguntar(pregunta) {
+  const r = await fetch(`${BASE}/preguntar`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ pregunta }),
+  })
+  return r.json()
+}

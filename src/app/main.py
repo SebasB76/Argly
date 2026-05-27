@@ -8,8 +8,10 @@ from __future__ import annotations
 import json
 
 from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
 from src.pipeline import construir_bandeja
+from src.ai_agent.agent import responder
 
 app = FastAPI(title="Argly API", version="0.1.0",
               description="Detección de posible fraude en siniestros. Alertas, no acusaciones.")
@@ -89,3 +91,13 @@ def caso(id_siniestro: str):
         "recomendacion": _recomendacion(str(r["nivel"])),
         "aviso": AVISO,
     }
+
+
+class Pregunta(BaseModel):
+    pregunta: str
+
+
+@app.post("/api/preguntar")
+def preguntar(p: Pregunta):
+    """Agente de IA: responde una pregunta en lenguaje natural sobre la bandeja."""
+    return responder(p.pregunta, _bandeja())

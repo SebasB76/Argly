@@ -3,6 +3,7 @@ import { getResumen, getCasos, getCaso } from './api'
 import Stats from './components/Stats'
 import Bandeja from './components/Bandeja'
 import Detalle from './components/Detalle'
+import Agente from './components/Agente'
 import './App.css'
 
 const NIVELES = ['TODOS', 'ROJO', 'AMARILLO', 'VERDE']
@@ -34,6 +35,8 @@ export default function App() {
       </header>
 
       <Stats resumen={resumen} />
+
+      <Agente />
 
       <div className="filtros">
         {NIVELES.map((n) => (

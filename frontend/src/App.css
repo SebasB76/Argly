@@ -75,6 +75,19 @@
   border: 1px solid #5c4a12; padding: 8px 10px; border-radius: 8px; text-align: center;
 }
 
+.agente { background: #0f1626; border: 1px solid #1e2a44; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.agente-h { font-weight: 700; color: #cdd9f0; margin-bottom: 10px; }
+.agente-in { display: flex; gap: 8px; }
+.agente-in input { flex: 1; background: #0c1018; border: 1px solid #243150; color: #e6edf3; border-radius: 8px; padding: 9px 12px; font-size: 13px; }
+.agente-in button { background: #2451d6; border: none; color: #fff; border-radius: 8px; padding: 9px 16px; cursor: pointer; font-weight: 600; }
+.agente-in button:disabled { opacity: 0.6; }
+.sugerencias { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.sugerencias button { background: #141b2b; border: 1px solid #243150; color: #9fb0d4; border-radius: 16px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
+.sugerencias button:hover { border-color: #2451d6; color: #cdd9f0; }
+.agente-resp { margin-top: 12px; background: #11182a; border: 1px solid #1e2a44; border-radius: 8px; padding: 12px 14px; }
+.agente-resp p { margin: 0; color: #e6edf3; font-size: 14px; line-height: 1.5; }
+.agente-meta { margin-top: 8px; font-size: 11px; color: #7c8db5; }
+
 @media (max-width: 900px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
   .layout { grid-template-columns: 1fr; }
