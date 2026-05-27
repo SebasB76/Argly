@@ -28,9 +28,11 @@ def test_seed_preserva_fraude_y_split(tmp_path):
 
 def test_idempotente(tmp_path):
     """Reejecutar el seed no duplica (drop_all + create_all)."""
+    dfs = generar(seed=42)
+    n_esperado = len(dfs["siniestros"])
     url = f"sqlite:///{tmp_path / 'argly_test.db'}"
-    seed(url=url)
-    engine = seed(url=url)
+    seed(url=url, dfs=dfs)
+    engine = seed(url=url, dfs=dfs)
     with engine.connect() as c:
         n = c.execute(text("SELECT COUNT(*) FROM siniestros")).scalar()
-    assert n == 1390
+    assert n == n_esperado

@@ -118,10 +118,9 @@ def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dic
             antiguedad_meses=random.randint(1, 240),
             en_lista_restrictiva=False,
         ))
-    for p in random.sample(proveedores, 4):
-        p["en_lista_restrictiva"] = True
-
     prov_normales = [p["id_proveedor"] for p in proveedores]
+    ring_ids = [prov_normales[0], prov_normales[1]]      # proveedores de las redes (rings)
+    pool_legit = [p for p in prov_normales if p not in ring_ids]
 
     # --- Pólizas + vehículos ---
     polizas, vehiculos, pol_by_id = [], [], {}
@@ -172,7 +171,7 @@ def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dic
         ciudad = pol["ciudad"]
         return dict(
             id_siniestro=nuevo_id(), id_poliza=pol["id_poliza"], id_asegurado=pol["id_asegurado"],
-            id_proveedor=id_prov or random.choice(prov_normales),
+            id_proveedor=id_prov or random.choice(pool_legit),
             placa=placa_by_aseg.get(pol["id_asegurado"], ""),
             ramo=ramo, cobertura=cobertura,
             fecha_ocurrencia=ocurr, fecha_reporte=reporte,
@@ -234,8 +233,8 @@ def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dic
             s["split"] = split
             sin.append(s)
 
-    construir_ring(prov_normales[0], "train")
-    construir_ring(prov_normales[1], "test")
+    construir_ring(ring_ids[0], "train")
+    construir_ring(ring_ids[1], "test")
 
     # --- Patrón: narrativa clonada (descripción casi idéntica) ---
     for _ in range(20):
