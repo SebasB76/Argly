@@ -40,11 +40,42 @@ def puntuar_siniestro(row) -> dict:
     return puntuar(evaluar_reglas(row))
 
 
-def puntuar_features(F):
-    """Puntúa un DataFrame de features. Devuelve id_siniestro, score, nivel, gate, contribuciones."""
+def contribucion_ml(prob: float):
+    """Contribución del modelo ML (no es gate; aporta puntos según la probabilidad)."""
+    if prob >= 0.40:
+        return Contribucion("Modelo ML", int(round(prob * 50)),
+                            f"Probabilidad de fraude del modelo: {prob:.0%}")
+    return None
+
+
+def contribucion_anomalia(anom: float):
+    """Contribución por anomalía (Isolation Forest); captura lo 'no evidente'."""
+    if anom >= 0.65:
+        return Contribucion("Anomalía", int(round((anom - 0.5) * 30)),
+                            f"Comportamiento atípico (rareza {anom:.0%})")
+    return None
+
+
+def puntuar_features(F, prob=None, anom=None):
+    """Puntúa un DataFrame de features.
+
+    Con prob/anom (Series alineadas a F) suma las contribuciones de ML y anomalía
+    (modo híbrido); sin ellas, es scoring solo-reglas (E1).
+    """
     import pandas as pd
 
-    res = [puntuar_siniestro(r) for _, r in F.iterrows()]
+    res = []
+    for i, (_, row) in enumerate(F.iterrows()):
+        contribs = evaluar_reglas(row)
+        if prob is not None:
+            c = contribucion_ml(float(prob.iloc[i]))
+            if c:
+                contribs.append(c)
+        if anom is not None:
+            c = contribucion_anomalia(float(anom.iloc[i]))
+            if c:
+                contribs.append(c)
+        res.append(puntuar(contribs))
     return pd.DataFrame({
         "id_siniestro": F["id_siniestro"].values,
         "score": [x["score"] for x in res],
