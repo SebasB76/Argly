@@ -1,0 +1,32 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Entorno / secretos ---
+.env
+*.key
+*.pem
+
+# --- Datos generados (no versionar los CSV; sí el generador) ---
+data/raw/*
+data/processed/*
+data/synthetic/*.csv
+!data/**/.gitkeep
+
+# --- Node / frontend ---
+node_modules/
+dist/
+.next/
+build/
+
+# --- Sistema / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

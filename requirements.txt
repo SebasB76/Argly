@@ -1,0 +1,28 @@
+# === Núcleo de datos / ML ===
+pandas
+numpy
+scikit-learn
+xgboost
+networkx              # análisis de redes / detección de anillos
+shap                  # explicabilidad del modelo (feature attribution)
+
+# === NLP ===
+sentence-transformers # embeddings para similitud de narrativas
+
+# === Agente de IA ===
+anthropic             # Claude (agente / consultas en lenguaje natural)
+# openai              # alternativa GPT
+
+# === Datos sintéticos ===
+faker
+
+# === API / app ===
+fastapi
+uvicorn[standard]
+python-dotenv
+
+# === Artefactos / reportes ===
+reportlab             # generación de PDF (dossier de investigación)
+
+# === Testing ===
+pytest
