@@ -17,6 +17,7 @@ export default function Detalle({ d, onClose }) {
       <div className="meta">
         {d.ramo} · {d.cobertura} · {d.sucursal} · ${d.monto_reclamado.toLocaleString('es-EC', { maximumFractionDigits: 0 })}
       </div>
+      <a className="pdf-btn" href={`/api/casos/${d.id_siniestro}/dossier`} target="_blank" rel="noreferrer">📄 Descargar dossier PDF</a>
 
       <div className="contrib-h">Por qué · {contribs.length} señales</div>
       <ul className="contribs">

@@ -34,3 +34,8 @@ export async function scorear(caso) {
   })
   return r.json()
 }
+
+export async function getRedes() {
+  const r = await fetch(`${BASE}/redes`)
+  return r.json()
+}

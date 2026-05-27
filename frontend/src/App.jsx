@@ -5,6 +5,7 @@ import Bandeja from './components/Bandeja'
 import Detalle from './components/Detalle'
 import Agente from './components/Agente'
 import Scorear from './components/Scorear'
+import Redes from './components/Redes'
 import './App.css'
 
 const NIVELES = ['TODOS', 'ROJO', 'AMARILLO', 'VERDE']
@@ -40,6 +41,8 @@ export default function App() {
       <Agente />
 
       <Scorear />
+
+      <Redes />
 
       <div className="filtros">
         {NIVELES.map((n) => (

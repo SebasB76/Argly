@@ -21,8 +21,8 @@ revisión humana.
 | **E5** | Agente de IA (consultas en lenguaje natural, 12 preguntas del reto) | ✅ |
 | **E6** | PDF dossier + push al core (mock) + avisos WhatsApp/correo | ✅ |
 
-**Métricas (test held-out, 422 casos):** AUC solo-reglas 0.82 → **híbrido 0.90** (modelo ML 0.93) · **precisión 0.92** · recall 0.74 · F1 0.82.
-**Distribución:** 1131 🟢 · 164 🟡 · 97 🔴 · **64 tests verdes** · reproducible (semilla fija).
+**Métricas (test held-out, 422 casos):** AUC solo-reglas 0.85 → **híbrido 0.93** (modelo ML 0.95) · **precisión 0.97** · recall 0.80 · F1 0.88.
+**Distribución:** 1146 🟢 · 172 🟡 · 74 🔴 · **68 tests verdes** · reproducible (semilla fija).
 
 ## Quickstart
 
@@ -36,7 +36,7 @@ Requisitos: Python 3.12, Node 18+.
 Abre **http://localhost:5173**. Otros comandos:
 
 ```bash
-./run.sh test      # corre la suite (64 tests)
+./run.sh test      # corre la suite (68 tests)
 ./run.sh pipeline  # genera la bandeja + imprime métricas
 ./run.sh api       # solo la API (docs en /docs)
 ```
@@ -65,6 +65,7 @@ El desglose ES la lista de contribuciones (explicable por diseño).
 | `GET /api/resumen` | totales por semáforo + monto en revisión |
 | `GET /api/casos?nivel=&limit=` | bandeja priorizada |
 | `GET /api/casos/{id}` | score + desglose + evidencia + recomendación |
+| `POST /api/scorear` | **puntúa un siniestro nuevo en vivo** + explica |
 | `POST /api/preguntar` | agente: respuesta en lenguaje natural |
 | `GET /api/redes` | anillos (proveedores que concentran alertas) |
 | `GET /api/narrativas-similares` | pares de narrativas casi idénticas |
@@ -91,7 +92,7 @@ argly/
 │   ├── channels/    # PDF dossier + avisos WhatsApp/correo            (E6)
 ├── frontend/        # React (Vite) war-room                            (E3)
 ├── docs/            # arquitectura, modelo de datos, reglas, uso IA, límites, requerimientos
-├── tests/           # 64 tests
+├── tests/           # 68 tests
 └── docker-compose.yml
 ```
 
