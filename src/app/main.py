@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
 
 from src.pipeline import construir_bandeja
@@ -15,6 +15,8 @@ from src.ingestion.generate_synthetic import generar
 from src.graph.network import detectar_redes
 from src.nlp.narrative import pares_similares
 from src.ai_agent.agent import responder
+from src.channels.pdf_dossier import generar_dossier
+from src.channels import notify
 
 app = FastAPI(title="Argly API", version="0.1.0",
               description="Detección de posible fraude en siniestros. Alertas, no acusaciones.")
@@ -77,8 +79,7 @@ def casos(nivel: str | None = None, limit: int = 50, offset: int = 0):
     return {"total": int(len(b)), "casos": json.loads(page.to_json(orient="records"))}
 
 
-@app.get("/api/casos/{id_siniestro}")
-def caso(id_siniestro: str):
+def _detalle(id_siniestro: str) -> dict:
     b = _bandeja()
     row = b[b["id_siniestro"] == id_siniestro]
     if row.empty:
@@ -102,6 +103,11 @@ def caso(id_siniestro: str):
     }
 
 
+@app.get("/api/casos/{id_siniestro}")
+def caso(id_siniestro: str):
+    return _detalle(id_siniestro)
+
+
 class Pregunta(BaseModel):
     pregunta: str
 
@@ -123,3 +129,26 @@ def narrativas(umbral: float = 0.95):
     """Pares de reclamos con narrativas casi idénticas (NLP TF-IDF + coseno)."""
     dfs, _ = _datos()
     return {"pares": pares_similares(dfs["siniestros"], umbral=umbral), "aviso": AVISO}
+
+
+@app.get("/api/casos/{id_siniestro}/dossier")
+def dossier(id_siniestro: str):
+    """PDF de investigación del caso, listo para auditoría."""
+    pdf = generar_dossier(_detalle(id_siniestro))
+    return Response(content=pdf, media_type="application/pdf",
+                    headers={"Content-Disposition": f'inline; filename="dossier_{id_siniestro}.pdf"'})
+
+
+@app.get("/api/casos/{id_siniestro}/aviso")
+def aviso(id_siniestro: str):
+    """Vista previa de las notificaciones (WhatsApp / correo) del caso."""
+    d = _detalle(id_siniestro)
+    return {"whatsapp": notify.formato_whatsapp(d), "correo": notify.formato_correo(d)}
+
+
+@app.post("/api/casos/{id_siniestro}/push")
+def push(id_siniestro: str):
+    """Mock: empuja el score/alerta al core de siniestros (integración futura)."""
+    d = _detalle(id_siniestro)
+    return {"ok": True, "id_siniestro": d["id_siniestro"], "score": d["score"], "nivel": d["nivel"],
+            "mensaje": f"Score {d['score']} ({d['nivel']}) enviado al core de siniestros (receptor mock)."}
