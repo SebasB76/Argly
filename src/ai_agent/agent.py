@@ -33,6 +33,14 @@ def _router(pregunta: str, b):
         ev = "; ".join(f"{c['regla']} (+{c['puntos']})" for c in d["contribuciones"])
         return "explicar", d, f"{ids} es {d['nivel']} (score {d['score']}). Señales: {ev}."
 
+    if any(k in q for k in ["redes", "anillo", "ring", "colusion", "colusión"]):
+        from src.graph.network import detectar_redes
+        d = detectar_redes(b)
+        if not d:
+            return "redes", d, "No detecté redes con la concentración mínima."
+        top = ", ".join(f"{r['proveedores'][0]} ({r['n_siniestros']} sin., {r['n_asegurados']} aseg.)" for r in d[:3])
+        return "redes", d, f"Detecté {len(d)} posibles redes/anillos. Top: {top}."
+
     if "proveedor" in q:
         d = tools.proveedores_top(b)
         top = ", ".join(f"{x['id_proveedor']} ({x['alertas']} alertas, {x['pct_de_alertas']}%)" for x in d[:5])

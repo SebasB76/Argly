@@ -82,11 +82,22 @@ def _haversine_km(a: str, b: str) -> float:
 
 def _narrativa(cobertura: str) -> str:
     plantillas = NARRATIVAS.get(cobertura, NARRATIVAS["_default"])
-    return random.choice(plantillas).format(
+    base_txt = random.choice(plantillas).format(
         parte=random.choice(["frontal", "posterior", "lateral"]),
         via=random.choice(VIAS),
         dolencia=random.choice(DOLENCIAS),
     )
+    # Detalle variable: las narrativas legítimas quedan diversas (evita falsos
+    # "clonados"); las narrativas clonadas se sobrescriben aparte (NARRATIVA_CLON).
+    detalle = random.choice([
+        f"aproximadamente a las {random.randint(6, 22)}h{random.choice(['00', '15', '30', '45'])}",
+        f"a la altura del km {random.randint(1, 45)}",
+        f"con {random.randint(1, 4)} ocupantes en el vehículo",
+        "sin heridos que reportar",
+        "con apoyo de grúa en el lugar",
+        f"según parte policial N {random.randint(1000, 9999)}",
+    ])
+    return f"{base_txt} Se reporta {detalle}. Expediente {random.randint(100000, 999999)}."
 
 
 def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dict[str, pd.DataFrame]:

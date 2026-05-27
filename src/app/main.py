@@ -11,20 +11,29 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from src.pipeline import construir_bandeja
+from src.ingestion.generate_synthetic import generar
+from src.graph.network import detectar_redes
+from src.nlp.narrative import pares_similares
 from src.ai_agent.agent import responder
 
 app = FastAPI(title="Argly API", version="0.1.0",
               description="Detección de posible fraude en siniestros. Alertas, no acusaciones.")
 
+_DFS = None
 _BANDEJA = None
 
 
-def _bandeja():
-    """Construye la bandeja una sola vez (cache en memoria)."""
-    global _BANDEJA
+def _datos():
+    """Genera los datos y construye la bandeja una sola vez (cache en memoria)."""
+    global _DFS, _BANDEJA
     if _BANDEJA is None:
-        _BANDEJA = construir_bandeja()
-    return _BANDEJA
+        _DFS = generar()
+        _BANDEJA = construir_bandeja(_DFS)
+    return _DFS, _BANDEJA
+
+
+def _bandeja():
+    return _datos()[1]
 
 
 CASO_COLS = ["id_siniestro", "score", "nivel", "gate", "motivo_principal", "n_alertas",
@@ -101,3 +110,16 @@ class Pregunta(BaseModel):
 def preguntar(p: Pregunta):
     """Agente de IA: responde una pregunta en lenguaje natural sobre la bandeja."""
     return responder(p.pregunta, _bandeja())
+
+
+@app.get("/api/redes")
+def redes(min_siniestros: int = 5):
+    """Anillos: proveedores que concentran siniestros sospechosos (análisis de redes)."""
+    return {"redes": detectar_redes(_bandeja(), min_siniestros=min_siniestros), "aviso": AVISO}
+
+
+@app.get("/api/narrativas-similares")
+def narrativas(umbral: float = 0.95):
+    """Pares de reclamos con narrativas casi idénticas (NLP TF-IDF + coseno)."""
+    dfs, _ = _datos()
+    return {"pares": pares_similares(dfs["siniestros"], umbral=umbral), "aviso": AVISO}
