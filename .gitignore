@@ -13,10 +13,11 @@ env/
 *.key
 *.pem
 
-# --- Datos generados (no versionar los CSV; sí el generador) ---
+# --- Datos generados (no versionar CSV ni DB local; sí el generador) ---
 data/raw/*
 data/processed/*
 data/synthetic/*.csv
+data/*.db
 !data/**/.gitkeep
 
 # --- Node / frontend ---

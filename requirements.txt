@@ -6,12 +6,15 @@ xgboost
 networkx              # análisis de redes / detección de anillos
 shap                  # explicabilidad del modelo (feature attribution)
 
+# === Base de datos ===
+sqlalchemy
+psycopg2-binary       # driver Postgres (no necesario en dev con SQLite)
+
 # === NLP ===
 sentence-transformers # embeddings para similitud de narrativas
 
-# === Agente de IA ===
-anthropic             # Claude (agente / consultas en lenguaje natural)
-# openai              # alternativa GPT
+# === Agente de IA (LLM barato compatible-OpenAI: DeepSeek / Groq) ===
+openai                # cliente compatible-OpenAI (base_url -> DeepSeek/Groq)
 
 # === Datos sintéticos ===
 faker

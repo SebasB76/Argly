@@ -1,0 +1,22 @@
+# Postgres para Argly. Levantar con: docker compose up -d
+# La app usa: DATABASE_URL=postgresql+psycopg2://argly:argly@localhost:5432/argly
+services:
+  db:
+    image: postgres:16
+    container_name: argly-db
+    environment:
+      POSTGRES_USER: argly
+      POSTGRES_PASSWORD: argly
+      POSTGRES_DB: argly
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U argly"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:
