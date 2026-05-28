@@ -47,6 +47,11 @@ export default function Agente() {
       {resp && (
         <div className="agente-resp">
           <p>{resp.respuesta}</p>
+          {resp.error && (
+            <pre style={{ whiteSpace: 'pre-wrap', marginTop: 8, fontSize: 12, color: '#ffcccb' }}>
+              {resp.error}
+            </pre>
+          )}
           {resp.fuente && <div className="agente-meta">motor: {resp.herramienta} · fuente: {resp.fuente}</div>}
         </div>
       )}

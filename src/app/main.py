@@ -7,8 +7,12 @@ from __future__ import annotations
 
 import json
 
+from dotenv import find_dotenv, load_dotenv
 from fastapi import FastAPI, HTTPException, Response
 from pydantic import BaseModel
+
+# Carga .env al arrancar la app para que el proceso vea GEMINI_API_KEY/LLM_PROVIDER
+load_dotenv(find_dotenv(), override=False)
 
 from src.pipeline import construir_bandeja
 from src.ingestion.generate_synthetic import generar

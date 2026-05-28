@@ -33,6 +33,10 @@ def construir_bandeja(dfs: dict | None = None, hibrido: bool = True) -> pd.DataF
             "fecha_ocurrencia", "id_asegurado", "id_proveedor", "split", "etiqueta_fraude_simulada"]
     b = dfs["siniestros"][cols].merge(P, on="id_siniestro", how="left")
     b["n_alertas"] = b["contribuciones"].map(len)
+    if prob is not None:
+        b["probabilidad_ml"] = b["probabilidad_ml"].fillna(0.0)
+    if anom is not None and "rareza_anomalia" in b.columns:
+        b["rareza_anomalia"] = b["rareza_anomalia"].fillna(0.0)
 
     def _motivo(cs):
         if not cs:

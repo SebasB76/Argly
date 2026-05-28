@@ -76,10 +76,15 @@ def puntuar_features(F, prob=None, anom=None):
             if c:
                 contribs.append(c)
         res.append(puntuar(contribs))
-    return pd.DataFrame({
+    data = {
         "id_siniestro": F["id_siniestro"].values,
         "score": [x["score"] for x in res],
         "nivel": [x["nivel"] for x in res],
         "gate": [x["gate"] for x in res],
         "contribuciones": [x["contribuciones"] for x in res],
-    })
+    }
+    if prob is not None:
+        data["probabilidad_ml"] = [round(float(x), 3) for x in prob.values]
+    if anom is not None:
+        data["rareza_anomalia"] = [round(float(x), 3) for x in anom.values]
+    return pd.DataFrame(data)

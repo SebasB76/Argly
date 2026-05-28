@@ -18,9 +18,14 @@ def _flagged(b):
 def top_riesgo(b, n: int = 10):
     out = []
     for _, r in b.head(n).iterrows():
-        out.append({"id_siniestro": r["id_siniestro"], "score": int(r["score"]),
-                    "nivel": r["nivel"], "motivo": r["motivo_principal"],
-                    "monto": round(float(r["monto_reclamado"]), 2)})
+        item = {"id_siniestro": r["id_siniestro"], "score": int(r["score"]),
+                "nivel": r["nivel"], "motivo": r["motivo_principal"],
+                "monto": round(float(r["monto_reclamado"]), 2)}
+        if "probabilidad_ml" in b.columns:
+            item["probabilidad_ml"] = round(float(r.get("probabilidad_ml", 0.0)), 3)
+        if "rareza_anomalia" in b.columns:
+            item["rareza_anomalia"] = round(float(r.get("rareza_anomalia", 0.0)), 3)
+        out.append(item)
     return out
 
 
@@ -29,9 +34,29 @@ def explicar(b, id_siniestro: str):
     if row.empty:
         return None
     r = row.iloc[0]
-    return {"id_siniestro": id_siniestro, "score": int(r["score"]), "nivel": r["nivel"],
-            "motivo_principal": r["motivo_principal"],
-            "contribuciones": list(r["contribuciones"])}
+    out = {"id_siniestro": id_siniestro, "score": int(r["score"]), "nivel": r["nivel"],
+           "motivo_principal": r["motivo_principal"],
+           "contribuciones": list(r["contribuciones"])}
+    if "probabilidad_ml" in b.columns:
+        out["probabilidad_ml"] = round(float(r.get("probabilidad_ml", 0.0)), 3)
+    if "rareza_anomalia" in b.columns:
+        out["rareza_anomalia"] = round(float(r.get("rareza_anomalia", 0.0)), 3)
+    return out
+
+
+def resumen_ml(b):
+    """Resumen centrado en el modelo ML y la anomalía para explicar el riesgo."""
+    if "probabilidad_ml" not in b.columns:
+        return {"total": int(len(b)), "mensaje": "La bandeja no trae probabilidades ML aún."}
+    top = b.sort_values("probabilidad_ml", ascending=False).head(5)
+    riesgo_promedio = float(b["probabilidad_ml"].mean()) if len(b) else 0.0
+    anomalia_promedio = float(b["rareza_anomalia"].mean()) if "rareza_anomalia" in b.columns and len(b) else 0.0
+    return {
+        "total": int(len(b)),
+        "riesgo_promedio_ml": round(riesgo_promedio, 3),
+        "rareza_promedio": round(anomalia_promedio, 3),
+        "top_ml": top_riesgo(top, 5),
+    }
 
 
 def proveedores_top(b, n: int = 10):
