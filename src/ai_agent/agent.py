@@ -28,6 +28,12 @@ def _router(pregunta: str, b):
     q = pregunta.lower()
     m = re.search(r"sin\d{3,}", q)
 
+    if any(k in q for k in ["mayor riesgo", "mayores riesgos", "top 10", "10 siniestros", "10 casos"]):
+        d = tools.top_riesgo(b, 10)
+        return "top_riesgo", d, "Top 10 siniestros con mayor riesgo: " + ", ".join(
+            f"{x['id_siniestro']} ({x['score']})" for x in d
+        ) + "."
+
     if any(k in q for k in ["por que", "por qué", "porque", "explica"]) and m:
         ids = m.group(0).upper()
         d = tools.explicar(b, ids)
@@ -118,6 +124,26 @@ def _provider():
     return "openai"
 
 
+def _usar_llm() -> bool:
+    flag = os.environ.get("AGENT_USE_LLM", "").strip().lower()
+    if flag in ("0", "false", "no", "off"):
+        return False
+    if _llm_key():
+        return True
+    return False
+
+
+def _gemini_model_candidates():
+    candidates = []
+    configured = os.environ.get("LLM_MODEL", "").strip()
+    if configured:
+        candidates.append(configured)
+    for fallback in ("gemini-1.5-flash", "gemini-2.0-flash"):
+        if fallback not in candidates:
+            candidates.append(fallback)
+    return candidates
+
+
 def _narrar_llm(pregunta, datos):
     import json
     import httpx
@@ -137,67 +163,75 @@ def _narrar_llm(pregunta, datos):
     # Gemini / Google Generative API
     if provider == "gemini":
         gem_base = os.environ.get("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta").rstrip("/")
-        gem_model = os.environ.get("LLM_MODEL", model)
         api_key = _llm_key()
+        last_error = None
+        for gem_model in _gemini_model_candidates():
+            try:
+                url = f"{gem_base}/models/{gem_model}:generateContent"
+                payload = {
+                    "systemInstruction": {"parts": [{"text": sistema}]},
+                    "contents": [{"role": "user", "parts": [{"text": usuario}]}],
+                    "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1024},
+                }
+                r = httpx.post(url, params={"key": api_key}, json=payload, timeout=60)
+                r.raise_for_status()
+                j = r.json()
 
-        url = f"{gem_base}/models/{gem_model}:generateContent"
-        payload = {
-            "systemInstruction": {"parts": [{"text": sistema}]},
-            "contents": [{"role": "user", "parts": [{"text": usuario}]}],
-            "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1024},
-        }
-        r = httpx.post(url, params={"key": api_key}, json=payload, timeout=60)
-        r.raise_for_status()
-        j = r.json()
-
-        # Robust extraction: try multiple known shapes and concatenate text parts
-        def _extract_text_from_node(node):
-            parts = []
-            if isinstance(node, dict):
-                # 1) candidates / choices arrays
-                for key in ("candidates", "choices", "output"):
-                    if key in node and isinstance(node[key], list):
-                        for c in node[key]:
-                            parts.append(_extract_text_from_node(c))
-                # 2) content arrays with parts
-                if "content" in node:
-                    cont = node["content"]
-                    if isinstance(cont, list):
-                        for item in cont:
-                            if isinstance(item, dict):
-                                t = item.get("text") or item.get("content")
+                # Robust extraction: try multiple known shapes and concatenate text parts
+                def _extract_text_from_node(node):
+                    parts = []
+                    if isinstance(node, dict):
+                        # 1) candidates / choices arrays
+                        for key in ("candidates", "choices", "output"):
+                            if key in node and isinstance(node[key], list):
+                                for c in node[key]:
+                                    parts.append(_extract_text_from_node(c))
+                        # 2) content arrays with parts
+                        if "content" in node:
+                            cont = node["content"]
+                            if isinstance(cont, list):
+                                for item in cont:
+                                    if isinstance(item, dict):
+                                        t = item.get("text") or item.get("content")
+                                        if isinstance(t, str):
+                                            parts.append(t)
+                                        else:
+                                            parts.append(_extract_text_from_node(item))
+                        # 3) message.content.text
+                        if "message" in node and isinstance(node["message"], dict):
+                            msg = node["message"]
+                            if "content" in msg and isinstance(msg["content"], dict):
+                                t = msg["content"].get("text")
                                 if isinstance(t, str):
                                     parts.append(t)
-                                else:
-                                    parts.append(_extract_text_from_node(item))
-                # 3) message.content.text
-                if "message" in node and isinstance(node["message"], dict):
-                    msg = node["message"]
-                    if "content" in msg and isinstance(msg["content"], dict):
-                        t = msg["content"].get("text")
-                        if isinstance(t, str):
-                            parts.append(t)
-                # 4) direct text
-                if "text" in node and isinstance(node["text"], str):
-                    parts.append(node["text"])
-            elif isinstance(node, list):
-                for it in node:
-                    parts.append(_extract_text_from_node(it))
-            elif isinstance(node, str):
-                parts.append(node)
-            # flatten and join
-            flat = []
-            for p in parts:
-                if isinstance(p, str) and p:
-                    flat.append(p)
-                elif isinstance(p, list):
-                    flat.extend([x for x in p if isinstance(x, str)])
-            return "\n".join(flat)
+                        # 4) direct text
+                        if "text" in node and isinstance(node["text"], str):
+                            parts.append(node["text"])
+                    elif isinstance(node, list):
+                        for it in node:
+                            parts.append(_extract_text_from_node(it))
+                    elif isinstance(node, str):
+                        parts.append(node)
+                    # flatten and join
+                    flat = []
+                    for p in parts:
+                        if isinstance(p, str) and p:
+                            flat.append(p)
+                        elif isinstance(p, list):
+                            flat.extend([x for x in p if isinstance(x, str)])
+                    return "\n".join(flat)
 
-        texto = _extract_text_from_node(j)
-        if texto and texto.strip():
-            return texto.strip()
-        return json.dumps(j, ensure_ascii=False)
+                texto = _extract_text_from_node(j)
+                if texto and texto.strip():
+                    return texto.strip()
+                return json.dumps(j, ensure_ascii=False)
+            except Exception as exc:
+                last_error = exc
+                status = getattr(getattr(exc, "response", None), "status_code", None)
+                if status not in (400, 404):
+                    raise
+        if last_error is not None:
+            raise last_error
 
     # OpenAI-compatible / DeepSeek path
     if provider in ("openai", "deepseek", "default"):
@@ -221,61 +255,27 @@ def _narrar_llm(pregunta, datos):
                 return json.dumps(j, ensure_ascii=False)
 
     raise RuntimeError(f"LLM provider no soportado: {provider}")
-                    url = f"{gem_base}/models/{gem_model}:generateContent"
-                    payload = {
-                        "systemInstruction": {"parts": [{"text": sistema}]},
-                        "contents": [{"role": "user", "parts": [{"text": usuario}]}],
-                        "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1024},
-                    }
-                    r = httpx.post(url, params={"key": api_key}, json=payload, timeout=60)
-                    r.raise_for_status()
-                    j = r.json()
 
-                    # Robust extraction: try multiple known shapes and concatenate text parts
-                    def _extract_text_from_node(node):
-                        parts = []
-                        if isinstance(node, dict):
-                            # 1) candidates / choices arrays
-                            for key in ("candidates", "choices", "output"):
-                                if key in node and isinstance(node[key], list):
-                                    for c in node[key]:
-                                        parts.append(_extract_text_from_node(c))
-                            # 2) content arrays with parts
-                            if "content" in node:
-                                cont = node["content"]
-                                if isinstance(cont, list):
-                                    for item in cont:
-                                        if isinstance(item, dict):
-                                            t = item.get("text") or item.get("content")
-                                            if isinstance(t, str):
-                                                parts.append(t)
-                                            else:
-                                                parts.append(_extract_text_from_node(item))
-                            # 3) message.content.text
-                            if "message" in node and isinstance(node["message"], dict):
-                                msg = node["message"]
-                                if "content" in msg and isinstance(msg["content"], dict):
-                                    t = msg["content"].get("text")
-                                    if isinstance(t, str):
-                                        parts.append(t)
-                            # 4) direct text
-                            if "text" in node and isinstance(node["text"], str):
-                                parts.append(node["text"])
-                        elif isinstance(node, list):
-                            for it in node:
-                                parts.append(_extract_text_from_node(it))
-                        elif isinstance(node, str):
-                            parts.append(node)
-                        # flatten and join
-                        flat = []
-                        for p in parts:
-                            if isinstance(p, str) and p:
-                                flat.append(p)
-                            elif isinstance(p, list):
-                                flat.extend([x for x in p if isinstance(x, str)])
-                        return "\n".join(flat)
 
-                    texto = _extract_text_from_node(j)
-                    if texto and texto.strip():
-                        return texto.strip()
-                    return json.dumps(j, ensure_ascii=False)
+def responder(pregunta: str, b):
+    """Responde una pregunta sobre la bandeja usando el router determinista por defecto."""
+    herramienta, datos, texto_base = _router(pregunta, b)
+
+    usar_llm = _usar_llm()
+    if herramienta == "chat" and usar_llm:
+        respuesta = _narrar_llm(pregunta, datos)
+        fuente = f"llm:{_provider()}"
+    elif herramienta == "chat":
+        respuesta = "No tengo una respuesta determinista para esa consulta. Prueba con una pregunta más concreta sobre casos, proveedores, ramos o redes."
+        fuente = "sin_llm"
+    else:
+        respuesta = texto_base
+        fuente = "reglas deterministas"
+
+    return {
+        "herramienta": herramienta,
+        "datos": datos,
+        "respuesta": respuesta,
+        "fuente": fuente,
+        "aviso": AVISO,
+    }
