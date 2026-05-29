@@ -111,8 +111,21 @@ def _router(pregunta: str, b):
     return "chat", {}, ""
 
 
-def _llm_key():
-    return os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY") or os.environ.get("OPENAI_API_KEY")
+def _llm_key(provider: str | None = None):
+    """Llave del LLM, provider-aware.
+
+    En modo openai/deepseek prioriza LLM_API_KEY/OPENAI_API_KEY sobre GEMINI_API_KEY,
+    para no mandar por error la llave de Gemini a un endpoint OpenAI-compatible (DeepSeek/
+    Groq) cuando ambas están configuradas. Sin provider mantiene el comportamiento previo.
+    """
+    gemini = os.environ.get("GEMINI_API_KEY")
+    openai_compat = os.environ.get("LLM_API_KEY") or os.environ.get("OPENAI_API_KEY")
+    p = (provider or "").strip().lower()
+    if p in ("openai", "deepseek", "default"):
+        return openai_compat or gemini
+    if p == "gemini":
+        return gemini or openai_compat
+    return gemini or openai_compat
 
 
 def _provider():
@@ -138,7 +151,7 @@ def _gemini_model_candidates():
     configured = os.environ.get("LLM_MODEL", "").strip()
     if configured:
         candidates.append(configured)
-    for fallback in ("gemini-1.5-flash", "gemini-2.0-flash"):
+    for fallback in ("gemini-2.5-flash", "gemini-2.0-flash"):
         if fallback not in candidates:
             candidates.append(fallback)
     return candidates
@@ -267,17 +280,24 @@ def _llm_generar_texto(sistema: str, usuario: str):
 
     if provider == "gemini":
         gem_base = os.environ.get("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta").rstrip("/")
-        api_key = _llm_key()
+        api_key = _llm_key(provider)
         last_error = None
         max_retries = 3
         base_delay = 1.0
         for gem_model in _gemini_model_candidates():
             try:
                 url = f"{gem_base}/models/{gem_model}:generateContent"
+                gen_config = {"temperature": 0.2, "maxOutputTokens": 1024}
+                # Los modelos 2.5 Flash traen "thinking" ON por defecto: consume parte
+                # de maxOutputTokens y puede devolver respuesta VACÍA (finishReason=MAX_TOKENS).
+                # La tarea del agente (elegir tool + redactar) no necesita razonamiento
+                # extendido, así que lo desactivamos (más rápido, más barato, sin truncados).
+                if "2.5" in gem_model and "pro" not in gem_model:
+                    gen_config["thinkingConfig"] = {"thinkingBudget": 0}
                 payload = {
                     "systemInstruction": {"parts": [{"text": sistema}]},
                     "contents": [{"role": "user", "parts": [{"text": usuario}]}],
-                    "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1024},
+                    "generationConfig": gen_config,
                 }
                 attempt = 0
                 while True:
@@ -313,6 +333,10 @@ def _llm_generar_texto(sistema: str, usuario: str):
                             if key in node and isinstance(node[key], list):
                                 for c in node[key]:
                                     parts.append(_extract_text_from_node(c))
+                        if "parts" in node and isinstance(node["parts"], list):
+                            for item in node["parts"]:
+                                if isinstance(item, dict) and isinstance(item.get("text"), str):
+                                    parts.append(item["text"])
                         if "content" in node:
                             cont = node["content"]
                             if isinstance(cont, list):
@@ -323,6 +347,9 @@ def _llm_generar_texto(sistema: str, usuario: str):
                                             parts.append(t)
                                         else:
                                             parts.append(_extract_text_from_node(item))
+                            elif isinstance(cont, dict):
+                                # Gemini: content = {"parts": [{"text": ...}], "role": "model"}
+                                parts.append(_extract_text_from_node(cont))
                         if "message" in node and isinstance(node["message"], dict):
                             msg = node["message"]
                             if "content" in msg and isinstance(msg["content"], dict):
@@ -369,7 +396,7 @@ def _llm_generar_texto(sistema: str, usuario: str):
             attempt += 1
             r = httpx.post(
                 f"{base}/chat/completions",
-                headers={"Authorization": f"Bearer {_llm_key()}"},
+                headers={"Authorization": f"Bearer {_llm_key(provider)}"},
                 json={"model": model, "temperature": 0.2, "max_tokens": 1024,
                       "messages": [{"role": "system", "content": sistema},
                                    {"role": "user", "content": usuario}]},
