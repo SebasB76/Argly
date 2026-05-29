@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react'
-import { getResumen } from './api'
+import { getResumen, getDataset } from './api'
 import { useArgly } from './context/ArglyContext'
 import Overview from './components/Overview'
 import Casos from './components/Casos'
 import RedesView from './components/RedesView'
 import Asistente from './components/Asistente'
+import Datos from './components/Datos'
+import Etica from './components/Etica'
+import MiTrabajo from './components/MiTrabajo'
 import './App.css'
 
 const VIEWS = [
   { id: 'overview', label: 'Overview', sub: 'Analítica', glyph: '▦' },
   { id: 'casos', label: 'Casos', sub: 'Bandeja', glyph: '▤' },
+  { id: 'trabajo', label: 'Mi trabajo', sub: 'Operación', glyph: '☑' },
   { id: 'redes', label: 'Redes', sub: 'Grafo', glyph: '◈' },
   { id: 'asistente', label: 'Asistente', sub: 'IA', glyph: '✦' },
+  { id: 'etica', label: 'Ética', sub: 'Equidad', glyph: '⚖' },
+  { id: 'datos', label: 'Datos', sub: 'Dataset', glyph: '▥' },
 ]
-const TITLES = { overview: 'Centro de mando', casos: 'Bandeja operativa', redes: 'Redes de fraude', asistente: 'Asistente IA' }
+const TITLES = { overview: 'Centro de mando', casos: 'Bandeja operativa', trabajo: 'Mi trabajo', redes: 'Redes de fraude', asistente: 'Asistente IA', etica: 'Explicabilidad y ética', datos: 'Gestión de datos' }
 
 function useClock() {
   const [t, setT] = useState('')
@@ -29,9 +35,11 @@ function useClock() {
 export default function App() {
   const { vista, setVista } = useArgly()
   const [resumen, setResumen] = useState(null)
+  const [dataset, setDataset] = useState(null)
   const clock = useClock()
 
   useEffect(() => { getResumen().then(setResumen).catch(() => {}) }, [])
+  useEffect(() => { getDataset().then(setDataset).catch(() => {}) }, [vista])
 
   const n = resumen?.por_nivel || {}
 
@@ -57,7 +65,7 @@ export default function App() {
 
         <div className="sb-foot">
           <div className="sb-status"><span className="dot" /> Monitoreando</div>
-          <div className="sb-ver">v1.0 · datos sintéticos</div>
+          <div className="sb-ver">v1.0 · {dataset?.origen === 'importado' ? 'dataset importado' : 'datos sintéticos'}</div>
         </div>
       </aside>
 
@@ -89,8 +97,11 @@ export default function App() {
         <main className="view" key={vista}>
           {vista === 'overview' && <Overview resumen={resumen} />}
           {vista === 'casos' && <Casos />}
+          {vista === 'trabajo' && <MiTrabajo />}
           {vista === 'redes' && <RedesView />}
           {vista === 'asistente' && <Asistente />}
+          {vista === 'etica' && <Etica />}
+          {vista === 'datos' && <Datos />}
         </main>
       </div>
     </div>

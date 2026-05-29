@@ -47,7 +47,10 @@ export default function Asistente() {
   return (
     <div className="asistente">
       <div className="chat-head">
-        <div className="chat-title"><span className="dot" /> ARGLY · Asistente</div>
+        <div className="chat-headl">
+          <div className="chat-title"><span className="dot" /> ARGLY · Asistente</div>
+          <div className="chat-sub">Consulta en lenguaje natural · responde con datos reales de la bandeja</div>
+        </div>
         <div className="chat-actions">
           <span className="chat-meta">{messages.length} mensajes · persistente</span>
           <button className="chat-clear" onClick={() => setMessages([])} disabled={empty}>Limpiar</button>
@@ -89,6 +92,7 @@ export default function Asistente() {
 
       {!empty && (
         <div className="chat-chips">
+          <span className="cc-lead">Sugerencias</span>
           {CHIPS.map((c) => <button key={c.label} onClick={() => enviar(c.q)} disabled={cargando}>{c.label}</button>)}
         </div>
       )}

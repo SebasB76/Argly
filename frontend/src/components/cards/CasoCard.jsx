@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useArgly } from '../../context/ArglyContext'
 import { fmtMoney } from '../../lib/format'
+import { API_BASE } from '../../api'
 
 export default function CasoCard({ id, seed = {}, autoload = false }) {
   const { fetchCaso, abrirCaso } = useArgly()
@@ -72,7 +73,7 @@ export default function CasoCard({ id, seed = {}, autoload = false }) {
           </ul>
           {full.aviso && <div className="sello">{full.aviso}</div>}
           <div className="cck-actions">
-            <a className="pdf-btn" href={`/api/casos/${id}/dossier`} target="_blank" rel="noreferrer">↓ PDF</a>
+            <a className="pdf-btn" href={`${API_BASE}/casos/${id}/dossier`} target="_blank" rel="noreferrer">↓ PDF</a>
             <button className="cck-open" onClick={() => abrirCaso(id)}>Abrir en Casos →</button>
           </div>
         </div>

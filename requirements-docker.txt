@@ -1,0 +1,28 @@
+# Dependencias de RUNTIME para el demo en Docker (backend FastAPI).
+# Nota: torch/sentence-transformers/xgboost/jupyter/matplotlib del requirements.txt
+# solo se usan en los notebooks, NO en src/, por eso no se incluyen aquí
+# (imagen mucho más liviana y build más rápido).
+
+# --- Núcleo de datos / ML ---
+pandas
+numpy
+scikit-learn
+networkx
+
+# --- Base de datos (Postgres opcional; SQLite viene con Python) ---
+sqlalchemy
+psycopg2-binary
+
+# --- API ---
+fastapi
+uvicorn[standard]
+python-dotenv
+python-multipart
+
+# --- Agente de IA (cliente compatible-OpenAI + httpx para Gemini) ---
+openai
+httpx
+
+# --- Reportes ---
+reportlab
+openpyxl

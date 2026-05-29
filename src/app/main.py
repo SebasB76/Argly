@@ -5,46 +5,83 @@ Levantar:
 """
 from __future__ import annotations
 
+import io
 import json
 
+import pandas as pd
 from dotenv import find_dotenv, load_dotenv
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, File, Form, HTTPException, Response, UploadFile
 from pydantic import BaseModel
 
 # Carga .env al arrancar la app para que el proceso vea GEMINI_API_KEY/LLM_PROVIDER
 load_dotenv(find_dotenv(), override=False)
 
-from src.pipeline import construir_bandeja
-from src.ingestion.generate_synthetic import generar
+from src.pipeline import construir_bandeja, evaluar_metricas
+from src.ingestion import store
 from src.graph.network import detectar_redes
 from src.nlp.narrative import pares_similares, extraer_entidades, resumen_narrativas
 from src.ai_agent.agent import responder
 from src.ai_agent import tools
 from src.channels.pdf_dossier import generar_dossier
+from src.channels.reporte import generar_reporte_pdf, generar_reporte_excel
 from src.channels import notify
 from src.features.build_features import construir_features
 from src.models.ml_model import entrenar, FEATURES, _X, explicacion_global, explicacion_local
+from src.explicabilidad.sesgo import analizar_sesgo
+from src.explicabilidad.contrafactual import contrafactual
+from src.explicabilidad.contexto import contexto_caso, redactar, vinculos_caso
+from src.explicabilidad.checklist import estado_checklist
+from src.geo.mapa import mapa_calor
 from src.rules.fraud_rules import evaluar_reglas
 from src.scoring.score import puntuar, contribucion_ml
 
 app = FastAPI(title="Argly API", version="0.1.0",
               description="Detección de posible fraude en siniestros. Alertas, no acusaciones.")
 
+# CORS: el front (Vercel) vive en otro dominio. CORS_ORIGINS = lista separada por
+# comas (p. ej. "https://argly.vercel.app"); por defecto "*" para facilitar la demo.
+import os as _os
+from fastapi.middleware.cors import CORSMiddleware
+
+_origins = [o.strip() for o in _os.environ.get("CORS_ORIGINS", "*").split(",") if o.strip()]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=_origins,
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 _DFS = None
 _BANDEJA = None
 _MODELO = None
 _FEATURES = None
+_HIBRIDO = True
 
 
 def _datos():
-    """Genera los datos, entrena el modelo y construye la bandeja una vez (cache)."""
-    global _DFS, _BANDEJA, _MODELO, _FEATURES
+    """Carga el dataset desde la DB (fuente de verdad), entrena el modelo si el
+    dataset lo admite y construye la bandeja una vez (cache). Si la DB está vacía
+    se siembra con el sintético; si el dataset no tiene etiquetas usables, opera
+    en modo solo-reglas (sin ML)."""
+    global _DFS, _BANDEJA, _MODELO, _FEATURES, _HIBRIDO
     if _BANDEJA is None:
-        _DFS = generar()
-        _FEATURES = construir_features(_DFS)
-        _MODELO, _ = entrenar(_FEATURES)
-        _BANDEJA = construir_bandeja(_DFS)
+        store.inicializar()
+        _DFS = store.cargar_dfs()
+        F = construir_features(_DFS)
+        # Etiquetas del analista (human-in-the-loop) -> entran al entrenamiento.
+        F, _ = store.aplicar_feedback(F)
+        _FEATURES = F
+        _HIBRIDO = store.admite_hibrido_F(F)
+        _MODELO = entrenar(F)[0] if _HIBRIDO else None
+        _BANDEJA = construir_bandeja(_DFS, hibrido=_HIBRIDO, F=F)
     return _DFS, _BANDEJA
+
+
+def _invalidar():
+    """Descarta la cache para que el próximo request recargue el dataset desde la DB."""
+    global _DFS, _BANDEJA, _MODELO, _FEATURES
+    _DFS = _BANDEJA = _MODELO = _FEATURES = None
 
 
 def _bandeja():
@@ -78,25 +115,130 @@ def health():
 @app.get("/api/resumen")
 def resumen():
     b = _bandeja()
+    total = int(len(b))
     por_nivel = {k: int(v) for k, v in b["nivel"].value_counts().items()}
     monto_revision = float(b.loc[b["nivel"] != "VERDE", "monto_reclamado"].sum())
     ahorro = tools.simulacion_ahorro(b)
+    pe = store.feedback_resumen()["por_estado"]
+    gestionados = pe["en_revision"] + pe["escalado"] + pe["cerrado"]
+    por_estado = {"sin_revisar": max(0, total - gestionados), "en_revision": pe["en_revision"],
+                  "escalado": pe["escalado"], "cerrado": pe["cerrado"]}
     return {
-        "total": int(len(b)),
+        "total": total,
         "por_nivel": por_nivel,
+        "por_estado": por_estado,
         "monto_en_revision": round(monto_revision, 2),
         "ahorro_estimado": ahorro["ahorro_estimado_total"],
         "aviso": AVISO,
     }
 
 
+# --- Dataset variable: estado, importación (reemplazar/anexar) y reset --------- #
+_TABLAS_IMPORTABLES = ["siniestros", "polizas", "proveedores", "asegurados",
+                       "vehiculos", "documentos"]
+
+
+@app.get("/api/dataset")
+def dataset():
+    """Estado del dataset actual: origen, conteos por tabla y modo (híbrido/solo-reglas)."""
+    return store.resumen()
+
+
+@app.post("/api/dataset/importar")
+async def importar_dataset(
+    modo: str = Form("replace"),
+    siniestros: UploadFile | None = File(None),
+    polizas: UploadFile | None = File(None),
+    proveedores: UploadFile | None = File(None),
+    asegurados: UploadFile | None = File(None),
+    vehiculos: UploadFile | None = File(None),
+    documentos: UploadFile | None = File(None),
+):
+    """Importa un dataset propio. `modo=replace` reemplaza todo; `modo=append`
+    anexa filas (omite IDs ya existentes). Cada tabla es un CSV; al menos
+    `siniestros` es obligatorio. Tras importar se recalcula todo el pipeline."""
+    if modo not in ("replace", "append"):
+        raise HTTPException(status_code=400, detail="modo debe ser 'replace' o 'append'")
+    archivos = {"siniestros": siniestros, "polizas": polizas, "proveedores": proveedores,
+                "asegurados": asegurados, "vehiculos": vehiculos, "documentos": documentos}
+    dfs: dict[str, pd.DataFrame] = {}
+    for nombre, up in archivos.items():
+        if up is None:
+            continue
+        try:
+            contenido = await up.read()
+            dfs[nombre] = pd.read_csv(io.BytesIO(contenido))
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"No se pudo leer '{nombre}': {e}")
+    if "siniestros" not in dfs or dfs["siniestros"].empty:
+        raise HTTPException(status_code=400,
+                            detail="Debes incluir al menos la tabla 'siniestros' con filas.")
+    try:
+        detalle = store.anexar(dfs) if modo == "append" else (store.reemplazar(dfs) and None)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Error al importar: {e}")
+    _invalidar()
+    return {"ok": True, "modo": modo, "insertados": detalle, "dataset": store.resumen()}
+
+
+@app.post("/api/dataset/reset")
+def reset_dataset():
+    """Vuelve al dataset sintético de demo (descarta lo importado)."""
+    store.resetear()
+    _invalidar()
+    return {"ok": True, "dataset": store.resumen()}
+
+
+def _bandeja_estado():
+    """Bandeja + columnas `estado` (gestión) y `veredicto` (analista) por caso."""
+    b = _bandeja().copy()
+    fb = store.cargar_feedback()
+    b["estado"] = b["id_siniestro"].map(lambda s: fb.get(s, {}).get("estado", "sin_revisar"))
+    b["veredicto"] = b["id_siniestro"].map(lambda s: fb.get(s, {}).get("veredicto", "pendiente"))
+    return b
+
+
 @app.get("/api/casos")
-def casos(nivel: str | None = None, limit: int = 50, offset: int = 0):
-    b = _bandeja()
+def casos(nivel: str | None = None, estado: str | None = None, ramo: str | None = None,
+          ciudad: str | None = None, proveedor: str | None = None, motivo: str | None = None,
+          q: str | None = None, monto_min: float | None = None, monto_max: float | None = None,
+          score_min: int | None = None, score_max: int | None = None,
+          orden: str = "score", limit: int = 200, offset: int = 0):
+    """Bandeja filtrable y buscable (cola de trabajo del analista)."""
+    b = _bandeja_estado()
     if nivel:
         b = b[b["nivel"] == nivel.upper()]
-    page = b[CASO_COLS].iloc[offset:offset + limit]
-    return {"total": int(len(b)), "casos": json.loads(page.to_json(orient="records"))}
+    if estado:
+        b = b[b["estado"] == estado]
+    if ramo:
+        b = b[b["ramo"] == ramo]
+    if ciudad:
+        b = b[b["sucursal"] == ciudad]
+    if proveedor:
+        b = b[b["id_proveedor"] == proveedor]
+    if motivo:
+        b = b[b["motivo_principal"].str.contains(motivo, case=False, na=False)]
+    if monto_min is not None:
+        b = b[b["monto_reclamado"] >= monto_min]
+    if monto_max is not None:
+        b = b[b["monto_reclamado"] <= monto_max]
+    if score_min is not None:
+        b = b[b["score"] >= score_min]
+    if score_max is not None:
+        b = b[b["score"] <= score_max]
+    if q:
+        ql = q.strip().lower()
+        mask = False
+        for col in ("id_siniestro", "id_asegurado", "id_proveedor"):
+            mask = mask | b[col].astype(str).str.lower().str.contains(ql, na=False)
+        b = b[mask]
+    if orden == "impacto":                       # valor esperado = riesgo x monto
+        b = b.assign(_ve=b["score"] * b["monto_reclamado"]).sort_values("_ve", ascending=False)
+    else:
+        b = b.sort_values("score", ascending=False)
+    total = int(len(b))
+    page = b[CASO_COLS + ["estado", "veredicto"]].iloc[offset:offset + limit]
+    return {"total": total, "casos": json.loads(page.to_json(orient="records"))}
 
 
 def _detalle(id_siniestro: str) -> dict:
@@ -105,7 +247,7 @@ def _detalle(id_siniestro: str) -> dict:
     if row.empty:
         raise HTTPException(status_code=404, detail="Siniestro no encontrado")
     r = row.iloc[0]
-    return {
+    d = {
         "id_siniestro": str(r["id_siniestro"]),
         "score": int(r["score"]),
         "nivel": str(r["nivel"]),
@@ -119,8 +261,11 @@ def _detalle(id_siniestro: str) -> dict:
         "id_proveedor": str(r["id_proveedor"]),
         "contribuciones": r["contribuciones"],
         "recomendacion": _recomendacion(str(r["nivel"])),
+        "feedback": store.cargar_feedback().get(id_siniestro, {"veredicto": "pendiente", "estado": "sin_revisar", "nota": "", "fecha": ""}),
         "aviso": AVISO,
     }
+    d["resumen"] = redactar(d, contexto_caso(id_siniestro, b))   # resumen en lenguaje natural
+    return d
 
 
 @app.get("/api/casos/{id_siniestro}")
@@ -186,6 +331,9 @@ def ahorro(tasa_fraude_confirmado: float = 0.35):
 def modelo_importancias():
     """Explicabilidad GLOBAL del modelo ML (SHAP si está instalado; si no, importancia del RF)."""
     _datos()
+    if _MODELO is None:
+        return {"metodo": "no_disponible", "importancias": {},
+                "nota": "Dataset sin etiquetas de fraude usables: Argly opera en modo solo-reglas."}
     return explicacion_global(_MODELO, _FEATURES)
 
 
@@ -204,12 +352,250 @@ def aviso(id_siniestro: str):
     return {"whatsapp": notify.formato_whatsapp(d), "correo": notify.formato_correo(d)}
 
 
+@app.get("/api/casos/{id_siniestro}/contrafactual")
+def caso_contrafactual(id_siniestro: str):
+    """Explicación contrafactual: qué tendría que cambiar para que el caso pase a VERDE."""
+    d = _detalle(id_siniestro)
+    return {"id_siniestro": id_siniestro, "score": d["score"], "nivel": d["nivel"],
+            **contrafactual(d["contribuciones"]), "aviso": AVISO}
+
+
+@app.get("/api/casos/{id_siniestro}/vinculos")
+def caso_vinculos(id_siniestro: str):
+    """Casos relacionados: mismo proveedor/asegurado/conductor/placa y narrativa similar."""
+    dfs, b = _datos()
+    if not (b["id_siniestro"] == id_siniestro).any():
+        raise HTTPException(status_code=404, detail="Siniestro no encontrado")
+    return {"id_siniestro": id_siniestro, **vinculos_caso(id_siniestro, b, dfs), "aviso": AVISO}
+
+
+@app.get("/api/mapa")
+def mapa():
+    """Mapa de calor: concentración de alertas por ciudad (con coordenadas)."""
+    return {**mapa_calor(_bandeja()), "aviso": AVISO}
+
+
+def _datos_reporte(dfs, b) -> dict:
+    """Consolida todas las secciones del reporte ejecutivo desde la bandeja."""
+    from datetime import datetime, timezone
+    por_nivel = {k: int(v) for k, v in b["nivel"].value_counts().items()}
+    monto_rev = float(b.loc[b["nivel"] != "VERDE", "monto_reclamado"].sum())
+    ahorro = tools.simulacion_ahorro(b)
+    top = (b.sort_values("score", ascending=False)
+           [["id_siniestro", "score", "nivel", "motivo_principal", "monto_reclamado"]]
+           .head(15).to_dict("records"))
+    meta = store.resumen()
+    return {
+        "fecha": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "origen": meta.get("origen"), "modo": meta.get("modo"),
+        "resumen": {"total": int(len(b)), "por_nivel": por_nivel,
+                    "monto_en_revision": round(monto_rev, 2),
+                    "ahorro_estimado": ahorro["ahorro_estimado_total"]},
+        "metricas": (evaluar_metricas(F=_FEATURES) if _HIBRIDO and _FEATURES is not None else None),
+        "top": [{"id_siniestro": str(t["id_siniestro"]), "score": int(t["score"]),
+                 "nivel": str(t["nivel"]), "motivo_principal": str(t["motivo_principal"]),
+                 "monto_reclamado": float(t["monto_reclamado"])} for t in top],
+        "pareto": tools.proveedores_pareto(b),
+        "ramos": tools.ramos_sospechosos(b),
+        "ciudades": mapa_calor(b)["ciudades"],
+        "sesgo": analizar_sesgo(b, dfs),
+        "aviso": AVISO,
+    }
+
+
+@app.get("/api/reporte/pdf")
+def reporte_pdf():
+    """Reporte ejecutivo consolidado en PDF (CU-06): panorama, top de casos,
+    Pareto de proveedores, distribución, equidad y métricas."""
+    dfs, b = _datos()
+    pdf = generar_reporte_pdf(_datos_reporte(dfs, b))
+    return Response(content=pdf, media_type="application/pdf",
+                    headers={"Content-Disposition": 'inline; filename="reporte_ejecutivo_argly.pdf"'})
+
+
+@app.get("/api/reporte/excel")
+def reporte_excel():
+    """Exporta la bandeja completa a Excel multi-hoja para auditoría."""
+    dfs, b = _datos()
+    por_nivel = {k: int(v) for k, v in b["nivel"].value_counts().items()}
+    resumen = {"total": int(len(b)), "por_nivel": por_nivel,
+               "monto_en_revision": round(float(b.loc[b["nivel"] != "VERDE", "monto_reclamado"].sum()), 2),
+               "ahorro_estimado": tools.simulacion_ahorro(b)["ahorro_estimado_total"]}
+    xlsx = generar_reporte_excel(b, pareto=tools.proveedores_pareto(b),
+                                 ramos=tools.ramos_sospechosos(b), resumen=resumen)
+    return Response(content=xlsx,
+                    media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    headers={"Content-Disposition": 'attachment; filename="argly_bandeja.xlsx"'})
+
+
+@app.get("/api/sesgo")
+def sesgo():
+    """Análisis de sesgo/equidad: tasa de alerta y de falsos positivos por ciudad,
+    segmento, canal y ramo, con veredicto de paridad (regla 4/5)."""
+    dfs, b = _datos()
+    return {**analizar_sesgo(b, dfs), "aviso": AVISO}
+
+
 @app.post("/api/casos/{id_siniestro}/push")
 def push(id_siniestro: str):
     """Mock: empuja el score/alerta al core de siniestros (integración futura)."""
     d = _detalle(id_siniestro)
     return {"ok": True, "id_siniestro": d["id_siniestro"], "score": d["score"], "nivel": d["nivel"],
             "mensaje": f"Score {d['score']} ({d['nivel']}) enviado al core de siniestros (receptor mock)."}
+
+
+# --- Human-in-the-loop: feedback del analista + reentrenamiento --------------- #
+class Feedback(BaseModel):
+    veredicto: str          # confirmado | falso_positivo | descartado | pendiente
+    nota: str = ""
+
+
+@app.post("/api/casos/{id_siniestro}/feedback")
+def feedback(id_siniestro: str, fb: Feedback):
+    """Registra el veredicto del analista sobre un caso (señal de entrenamiento).
+
+    No reentrena al instante: el veredicto se acumula y se incorpora con
+    `POST /api/modelo/reentrenar`. Es una etiqueta de revisión humana, no una
+    decisión automática."""
+    b = _bandeja()
+    if not (b["id_siniestro"] == id_siniestro).any():
+        raise HTTPException(status_code=404, detail="Siniestro no encontrado")
+    if fb.veredicto not in store.VERDICTOS:
+        raise HTTPException(status_code=400,
+                            detail=f"veredicto inválido (use {list(store.VERDICTOS)})")
+    from datetime import datetime, timezone
+    guardado = store.guardar_feedback(id_siniestro, fb.veredicto, fb.nota,
+                                      datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    return {"ok": True, "feedback": guardado, "resumen": store.feedback_resumen()}
+
+
+@app.get("/api/feedback")
+def feedback_resumen():
+    """Resumen del feedback acumulado: conteos por veredicto/estado y etiquetas disponibles."""
+    return store.feedback_resumen()
+
+
+class EstadoGestion(BaseModel):
+    estado: str             # sin_revisar | en_revision | escalado | cerrado
+
+
+@app.post("/api/casos/{id_siniestro}/estado")
+def set_estado(id_siniestro: str, e: EstadoGestion):
+    """Cambia el estado de gestión del caso (cola de trabajo del analista)."""
+    b = _bandeja()
+    if not (b["id_siniestro"] == id_siniestro).any():
+        raise HTTPException(status_code=404, detail="Siniestro no encontrado")
+    if e.estado not in store.ESTADOS_GESTION:
+        raise HTTPException(status_code=400,
+                            detail=f"estado inválido (use {list(store.ESTADOS_GESTION)})")
+    from datetime import datetime, timezone
+    guardado = store.guardar_estado(id_siniestro, e.estado,
+                                    datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    return {"ok": True, "feedback": guardado, "resumen": store.feedback_resumen()}
+
+
+class Nota(BaseModel):
+    texto: str
+    autor: str = "Analista"
+
+
+@app.post("/api/casos/{id_siniestro}/nota")
+def agregar_nota(id_siniestro: str, n: Nota):
+    """Añade una nota libre del analista a la bitácora del caso."""
+    b = _bandeja()
+    if not (b["id_siniestro"] == id_siniestro).any():
+        raise HTTPException(status_code=404, detail="Siniestro no encontrado")
+    if not n.texto.strip():
+        raise HTTPException(status_code=400, detail="La nota no puede estar vacía")
+    from datetime import datetime, timezone
+    hist = store.agregar_nota(id_siniestro, n.texto.strip(), n.autor or "Analista",
+                              datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    return {"ok": True, "bitacora": hist}
+
+
+@app.get("/api/casos/{id_siniestro}/bitacora")
+def bitacora(id_siniestro: str):
+    """Bitácora del caso: notas + historial de cambios de veredicto/estado."""
+    return {"id_siniestro": id_siniestro, "bitacora": store.historial(id_siniestro)}
+
+
+@app.get("/api/casos/{id_siniestro}/checklist")
+def checklist(id_siniestro: str):
+    """Pasos de investigación del caso + cuáles están completados."""
+    d = _detalle(id_siniestro)
+    return {"id_siniestro": id_siniestro,
+            **estado_checklist(d["contribuciones"], store.checklist_hechos(id_siniestro))}
+
+
+class PasoChecklist(BaseModel):
+    clave: str
+    hecho: bool = True
+
+
+@app.post("/api/casos/{id_siniestro}/checklist")
+def set_checklist(id_siniestro: str, p: PasoChecklist):
+    """Marca/desmarca un paso de investigación del caso."""
+    d = _detalle(id_siniestro)
+    from datetime import datetime, timezone
+    hechos = store.toggle_checklist(id_siniestro, p.clave, p.hecho,
+                                    datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    return {"ok": True, "id_siniestro": id_siniestro,
+            **estado_checklist(d["contribuciones"], hechos)}
+
+
+@app.get("/api/mi-trabajo")
+def mi_trabajo():
+    """Tablero operativo del analista: productividad, pendientes y novedades."""
+    be = _bandeja_estado()
+    total = int(len(be))
+    fbres = store.feedback_resumen()
+    pe = fbres["por_estado"]
+    gestionados = pe["en_revision"] + pe["escalado"] + pe["cerrado"]
+    por_estado = {"sin_revisar": max(0, total - gestionados), "en_revision": pe["en_revision"],
+                  "escalado": pe["escalado"], "cerrado": pe["cerrado"]}
+
+    confirmados = be[be["veredicto"] == "confirmado"]
+    pendientes_rojos = be[(be["nivel"] == "ROJO") & (be["estado"] == "sin_revisar")]
+    top_pend = (pendientes_rojos.assign(_ve=pendientes_rojos["score"] * pendientes_rojos["monto_reclamado"])
+                .sort_values("_ve", ascending=False)
+                [["id_siniestro", "score", "nivel", "motivo_principal", "monto_reclamado", "sucursal"]]
+                .head(6))
+    return {
+        "total": total,
+        "revisados": total - por_estado["sin_revisar"],
+        "por_estado": por_estado,
+        "por_veredicto": fbres["por_veredicto"],
+        "monto_confirmado": round(float(confirmados["monto_reclamado"].sum()), 2),
+        "monto_escalado": round(float(be.loc[be["estado"] == "escalado", "monto_reclamado"].sum()), 2),
+        "pendientes_rojos": int(len(pendientes_rojos)),
+        "pendientes_top": json.loads(top_pend.to_json(orient="records")),
+        "proveedores_top": tools.proveedores_top(be, n=5),
+        "actividad_reciente": store.actividad_reciente(12),
+        "aviso": AVISO,
+    }
+
+
+@app.post("/api/modelo/reentrenar")
+def reentrenar():
+    """Reentrena incorporando las etiquetas del analista y devuelve métricas
+    ANTES vs DESPUÉS, medidas sobre el mismo test held-out (sin fuga)."""
+    dfs, _ = _datos()
+    F0 = construir_features(dfs)                       # sin feedback (línea base)
+    F1, aplicados = store.aplicar_feedback(F0.copy())  # con feedback del analista
+    resp = {
+        "feedback_aplicado": aplicados,
+        "resumen_feedback": store.feedback_resumen(),
+        "antes": evaluar_metricas(F=F0) if store.admite_hibrido_F(F0) else None,
+        "despues": evaluar_metricas(F=F1) if store.admite_hibrido_F(F1) else None,
+    }
+    a, d = resp["antes"], resp["despues"]
+    if a and d:
+        resp["mejora"] = {k: round((d[k] or 0) - (a[k] or 0), 3)
+                          for k in ("auc_hibrido", "auc_ml", "precision", "recall", "f1")
+                          if a.get(k) is not None and d.get(k) is not None}
+    _invalidar()        # la próxima carga usa el modelo reentrenado con feedback
+    resp["ok"] = True
+    return resp
 
 
 class NuevoSiniestro(BaseModel):
@@ -262,10 +648,13 @@ def _features_de_input(c: NuevoSiniestro) -> dict:
     }
 
 
-def _prob_ml(fila: dict) -> float:
-    import pandas as pd
+def _prob_ml(fila: dict) -> float | None:
+    """Probabilidad de fraude del modelo, o None si el dataset corre en solo-reglas."""
+    m = _modelo()
+    if m is None:
+        return None
     df = pd.DataFrame([{k: fila.get(k) for k in FEATURES}])
-    return float(_modelo().predict_proba(_X(df))[0, 1])
+    return float(m.predict_proba(_X(df))[0, 1])
 
 
 @app.post("/api/scorear")
@@ -274,12 +663,14 @@ def scorear(c: NuevoSiniestro):
     fila = _features_de_input(c)
     contribs = evaluar_reglas(fila)
     prob = _prob_ml(fila)
-    cml = contribucion_ml(prob)
-    if cml:
-        contribs.append(cml)
+    if prob is not None:
+        cml = contribucion_ml(prob)
+        if cml:
+            contribs.append(cml)
     res = puntuar(contribs)
-    res["probabilidad_ml"] = round(prob, 3)
-    res["factores_modelo"] = explicacion_local(_modelo(), fila)
+    if prob is not None:
+        res["probabilidad_ml"] = round(prob, 3)
+        res["factores_modelo"] = explicacion_local(_modelo(), fila)
     res["recomendacion"] = _recomendacion(res["nivel"])
     res["aviso"] = AVISO
     return res

@@ -1,7 +1,7 @@
 """Modelos SQLAlchemy de las tablas del reto. Columnas alineadas con el generador."""
 from __future__ import annotations
 
-from sqlalchemy import Boolean, Column, Date, Float, Integer, String
+from sqlalchemy import Boolean, Column, Date, Float, Integer, String, Index
 
 from src.ingestion.db import Base
 
@@ -106,3 +106,53 @@ class Documento(Base):
     fecha_emision = Column(Date)
     inconsistencia_detectada = Column(Boolean)
     observacion = Column(String)
+
+
+class Meta(Base):
+    """Metadatos del dataset cargado (origen, fecha de carga…). Una fila por clave."""
+    __tablename__ = "argly_meta"
+    clave = Column(String, primary_key=True)
+    valor = Column(String)
+
+
+class Feedback(Base):
+    """Veredicto del analista sobre un siniestro (human-in-the-loop).
+
+    Es la etiqueta de verdad que el experto aporta al revisar una alerta. Alimenta
+    el reentrenamiento del modelo: `confirmado`->fraude(1), `falso_positivo`/
+    `descartado`->no-fraude(0). `pendiente` no aporta etiqueta.
+    """
+    __tablename__ = "feedback_analista"
+    id_siniestro = Column(String, primary_key=True)
+    veredicto = Column(String)      # confirmado | falso_positivo | descartado | pendiente
+    estado = Column(String)         # sin_revisar | en_revision | escalado | cerrado (gestión)
+    nota = Column(String)
+    fecha = Column(String)          # ISO; se pasa desde la capa de API (no Date.now en core)
+
+
+class Bitacora(Base):
+    """Bitácora del caso: una fila por evento (nota, cambio de veredicto o estado).
+
+    Es la trazabilidad para auditoría: quién hizo qué y cuándo sobre cada siniestro.
+    """
+    __tablename__ = "bitacora"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    id_siniestro = Column(String, index=True)
+    tipo = Column(String)           # nota | veredicto | estado
+    texto = Column(String)
+    valor = Column(String)          # nuevo valor (para veredicto/estado)
+    autor = Column(String)
+    fecha = Column(String)          # ISO desde la capa de API
+
+    __table_args__ = (Index("ix_bitacora_sin", "id_siniestro"),)
+
+
+class Checklist(Base):
+    """Pasos de investigación completados por caso (una fila = un paso hecho)."""
+    __tablename__ = "checklist"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    id_siniestro = Column(String, index=True)
+    clave = Column(String)
+    fecha = Column(String)
+
+    __table_args__ = (Index("ix_checklist_sin", "id_siniestro"),)

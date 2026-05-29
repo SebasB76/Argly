@@ -19,8 +19,11 @@ export function ArglyProvider({ children }) {
     return p
   }, [])
 
+  // Invalida la cache de un caso (p. ej. tras registrar feedback del analista)
+  const invalidarCaso = useCallback((id) => { cache.current.delete(id) }, [])
+
   return (
-    <Ctx.Provider value={{ vista, setVista, casoSel, setCasoSel, abrirCaso, fetchCaso }}>
+    <Ctx.Provider value={{ vista, setVista, casoSel, setCasoSel, abrirCaso, fetchCaso, invalidarCaso }}>
       {children}
     </Ctx.Provider>
   )

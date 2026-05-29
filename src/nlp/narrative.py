@@ -36,6 +36,23 @@ def pares_similares(siniestros, umbral: float = 0.9, max_pares: int = 100):
     return pares[:max_pares]
 
 
+def similares_a(siniestros, id_siniestro: str, umbral: float = 0.8, top: int = 5):
+    """Siniestros con narrativa más parecida a la de `id_siniestro` (coseno TF-IDF)."""
+    s = siniestros.reset_index(drop=True)
+    if id_siniestro not in set(s["id_siniestro"]):
+        return []
+    textos = s["descripcion"].fillna("").tolist()
+    if len(textos) < 2:
+        return []
+    X = TfidfVectorizer().fit_transform(textos)
+    i = int(s.index[s["id_siniestro"] == id_siniestro][0])
+    sim = cosine_similarity(X[i], X).ravel()
+    sim[i] = 0.0
+    out = [{"id_siniestro": s.loc[int(j), "id_siniestro"], "similitud": round(float(sim[j]), 3)}
+           for j in np.argsort(-sim) if sim[j] >= umbral]
+    return out[:top]
+
+
 def extraer_entidades(texto: str) -> dict:
     """Extracción de entidades de una narrativa (NER ligero basado en reglas).
 

@@ -41,8 +41,19 @@ Abre **http://localhost:5173**. Otros comandos:
 ./run.sh api       # solo la API (docs en /docs)
 ```
 
-> Postgres es opcional para el demo (la API arma la bandeja en memoria). Para
-> persistencia real: `docker compose up -d` y `DATABASE_URL=postgresql+psycopg2://argly:argly@localhost:5432/argly ./run.sh ...`
+> La API usa la **DB como fuente de verdad** (SQLite local por defecto, auto-sembrado
+> con el sintético en el primer arranque — cero fricción). Para Postgres:
+> `docker compose up -d` y `DATABASE_URL=postgresql+psycopg2://argly:argly@localhost:5432/argly ./run.sh ...`
+
+### Dataset variable
+
+El dataset es **editable**: desde la vista **Datos** del war-room (o vía API) puedes
+**importar un dataset propio** (un CSV por tabla; solo `siniestros` es obligatorio,
+el resto se completa con defaults) en modo **reemplazar** o **anexar**, y **restaurar**
+el sintético cuando quieras. Tras importar, Argly recalcula features, reglas, ML y la
+bandeja. Si el dataset no trae etiquetas de fraude usables, opera en **modo solo-reglas**
+(el ML queda fuera hasta que haya casos etiquetados). El scoring en vivo (`/api/scorear`)
+sigue siendo efímero: puntúa un caso sin alterar el dataset.
 
 ## Enfoque
 
@@ -58,15 +69,34 @@ El desglose ES la lista de contribuciones (explicable por diseño).
 - **Redes (grafo)** — networkx detecta anillos + **Pareto** de proveedores que concentran el 80% de las alertas rojas.
 - **NLP** — similitud de narrativas (TF-IDF + coseno), extracción de entidades y resumen de narrativas repetidas.
 - **Impacto de negocio** — **simulación de ahorro** potencial (monto recuperable + ahorro operativo).
+- **Human-in-the-loop** — el analista marca cada caso (confirmado/falso positivo/descartado); su veredicto se persiste y un **reentrenamiento bajo demanda** lo incorpora, mostrando métricas antes/después sobre el test held-out (sin fuga).
+- **Cola de trabajo del analista** — bandeja **filtrable y buscable** con **estados de gestión** (sin revisar → en revisión → escalado → cerrado) y **vistas guardadas**; cada caso trae **resumen en lenguaje natural**, **casos vinculados**, **checklist de investigación**, **bitácora** auditable y un tablero **"Mi trabajo"** con productividad, pendientes y novedades.
+- **Explicabilidad y ética** — **panel de equidad** (disparate impact / regla 4/5 sobre la tasa de alerta + falsos positivos por ciudad/segmento/canal/ramo) y **explicación contrafactual** ("qué tendría que cambiar para que el caso sea VERDE").
 
 ## API
 
 | Endpoint | Devuelve |
 |---|---|
 | `GET /api/resumen` | totales por semáforo + monto en revisión |
-| `GET /api/casos?nivel=&limit=` | bandeja priorizada |
-| `GET /api/casos/{id}` | score + desglose + evidencia + recomendación |
+| `GET /api/casos?nivel=&estado=&ramo=&ciudad=&q=&monto_min=&score_min=&orden=` | **bandeja filtrable/buscable** (cola de trabajo) |
+| `POST /api/casos/{id}/estado` | **estado de gestión** del caso (sin_revisar/en_revision/escalado/cerrado) |
+| `POST /api/casos/{id}/nota` · `GET /api/casos/{id}/bitacora` | **bitácora**: notas + historial de cambios (trazabilidad) |
+| `GET`·`POST /api/casos/{id}/checklist` | **checklist de investigación** (pasos por caso + listo para escalar) |
+| `GET /api/mi-trabajo` | **tablero del analista**: productividad, pendientes prioritarios y novedades |
+| `GET /api/casos/{id}` | score + desglose + evidencia + recomendación + **resumen en lenguaje natural** |
+| `GET /api/casos/{id}/vinculos` | **casos vinculados** (mismo proveedor/asegurado/conductor/placa, narrativa similar) |
 | `POST /api/scorear` | **puntúa un siniestro nuevo en vivo** + explica (con SHAP local) |
+| `GET /api/dataset` | estado del dataset: origen, conteos por tabla y modo (híbrido/solo-reglas) |
+| `POST /api/dataset/importar` | **importa un dataset propio** (CSV por tabla; `modo=replace`/`append`) |
+| `POST /api/dataset/reset` | restaura el dataset sintético de demo |
+| `POST /api/casos/{id}/feedback` | **veredicto del analista** (confirmado/falso_positivo/descartado) |
+| `GET /api/feedback` | resumen del feedback acumulado |
+| `POST /api/modelo/reentrenar` | **reentrena con el feedback** y devuelve métricas antes/después |
+| `GET /api/casos/{id}/contrafactual` | **qué cambiaría para que el caso pase a VERDE** (explicación contrafactual) |
+| `GET /api/sesgo` | **análisis de equidad/sesgo** (tasa de alerta y FP por ciudad/segmento/canal/ramo + regla 4/5) |
+| `GET /api/mapa` | **mapa de calor** de alertas por ciudad (georreferenciado, sin APIs externas) |
+| `GET /api/reporte/pdf` | **reporte ejecutivo consolidado** (PDF) para dirección/auditoría |
+| `GET /api/reporte/excel` | **exportación de la bandeja a Excel** multi-hoja (auditoría) |
 | `POST /api/preguntar` | agente: respuesta en lenguaje natural |
 | `GET /api/redes` | anillos (proveedores que concentran alertas) |
 | `GET /api/proveedores-pareto` | **proveedores que concentran el 80% de las alertas rojas** |

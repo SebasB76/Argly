@@ -17,12 +17,20 @@ from src import config
 Base = declarative_base()
 
 
+def _normalizar(url: str) -> str:
+    """Render/Neon/Heroku entregan 'postgres://', que SQLAlchemy 2 ya no acepta;
+    se traduce al driver explícito 'postgresql+psycopg2://'."""
+    if url and url.startswith("postgres://"):
+        return "postgresql+psycopg2://" + url[len("postgres://"):]
+    return url
+
+
 def default_url() -> str:
-    return os.environ.get("DATABASE_URL", "sqlite:///" + str(config.DATA_DIR / "argly.db"))
+    return _normalizar(os.environ.get("DATABASE_URL", "")) or "sqlite:///" + str(config.DATA_DIR / "argly.db")
 
 
 def get_engine(url: str | None = None):
-    return create_engine(url or default_url(), future=True)
+    return create_engine(_normalizar(url) if url else default_url(), future=True)
 
 
 def get_sessionmaker(engine=None):

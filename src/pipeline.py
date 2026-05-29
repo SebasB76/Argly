@@ -20,10 +20,11 @@ from src.models.ml_model import entrenar
 from src.anomaly.detector import detectar
 
 
-def construir_bandeja(dfs: dict | None = None, hibrido: bool = True) -> pd.DataFrame:
+def construir_bandeja(dfs: dict | None = None, hibrido: bool = True, F: pd.DataFrame | None = None) -> pd.DataFrame:
     if dfs is None:
         dfs = generar()
-    F = construir_features(dfs)
+    if F is None:
+        F = construir_features(dfs)
     prob = anom = None
     if hibrido:
         _, prob = entrenar(F)
@@ -48,13 +49,17 @@ def construir_bandeja(dfs: dict | None = None, hibrido: bool = True) -> pd.DataF
     return b.sort_values("score", ascending=False).reset_index(drop=True)
 
 
-def evaluar_metricas(dfs: dict | None = None) -> dict:
-    """Métricas sobre el test held-out: AUC solo-reglas vs híbrido vs ML, y P/R/F1 del híbrido."""
+def evaluar_metricas(dfs: dict | None = None, F: pd.DataFrame | None = None) -> dict:
+    """Métricas sobre el test held-out: AUC solo-reglas vs híbrido vs ML, y P/R/F1 del híbrido.
+
+    Admite `F` precomputado (p. ej. con etiquetas del analista ya aplicadas) para
+    medir el efecto del reentrenamiento sobre el mismo conjunto de evaluación.
+    Si el test no tiene ambas clases, omite el AUC (devuelve None en esas claves).
+    """
     from sklearn.metrics import roc_auc_score, precision_recall_fscore_support
 
-    if dfs is None:
-        dfs = generar()
-    F = construir_features(dfs)
+    if F is None:
+        F = construir_features(dfs if dfs is not None else generar())
     _, prob = entrenar(F)
     anom = detectar(F)
     P_reglas = puntuar_features(F)
@@ -63,11 +68,16 @@ def evaluar_metricas(dfs: dict | None = None) -> dict:
     y = F["etiqueta_fraude_simulada"].astype(int).values[test]
     pred_alerta = (P_hibrido["score"].values[test] >= 41).astype(int)   # alerta = amarillo o rojo
     p, r, f1, _ = precision_recall_fscore_support(y, pred_alerta, average="binary", zero_division=0)
+    dos_clases = len(set(y.tolist())) >= 2
+
+    def _auc(scores):
+        return round(float(roc_auc_score(y, scores)), 3) if dos_clases else None
+
     return {
         "n_test": int(test.sum()),
-        "auc_reglas": round(float(roc_auc_score(y, P_reglas["score"].values[test])), 3),
-        "auc_hibrido": round(float(roc_auc_score(y, P_hibrido["score"].values[test])), 3),
-        "auc_ml": round(float(roc_auc_score(y, prob.values[test])), 3),
+        "auc_reglas": _auc(P_reglas["score"].values[test]),
+        "auc_hibrido": _auc(P_hibrido["score"].values[test]),
+        "auc_ml": _auc(prob.values[test]),
         "precision": round(float(p), 3),
         "recall": round(float(r), 3),
         "f1": round(float(f1), 3),

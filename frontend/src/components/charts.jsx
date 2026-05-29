@@ -66,7 +66,7 @@ export function Donut({ segments, centerValue, centerLabel }) {
 /* ---- pareto (bars + cumulative % + target line) ---- */
 export function ParetoChart({ items, target = 80, maxBars = 16 }) {
   const data = items.slice(0, maxBars)
-  const W = 340, H = 150, padL = 6, padR = 6, padT = 12, padB = 22
+  const W = 620, H = 170, padL = 8, padR = 8, padT = 14, padB = 26
   const plotW = W - padL - padR, plotH = H - padT - padB
   const maxVal = Math.max(...data.map((d) => d.value), 1)
   const bw = plotW / data.length
@@ -76,7 +76,7 @@ export function ParetoChart({ items, target = 80, maxBars = 16 }) {
   const linePts = data.map((d, i) => `${x(i)},${yCum(d.cum)}`).join(' ')
   return (
     <div className="pareto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="pareto-svg" preserveAspectRatio="none">
+      <svg viewBox={`0 0 ${W} ${H}`} className="pareto-svg">
         {/* gridlines for cumulative % */}
         {[0, 50, 100].map((p) => (
           <line key={p} className="grid-line" x1={padL} x2={W - padR} y1={yCum(p)} y2={yCum(p)} />

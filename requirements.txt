@@ -28,9 +28,11 @@ faker
 fastapi
 uvicorn[standard]
 python-dotenv
+python-multipart      # subida de archivos (importar dataset)
 
 # === Artefactos / reportes ===
-reportlab             # generación de PDF (dossier de investigación)
+reportlab             # generación de PDF (dossier + reporte ejecutivo)
+openpyxl              # exportación de la bandeja a Excel (auditoría)
 
 # === Testing ===
 pytest

@@ -1,0 +1,27 @@
+# Blueprint de Render: backend Argly (Docker) + Postgres gestionado.
+# Importar en Render → New → Blueprint, apuntando a este repo.
+services:
+  - type: web
+    name: argly-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile.backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: argly-db
+          property: connectionString
+      - key: CORS_ORIGINS
+        sync: false        # Definir en el dashboard con la URL de Vercel (https://...vercel.app)
+      # Opcional: claves del agente de IA (si se quiere el LLM). Sin ellas el núcleo funciona.
+      - key: LLM_PROVIDER
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+
+databases:
+  - name: argly-db
+    plan: free
+    databaseName: argly
+    user: argly
