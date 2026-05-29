@@ -1,52 +1,80 @@
-"""Tests del agente de IA (E5): router determinista (sin API key) + endpoint."""
+"""Tests del agente de IA (E5): planificación LLM + ejecución de herramientas."""
 from fastapi.testclient import TestClient
 
+import src.ai_agent.agent as agent_mod
 from src.ai_agent.agent import responder
 from src.app.main import app
-from src.pipeline import construir_bandeja
 from src.ingestion.generate_synthetic import generar
+from src.pipeline import construir_bandeja
 
 _b = construir_bandeja(generar(seed=42))
-
-
-def test_top_riesgo():
-    r = responder("¿cuáles son los 10 siniestros con mayor riesgo?", _b)
-    assert r["herramienta"] == "top_riesgo"
-    assert len(r["datos"]) == 10
-    assert r["fuente"].startswith("reglas")   # sin API key -> fallback determinista
-
-
-def test_proveedores():
-    r = responder("¿qué proveedores concentran más alertas rojas?", _b)
-    assert r["herramienta"] == "proveedores_top"
-    assert len(r["datos"]) > 0
-
-
-def test_explicar_un_caso():
-    rojo = _b[_b["nivel"] == "ROJO"].iloc[0]["id_siniestro"]
-    r = responder(f"¿por qué {rojo} es de alto riesgo?", _b)
-    assert r["herramienta"] == "explicar"
-    assert len(r["datos"]["contribuciones"]) > 0
-
-
-def test_resumen_ejecutivo():
-    r = responder("dame un resumen ejecutivo de los casos críticos", _b)
-    assert r["herramienta"] == "resumen_ejecutivo"
-    assert r["datos"]["total"] > 0
-
-
-def test_aviso_presente():
-    r = responder("recomienda qué revisar primero", _b)
-    assert "no acusaciones" in r["aviso"]
-
-
-# --- API ---
 client = TestClient(app)
 
 
-def test_endpoint_preguntar():
+def test_sin_llm_devuelve_indicacion_clara(monkeypatch):
+    monkeypatch.setattr(agent_mod, "_usar_llm", lambda: False)
+    r = responder("¿cuáles son los casos más sospechosos?", _b)
+    assert r["fuente"] == "sin_llm"
+    assert "LLM" in r["respuesta"]
+
+
+def test_planifica_y_ejecuta_top_riesgo(monkeypatch):
+    monkeypatch.setattr(agent_mod, "_usar_llm", lambda: True)
+    monkeypatch.setattr(
+        agent_mod,
+        "_planificar_accion",
+        lambda pregunta, contexto: {"action": "tool", "tool": "top_riesgo", "arguments": {"n": 10}},
+    )
+    monkeypatch.setattr(
+        agent_mod,
+        "_redactar_respuesta_final",
+        lambda pregunta, contexto, plan, resultado_herramienta=None: f"{len(resultado_herramienta)} casos priorizados",
+    )
+
+    r = responder("¿cuáles son los 10 siniestros con mayor riesgo?", _b)
+    assert r["fuente"].startswith("llm:")
+    assert r["herramienta"] == "top_riesgo"
+    assert isinstance(r["datos"], list)
+    assert len(r["datos"]) == 10
+    assert r["respuesta"] == "10 casos priorizados"
+
+
+def test_planifica_busqueda_de_sospechosos(monkeypatch):
+    monkeypatch.setattr(agent_mod, "_usar_llm", lambda: True)
+    monkeypatch.setattr(
+        agent_mod,
+        "_planificar_accion",
+        lambda pregunta, contexto: {"action": "tool", "tool": "buscar_casos", "arguments": {"nivel": "ROJO", "limit": 5}},
+    )
+    monkeypatch.setattr(
+        agent_mod,
+        "_redactar_respuesta_final",
+        lambda pregunta, contexto, plan, resultado_herramienta=None: ", ".join(x["id_siniestro"] for x in resultado_herramienta),
+    )
+
+    r = responder("¿cuáles son los casos más sospechosos?", _b)
+    assert r["herramienta"] == "buscar_casos"
+    assert len(r["datos"]) == 5
+    assert r["respuesta"]
+    assert "SIN" in r["respuesta"]
+
+
+def test_endpoint_preguntar(monkeypatch):
+    monkeypatch.setattr(agent_mod, "_usar_llm", lambda: True)
+    monkeypatch.setattr(
+        agent_mod,
+        "_planificar_accion",
+        lambda pregunta, contexto: {"action": "final", "answer": "Respuesta directa de prueba"},
+    )
+    monkeypatch.setattr(
+        agent_mod,
+        "_redactar_respuesta_final",
+        lambda pregunta, contexto, plan, resultado_herramienta=None: plan.get("answer", ""),
+    )
+
     resp = client.post("/api/preguntar", json={"pregunta": "¿qué proveedores concentran las alertas?"})
     assert resp.status_code == 200
     j = resp.json()
-    assert "respuesta" in j and "datos" in j and "aviso" in j
-    assert j["herramienta"] == "proveedores_top"
+    assert j["respuesta"] == "Respuesta directa de prueba"
+    assert "contexto_ia" in j
+    assert "catalogo_herramientas" in j["contexto_ia"]

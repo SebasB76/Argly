@@ -144,27 +144,133 @@ def _gemini_model_candidates():
     return candidates
 
 
-def _narrar_llm(pregunta, datos):
+def _normalizar_texto_llm(texto: str) -> str:
+    texto = (texto or "").strip()
+    if not texto:
+        return ""
+    texto = re.sub(r"^```(?:json)?\s*", "", texto, flags=re.IGNORECASE)
+    texto = re.sub(r"\s*```\s*$", "", texto)
+    texto = texto.replace("```json", "").replace("```", "").strip()
+    return texto
+
+
+def _extraer_json(texto: str) -> dict | None:
+    texto = _normalizar_texto_llm(texto)
+    if not texto:
+        return None
+
+    candidates = [texto]
+    match = re.search(r"\{[\s\S]*\}", texto)
+    if match:
+        candidates.insert(0, match.group(0))
+
+    for candidato in candidates:
+        try:
+            parsed = __import__("json").loads(candidato)
+            if isinstance(parsed, dict):
+                return parsed
+        except Exception:
+            continue
+    return None
+
+
+def _json_safe(valor):
+    import json
+    try:
+        json.dumps(valor, ensure_ascii=False)
+        return valor
+    except Exception:
+        if isinstance(valor, dict):
+            return {k: _json_safe(v) for k, v in valor.items()}
+        if isinstance(valor, list):
+            return [_json_safe(v) for v in valor]
+        return str(valor)
+
+
+def _extraer_siniestro_id(pregunta: str):
+    m = re.search(r"sin\d{3,}", pregunta.lower())
+    return m.group(0).upper() if m else None
+
+
+def _fila_a_contexto(r) -> dict:
+    return {
+        "id_siniestro": str(r["id_siniestro"]),
+        "score": int(r["score"]),
+        "nivel": str(r["nivel"]),
+        "gate": bool(r["gate"]),
+        "motivo_principal": str(r["motivo_principal"]),
+        "ramo": str(r["ramo"]),
+        "cobertura": str(r["cobertura"]),
+        "sucursal": str(r["sucursal"]),
+        "monto_reclamado": float(r["monto_reclamado"]),
+        "id_asegurado": str(r["id_asegurado"]),
+        "id_proveedor": str(r["id_proveedor"]),
+        "probabilidad_ml": float(r.get("probabilidad_ml", 0.0) or 0.0),
+        "rareza_anomalia": float(r.get("rareza_anomalia", 0.0) or 0.0),
+        "contribuciones": r.get("contribuciones", []),
+    }
+
+
+def _contexto_ia(pregunta: str, b):
+    """Construye un contexto compacto pero rico con la bandeja real y las herramientas disponibles."""
+    if b is None or len(b) == 0:
+        return {
+            "pregunta": pregunta,
+            "resumen": "No hay datos disponibles.",
+            "catalogo_herramientas": tools.catalogo_herramientas(),
+            "bandeja": [],
+            "ml": {},
+        }
+
+    resumen = tools.resumen_ejecutivo(b)
+    ml = tools.resumen_ml(b)
+    top_riesgo = tools.top_riesgo(b, 12)
+
+    contexto = {
+        "pregunta": pregunta,
+        "resumen": resumen,
+        "ml": ml,
+        "catalogo_herramientas": tools.catalogo_herramientas(),
+        "columnas_bandeja": list(b.columns),
+        "estadisticas_por_nivel": {
+            "rojo": int((b["nivel"] == "ROJO").sum()),
+            "amarillo": int((b["nivel"] == "AMARILLO").sum()),
+            "verde": int((b["nivel"] == "VERDE").sum()),
+        },
+        "muestras": {
+            "top_riesgo": top_riesgo[:8],
+            "rojos": tools.top_riesgo(b[b["nivel"] == "ROJO"], 8),
+            "amarillos": tools.top_riesgo(b[b["nivel"] == "AMARILLO"], 5),
+            "verdes": tools.top_riesgo(b[b["nivel"] == "VERDE"], 5),
+            "redes": [],
+        },
+    }
+
+    try:
+        from src.graph.network import detectar_redes
+        contexto["muestras"]["redes"] = detectar_redes(b)
+    except Exception:
+        contexto["muestras"]["redes"] = []
+
+    return contexto
+
+
+def _llm_generar_texto(sistema: str, usuario: str):
     import json
     import httpx
+    import time
+    import random
 
     base = os.environ.get("LLM_BASE_URL", "https://api.deepseek.com").rstrip("/")
     model = os.environ.get("LLM_MODEL", "deepseek-chat")
     provider = _provider()
 
-    sistema = ("Eres un asistente antifraude de una aseguradora. Responde en español de forma clara y estructurada. "
-               "USANDO SOLO los datos JSON provistos (no inventes ni cambies números). "
-               "Incluye siempre evidencia basada en score, probabilidad ML y rareza de anomalía cuando existan. "
-               "Devuelve la respuesta en JSON con estas claves: 'respuesta' (texto breve), 'evidencia' (lista o texto), "
-               "y 'datos_usados' (qué campos del JSON usaste). Si no hay datos para responder, indícalo claramente. "
-               "No recortes la respuesta: proporciona toda la información solicitada. Son alertas para revisión humana, nunca acusaciones.")
-    usuario = f"Pregunta: {pregunta}\n\nDatos: {json.dumps(datos, ensure_ascii=False)}"
-
-    # Gemini / Google Generative API
     if provider == "gemini":
         gem_base = os.environ.get("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta").rstrip("/")
         api_key = _llm_key()
         last_error = None
+        max_retries = 3
+        base_delay = 1.0
         for gem_model in _gemini_model_candidates():
             try:
                 url = f"{gem_base}/models/{gem_model}:generateContent"
@@ -173,20 +279,40 @@ def _narrar_llm(pregunta, datos):
                     "contents": [{"role": "user", "parts": [{"text": usuario}]}],
                     "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1024},
                 }
-                r = httpx.post(url, params={"key": api_key}, json=payload, timeout=60)
-                r.raise_for_status()
+                attempt = 0
+                while True:
+                    attempt += 1
+                    r = httpx.post(url, params={"key": api_key}, json=payload, timeout=60)
+                    try:
+                        r.raise_for_status()
+                        break
+                    except httpx.HTTPStatusError as http_exc:
+                        status = getattr(http_exc.response, "status_code", None)
+                        retry_after = None
+                        try:
+                            retry_after = int(http_exc.response.headers.get("Retry-After") or 0)
+                        except Exception:
+                            retry_after = None
+                        if status in (429, 500, 502, 503, 504) and attempt <= max_retries:
+                            delay = retry_after if retry_after and retry_after > 0 else base_delay * (2 ** (attempt - 1))
+                            delay = delay + random.random() * 0.5
+                            time.sleep(delay)
+                            continue
+                        if status in (429, 500, 502, 503, 504):
+                            return (
+                                f"Lo siento, el servicio de LLM no está disponible (código {status}). "
+                                "Intenta de nuevo más tarde o revisa las credenciales/limitaciones de cuota."
+                            )
+                        raise
                 j = r.json()
 
-                # Robust extraction: try multiple known shapes and concatenate text parts
                 def _extract_text_from_node(node):
                     parts = []
                     if isinstance(node, dict):
-                        # 1) candidates / choices arrays
                         for key in ("candidates", "choices", "output"):
                             if key in node and isinstance(node[key], list):
                                 for c in node[key]:
                                     parts.append(_extract_text_from_node(c))
-                        # 2) content arrays with parts
                         if "content" in node:
                             cont = node["content"]
                             if isinstance(cont, list):
@@ -197,14 +323,12 @@ def _narrar_llm(pregunta, datos):
                                             parts.append(t)
                                         else:
                                             parts.append(_extract_text_from_node(item))
-                        # 3) message.content.text
                         if "message" in node and isinstance(node["message"], dict):
                             msg = node["message"]
                             if "content" in msg and isinstance(msg["content"], dict):
                                 t = msg["content"].get("text")
                                 if isinstance(t, str):
                                     parts.append(t)
-                        # 4) direct text
                         if "text" in node and isinstance(node["text"], str):
                             parts.append(node["text"])
                     elif isinstance(node, list):
@@ -212,7 +336,6 @@ def _narrar_llm(pregunta, datos):
                             parts.append(_extract_text_from_node(it))
                     elif isinstance(node, str):
                         parts.append(node)
-                    # flatten and join
                     flat = []
                     for p in parts:
                         if isinstance(p, str) and p:
@@ -228,24 +351,52 @@ def _narrar_llm(pregunta, datos):
             except Exception as exc:
                 last_error = exc
                 status = getattr(getattr(exc, "response", None), "status_code", None)
+                if status in (429, 500, 502, 503, 504):
+                    return (
+                        f"Lo siento, el servicio de LLM no está disponible (código {status}). "
+                        "Intenta de nuevo más tarde o revisa las credenciales/limitaciones de cuota."
+                    )
                 if status not in (400, 404):
                     raise
         if last_error is not None:
             raise last_error
 
-    # OpenAI-compatible / DeepSeek path
     if provider in ("openai", "deepseek", "default"):
-        r = httpx.post(
-            f"{base}/chat/completions",
-            headers={"Authorization": f"Bearer {_llm_key()}"},
-            json={"model": model, "temperature": 0.2, "max_tokens": 1024,
-                  "messages": [{"role": "system", "content": sistema},
-                               {"role": "user", "content": usuario}]},
-            timeout=60,
-        )
-        r.raise_for_status()
+        max_retries = 3
+        base_delay = 1.0
+        attempt = 0
+        while True:
+            attempt += 1
+            r = httpx.post(
+                f"{base}/chat/completions",
+                headers={"Authorization": f"Bearer {_llm_key()}"},
+                json={"model": model, "temperature": 0.2, "max_tokens": 1024,
+                      "messages": [{"role": "system", "content": sistema},
+                                   {"role": "user", "content": usuario}]},
+                timeout=60,
+            )
+            try:
+                r.raise_for_status()
+                break
+            except httpx.HTTPStatusError as http_exc:
+                status = getattr(http_exc.response, "status_code", None)
+                retry_after = None
+                try:
+                    retry_after = int(http_exc.response.headers.get("Retry-After") or 0)
+                except Exception:
+                    retry_after = None
+                if status in (429, 500, 502, 503, 504) and attempt <= max_retries:
+                    delay = retry_after if retry_after and retry_after > 0 else base_delay * (2 ** (attempt - 1))
+                    delay = delay + random.random() * 0.5
+                    time.sleep(delay)
+                    continue
+                if status in (429, 500, 502, 503, 504):
+                    return (
+                        f"Lo siento, el servicio de LLM no está disponible (código {status}). "
+                        "Intenta de nuevo más tarde o revisa las credenciales/limitaciones de cuota."
+                    )
+                raise
         j = r.json()
-        # flexible parse for OpenAI-like responses
         try:
             return j["choices"][0]["message"]["content"].strip()
         except Exception:
@@ -257,24 +408,87 @@ def _narrar_llm(pregunta, datos):
     raise RuntimeError(f"LLM provider no soportado: {provider}")
 
 
-def responder(pregunta: str, b):
-    """Responde una pregunta sobre la bandeja usando el router determinista por defecto."""
-    herramienta, datos, texto_base = _router(pregunta, b)
+def _planificar_accion(pregunta: str, contexto: dict):
+    sistema = (
+        "Eres un agente antifraude. Debes decidir si necesitas una herramienta o si puedes responder directamente. "
+        "Responde SOLO con JSON válido y sin markdown. Formato: {\"action\":\"tool\"|\"final\",\"tool\":\"nombre\",\"arguments\":{...},\"answer\":\"texto\",\"reason\":\"breve\"}. "
+        "Si la pregunta necesita consultar la bandeja, usa action=tool con una herramienta del catálogo. "
+        "Si ya tienes suficiente información para responder, usa action=final y redacta la respuesta. "
+        "Las herramientas disponibles y el contexto de datos están en el JSON de usuario."
+    )
+    usuario = __import__("json").dumps({
+        "pregunta": pregunta,
+        "contexto": contexto,
+    }, ensure_ascii=False)
+    texto = _llm_generar_texto(sistema, usuario)
+    plan = _extraer_json(texto)
+    if not plan:
+        return {"action": "final", "answer": texto, "reason": "respuesta_directa_sin_json"}
+    return plan
 
-    usar_llm = _usar_llm()
-    if herramienta == "chat" and usar_llm:
-        respuesta = _narrar_llm(pregunta, datos)
-        fuente = f"llm:{_provider()}"
-    elif herramienta == "chat":
-        respuesta = "No tengo una respuesta determinista para esa consulta. Prueba con una pregunta más concreta sobre casos, proveedores, ramos o redes."
-        fuente = "sin_llm"
+
+def _redactar_respuesta_final(pregunta: str, contexto: dict, plan: dict, resultado_herramienta=None):
+    sistema = (
+        "Eres un asistente antifraude de una aseguradora. Responde en español con texto natural, claro y breve. "
+        "No devuelvas JSON ni markdown salvo que sea estrictamente necesario. "
+        "Usa la pregunta, el contexto de la bandeja y, si existe, el resultado de la herramienta. "
+        "No inventes datos. Si hay casos sospechosos, nómbralos con score/nivel/motivo. "
+        "Son alertas para revisión humana, nunca acusaciones."
+    )
+    usuario = __import__("json").dumps({
+        "pregunta": pregunta,
+        "contexto": contexto,
+        "plan": plan,
+        "resultado_herramienta": _json_safe(resultado_herramienta),
+    }, ensure_ascii=False)
+    return _llm_generar_texto(sistema, usuario)
+
+
+def responder(pregunta: str, b):
+    contexto_ia = _contexto_ia(pregunta, b)
+
+    if not _usar_llm():
+        return {
+            "herramienta": "chat",
+            "datos": {},
+            "contexto_ia": contexto_ia,
+            "respuesta": (
+                "No hay LLM configurado. Activa `GEMINI_API_KEY` o `LLM_API_KEY` para usar el agente con herramientas."
+            ),
+            "fuente": "sin_llm",
+            "aviso": AVISO,
+        }
+
+    plan = _planificar_accion(pregunta, contexto_ia)
+    herramienta = plan.get("tool") or plan.get("tool_name") or plan.get("nombre") or "chat"
+    argumentos = plan.get("arguments") or plan.get("tool_args") or plan.get("params") or {}
+    if not isinstance(argumentos, dict):
+        argumentos = {}
+
+    resultado_herramienta = None
+    fuente = f"llm:{_provider()}"
+
+    if plan.get("action") == "tool" and herramienta not in (None, "", "chat"):
+        try:
+            resultado_herramienta = tools.ejecutar_herramienta(herramienta, b, argumentos)
+            respuesta = _redactar_respuesta_final(pregunta, contexto_ia, plan, resultado_herramienta)
+            fuente = f"llm:{_provider()}+tool:{herramienta}"
+        except Exception as exc:
+            respuesta = _redactar_respuesta_final(
+                pregunta,
+                contexto_ia,
+                {**plan, "action": "final", "error": str(exc)},
+                resultado_herramienta,
+            )
     else:
-        respuesta = texto_base
-        fuente = "reglas deterministas"
+        respuesta = plan.get("answer") or plan.get("respuesta") or _redactar_respuesta_final(
+            pregunta, contexto_ia, plan, resultado_herramienta
+        )
 
     return {
         "herramienta": herramienta,
-        "datos": datos,
+        "datos": resultado_herramienta if resultado_herramienta is not None else argumentos,
+        "contexto_ia": contexto_ia,
         "respuesta": respuesta,
         "fuente": fuente,
         "aviso": AVISO,

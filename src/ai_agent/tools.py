@@ -134,3 +134,151 @@ def resumen_ejecutivo(b):
 
 def recomendar(b, n: int = 5):
     return top_riesgo(b[b["nivel"] == "ROJO"], n)
+
+
+def buscar_casos(
+    b,
+    nivel: str | None = None,
+    ramo: str | None = None,
+    cobertura: str | None = None,
+    id_proveedor: str | None = None,
+    id_asegurado: str | None = None,
+    id_siniestro: str | None = None,
+    score_min: float | None = None,
+    score_max: float | None = None,
+    monto_min: float | None = None,
+    monto_max: float | None = None,
+    solo_gate: bool | None = None,
+    limit: int = 10,
+    offset: int = 0,
+):
+    """Busca siniestros con filtros simples y devuelve registros tipo top_riesgo.
+
+    Esto sirve como herramienta genérica para que el LLM explore la bandeja sin depender de keywords.
+    """
+    f = b
+    if nivel:
+        f = f[f["nivel"] == nivel.upper()]
+    if ramo:
+        f = f[f["ramo"].str.lower() == ramo.lower()]
+    if cobertura:
+        f = f[f["cobertura"].str.lower() == cobertura.lower()]
+    if id_proveedor:
+        f = f[f["id_proveedor"].str.lower() == id_proveedor.lower()]
+    if id_asegurado:
+        f = f[f["id_asegurado"].str.lower() == id_asegurado.lower()]
+    if id_siniestro:
+        f = f[f["id_siniestro"].str.lower() == id_siniestro.lower()]
+    if score_min is not None:
+        f = f[f["score"] >= score_min]
+    if score_max is not None:
+        f = f[f["score"] <= score_max]
+    if monto_min is not None:
+        f = f[f["monto_reclamado"] >= monto_min]
+    if monto_max is not None:
+        f = f[f["monto_reclamado"] <= monto_max]
+    if solo_gate is True:
+        f = f[f["gate"] == True]  # noqa: E712
+    elif solo_gate is False:
+        f = f[f["gate"] == False]  # noqa: E712
+
+    if len(f) == 0:
+        return []
+
+    f = f.sort_values("score", ascending=False).iloc[offset:offset + limit]
+    return top_riesgo(f, len(f))
+
+
+def detalle_caso(b, id_siniestro: str):
+    """Detalle enriquecido de un siniestro concreto."""
+    r = b[b["id_siniestro"] == id_siniestro]
+    if r.empty:
+        return None
+    row = r.iloc[0]
+    detalle = {
+        "id_siniestro": str(row["id_siniestro"]),
+        "ramo": str(row["ramo"]),
+        "cobertura": str(row["cobertura"]),
+        "sucursal": str(row["sucursal"]),
+        "monto_reclamado": float(row["monto_reclamado"]),
+        "id_asegurado": str(row["id_asegurado"]),
+        "id_proveedor": str(row["id_proveedor"]),
+        "score": int(row["score"]),
+        "nivel": str(row["nivel"]),
+        "gate": bool(row["gate"]),
+        "motivo_principal": str(row["motivo_principal"]),
+        "probabilidad_ml": round(float(row.get("probabilidad_ml", 0.0) or 0.0), 3),
+        "rareza_anomalia": round(float(row.get("rareza_anomalia", 0.0) or 0.0), 3),
+        "contribuciones": list(row.get("contribuciones", [])),
+    }
+    return detalle
+
+
+TOOL_CATALOG = [
+    {
+        "name": "buscar_casos",
+        "description": "Busca siniestros con filtros por score, nivel, ramo, cobertura, proveedor, asegurado o gate.",
+        "args": [
+            "nivel", "ramo", "cobertura", "id_proveedor", "id_asegurado", "id_siniestro",
+            "score_min", "score_max", "monto_min", "monto_max", "solo_gate", "limit", "offset",
+        ],
+    },
+    {
+        "name": "detalle_caso",
+        "description": "Devuelve el detalle completo de un siniestro concreto por id_siniestro.",
+        "args": ["id_siniestro"],
+    },
+    {"name": "top_riesgo", "description": "Ranking de los siniestros con mayor score.", "args": ["n"]},
+    {"name": "explicar", "description": "Explica por qué un siniestro es sospechoso con contribuciones de reglas y ML.", "args": ["id_siniestro"]},
+    {"name": "resumen_ejecutivo", "description": "Resumen ejecutivo de la bandeja, rojo/amarillo/verde y monto en revisión.", "args": []},
+    {"name": "resumen_ml", "description": "Resumen del riesgo ML y anomalías sobre la bandeja.", "args": []},
+    {"name": "proveedores_top", "description": "Proveedores que concentran más alertas.", "args": ["n"]},
+    {"name": "ramos_sospechosos", "description": "Porcentaje de casos sospechosos por ramo.", "args": []},
+    {"name": "ciudades_top", "description": "Ciudades con más alertas.", "args": ["n"]},
+    {"name": "asegurados_frecuentes", "description": "Asegurados con más siniestros.", "args": ["n"]},
+    {"name": "montos_atipicos", "description": "Casos con monto cercano a la suma asegurada.", "args": ["n"]},
+    {"name": "documentos_faltantes", "description": "Casos con documentos incompletos o faltantes.", "args": ["n"]},
+    {"name": "borde_vigencia", "description": "Casos cerca del borde de vigencia.", "args": ["n"]},
+    {"name": "patrones_repetidos", "description": "Patrones repetidos entre sospechosos.", "args": []},
+    {"name": "recomendar", "description": "Prioriza los siniestros ROJOS para revisión.", "args": ["n"]},
+]
+
+
+def catalogo_herramientas():
+    return TOOL_CATALOG
+
+
+def ejecutar_herramienta(nombre: str, b, argumentos: dict | None = None):
+    argumentos = argumentos or {}
+    n = argumentos.get("n", 10)
+    if nombre == "buscar_casos":
+        return buscar_casos(b, **argumentos)
+    if nombre == "detalle_caso":
+        return detalle_caso(b, argumentos.get("id_siniestro", ""))
+    if nombre == "top_riesgo":
+        return top_riesgo(b, int(n))
+    if nombre == "explicar":
+        return explicar(b, argumentos.get("id_siniestro", ""))
+    if nombre == "resumen_ejecutivo":
+        return resumen_ejecutivo(b)
+    if nombre == "resumen_ml":
+        return resumen_ml(b)
+    if nombre == "proveedores_top":
+        return proveedores_top(b, int(n))
+    if nombre == "ramos_sospechosos":
+        return ramos_sospechosos(b)
+    if nombre == "ciudades_top":
+        return ciudades_top(b, int(n))
+    if nombre == "asegurados_frecuentes":
+        return asegurados_frecuentes(b, int(n))
+    if nombre == "montos_atipicos":
+        return montos_atipicos(b, int(n))
+    if nombre == "documentos_faltantes":
+        return documentos_faltantes(b, int(n))
+    if nombre == "borde_vigencia":
+        return borde_vigencia(b, int(n))
+    if nombre == "patrones_repetidos":
+        return patrones_repetidos(b)
+    if nombre == "recomendar":
+        return recomendar(b, int(n))
+    raise ValueError(f"Herramienta no soportada: {nombre}")
