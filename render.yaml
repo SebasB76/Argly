@@ -15,9 +15,18 @@ services:
       - key: CORS_ORIGINS
         sync: false        # Definir en el dashboard con la URL de Vercel (https://...vercel.app)
       # Opcional: claves del agente de IA (si se quiere el LLM). Sin ellas el núcleo funciona.
+      # Elige UN proveedor y define solo sus variables en el dashboard:
+      #  · Gemini  -> LLM_PROVIDER=gemini  + GEMINI_API_KEY  + LLM_MODEL=gemini-2.5-flash
+      #  · DeepSeek-> LLM_PROVIDER=openai  + LLM_API_KEY      + LLM_BASE_URL=https://api.deepseek.com + LLM_MODEL=deepseek-v4-flash
       - key: LLM_PROVIDER
         sync: false
       - key: GEMINI_API_KEY
+        sync: false
+      - key: LLM_API_KEY        # llave OpenAI-compatible (DeepSeek / Groq)
+        sync: false
+      - key: LLM_BASE_URL       # p.ej. https://api.deepseek.com  (Groq: https://api.groq.com/openai/v1)
+        sync: false
+      - key: LLM_MODEL          # p.ej. deepseek-v4-flash  /  gemini-2.5-flash
         sync: false
 
 databases:
