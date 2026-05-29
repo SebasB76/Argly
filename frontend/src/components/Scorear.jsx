@@ -27,7 +27,7 @@ export default function Scorear() {
 
   return (
     <div className="scorear">
-      <div className="scorear-h">🧪 Scorear un siniestro nuevo</div>
+      <div className="scorear-h">Simulador de scoring</div>
       <div className="scorear-grid">
         <label>Días desde inicio de póliza
           <input type="number" value={f.dias_desde_inicio_poliza} onChange={(e) => set('dias_desde_inicio_poliza', +e.target.value)} /></label>
@@ -56,12 +56,15 @@ export default function Scorear() {
       </div>
       {res && !res.error && (
         <div className="scorear-res">
-          <span className={`badge xl ${res.nivel.toLowerCase()}`}>{res.score}</span>
+          <div className={`scoregauge ${res.nivel.toLowerCase()}`}>
+            <span className="sg-num">{res.score}</span>
+            <span className="sg-cap">SCORE</span>
+          </div>
           <div className="scorear-res-body">
             <div className={`nivel ${res.nivel.toLowerCase()}`}>{res.nivel} · {res.recomendacion}</div>
             <ul className="contribs">
               {[...res.contribuciones].sort((a, b) => b.puntos - a.puntos).map((c, i) => (
-                <li key={i} className={c.gate ? 'gate' : ''}>
+                <li key={i} className={c.gate ? 'gate' : ''} style={{ animationDelay: `${i * 45}ms` }}>
                   <span className="pts">+{c.puntos}</span>
                   <div><div className="regla">{c.regla}{c.gate ? ' · GATE' : ''}</div><div className="ev">{c.evidencia}</div></div>
                 </li>

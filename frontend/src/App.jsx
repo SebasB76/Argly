@@ -1,90 +1,97 @@
 import { useEffect, useState } from 'react'
-import { getResumen, getCasos, getCaso } from './api'
-import Stats from './components/Stats'
-import Bandeja from './components/Bandeja'
-import Detalle from './components/Detalle'
-import Agente from './components/Agente'
-import Scorear from './components/Scorear'
-import Redes from './components/Redes'
+import { getResumen } from './api'
+import { useArgly } from './context/ArglyContext'
+import Overview from './components/Overview'
+import Casos from './components/Casos'
+import RedesView from './components/RedesView'
+import Asistente from './components/Asistente'
 import './App.css'
 
-const NIVELES = ['TODOS', 'ROJO', 'AMARILLO', 'VERDE']
+const VIEWS = [
+  { id: 'overview', label: 'Overview', sub: 'Analítica', glyph: '▦' },
+  { id: 'casos', label: 'Casos', sub: 'Bandeja', glyph: '▤' },
+  { id: 'redes', label: 'Redes', sub: 'Grafo', glyph: '◈' },
+  { id: 'asistente', label: 'Asistente', sub: 'IA', glyph: '✦' },
+]
+const TITLES = { overview: 'Centro de mando', casos: 'Bandeja operativa', redes: 'Redes de fraude', asistente: 'Asistente IA' }
+
+function useClock() {
+  const [t, setT] = useState('')
+  useEffect(() => {
+    const f = () => setT(new Date().toLocaleTimeString('es-EC', { hour12: false }))
+    f()
+    const id = setInterval(f, 1000)
+    return () => clearInterval(id)
+  }, [])
+  return t
+}
 
 export default function App() {
+  const { vista, setVista } = useArgly()
   const [resumen, setResumen] = useState(null)
-  const [casos, setCasos] = useState([])
-  const [filtro, setFiltro] = useState('TODOS')
-  const [detalle, setDetalle] = useState(null)
-  const [cargando, setCargando] = useState(false)
-  const [activeTab, setActiveTab] = useState('detalle') // 'detalle' | 'agente' | 'score'
-  const [openRedes, setOpenRedes] = useState(false)
+  const clock = useClock()
 
   useEffect(() => { getResumen().then(setResumen).catch(() => {}) }, [])
 
-  useEffect(() => {
-    setCargando(true)
-    getCasos(filtro === 'TODOS' ? null : filtro, 200)
-      .then((d) => setCasos(d.casos || []))
-      .catch(() => setCasos([]))
-      .finally(() => setCargando(false))
-  }, [filtro])
-
-  const abrir = (id) => getCaso(id).then(setDetalle).catch(() => {})
+  const n = resumen?.por_nivel || {}
 
   return (
     <div className="app">
-      <header className="topbar">
-        <div className="brand">ARGLY <span>· Antifraude de Siniestros</span></div>
-        <div className="top-actions">
-          <div className="aviso">⚠ ALERTA para revisión humana · NO es una acusación de fraude</div>
-          <button className="header-btn" onClick={() => setOpenRedes(true)}>Ver Redes Detectadas</button>
-        </div>
-      </header>
-
-      <main className="main">
-        <div className="kpis">
-          <Stats resumen={resumen} />
-        </div>
-
-        <div className="content">
-          <div className="left">
-            <div className="filtros">
-              {NIVELES.map((n) => (
-                <button key={n} className={`f ${filtro === n ? 'on' : ''}`} onClick={() => setFiltro(n)}>{n}</button>
-              ))}
-            </div>
-
-            <div className="bandeja-wrap">
-              <Bandeja casos={casos} cargando={cargando} onSelect={abrir} sel={detalle?.id_siniestro} />
-            </div>
-          </div>
-
-          <div className="right">
-            <div className="tabs">
-              <button className={`tab ${activeTab === 'detalle' ? 'active' : ''}`} onClick={() => setActiveTab('detalle')}>Detalles del Caso</button>
-              <button className={`tab ${activeTab === 'agente' ? 'active' : ''}`} onClick={() => setActiveTab('agente')}>Chat con ARGLY (IA)</button>
-              <button className={`tab ${activeTab === 'score' ? 'active' : ''}`} onClick={() => setActiveTab('score')}>Score Manual</button>
-            </div>
-
-            <div className="panel">
-              {activeTab === 'detalle' && <div className="detalle-panel"> <Detalle d={detalle} onClose={() => setDetalle(null)} /> </div>}
-              {activeTab === 'agente' && <div className="agente-panel"> <Agente /> </div>}
-              {activeTab === 'score' && <div className="score-panel"> <Scorear /> </div>}
-            </div>
+      <aside className="sidebar">
+        <div className="sb-brand">
+          <span className="sb-mark">◆</span>
+          <div className="sb-words">
+            <div className="sb-name">ARGLY</div>
+            <div className="sb-tag">Antifraude</div>
           </div>
         </div>
-      </main>
 
-      {/* Drawer / Off-canvas for Redes Detectadas */}
-      <div className={`drawer ${openRedes ? 'open' : ''}`} role="dialog" aria-hidden={!openRedes}>
-        <div className="drawer-inner">
-          <div className="drawer-header">
-            <div className="drawer-title">Redes Detectadas</div>
-            <button className="x" onClick={() => setOpenRedes(false)}>×</button>
-          </div>
-          <div className="drawer-body"><Redes /></div>
+        <nav className="sb-nav">
+          {VIEWS.map((v) => (
+            <button key={v.id} className={`sb-item ${vista === v.id ? 'on' : ''}`} onClick={() => setVista(v.id)}>
+              <span className="sb-glyph">{v.glyph}</span>
+              <span className="sb-label">{v.label}<i>{v.sub}</i></span>
+            </button>
+          ))}
+        </nav>
+
+        <div className="sb-foot">
+          <div className="sb-status"><span className="dot" /> Monitoreando</div>
+          <div className="sb-ver">v1.0 · datos sintéticos</div>
         </div>
-        <div className="drawer-backdrop" onClick={() => setOpenRedes(false)} />
+      </aside>
+
+      <div className="workspace">
+        <header className="topbar">
+          <div className="tb-title">
+            <span className="tb-crumb">ARGLY</span>
+            <span className="tb-sep">/</span>
+            {TITLES[vista]}
+          </div>
+          <div className="tb-right">
+            {resumen && (
+              <div className="tb-kpis">
+                <span><b className="r">{n.ROJO || 0}</b> rojo</span>
+                <span><b className="a">{n.AMARILLO || 0}</b> amarillo</span>
+                <span><b>{(resumen.total || 0).toLocaleString('es-EC')}</b> total</span>
+              </div>
+            )}
+            <span className="status-chip live"><i className="dot" /> Live</span>
+            <span className="status-chip mono">{clock}</span>
+          </div>
+        </header>
+
+        <div className="aviso-bar">
+          <span className="aviso-tag">Aviso</span>
+          Las señales son <b>&nbsp;alertas para revisión humana&nbsp;</b>, no acusaciones. La decisión final es del analista.
+        </div>
+
+        <main className="view" key={vista}>
+          {vista === 'overview' && <Overview resumen={resumen} />}
+          {vista === 'casos' && <Casos />}
+          {vista === 'redes' && <RedesView />}
+          {vista === 'asistente' && <Asistente />}
+        </main>
       </div>
     </div>
   )

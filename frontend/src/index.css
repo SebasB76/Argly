@@ -1,9 +1,107 @@
-:root { color-scheme: dark; }
+/* ============================================================
+   ARGLY // CORPORATE LIGHT — base layer
+   Tokens, type, soft elevation. Sober & formal.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* —— surfaces —— */
+  --bg:        #f4f6f9;   /* app canvas, cool light gray */
+  --bg-2:      #eef1f6;
+  --surface:    #ffffff;  /* panels & cards */
+  --surface-2:  #f7f9fc;  /* nested / subtle */
+  --surface-3:  #ffffff;
+
+  /* —— dark sidebar (classic enterprise pattern) —— */
+  --nav-bg:     #11203a;
+  --nav-bg-2:   #0d1a30;
+  --nav-text:   #c8d4e6;
+  --nav-muted:  #7d8ca8;
+  --nav-border: rgba(255,255,255,0.08);
+
+  /* —— borders —— */
+  --border:      #e4e9f0;
+  --border-soft: #eef2f7;
+  --border-hi:   #cdd8e8;
+
+  /* —— text —— */
+  --text:   #1b2733;   /* ink / graphite */
+  --text-2: #44546a;   /* slate */
+  --muted:  #6b7c93;
+  --dim:    #97a4b6;
+
+  /* —— corporate accent (deep blue) —— */
+  --accent:      #2456b8;
+  --accent-2:    #1d4ed8;
+  --accent-deep: #1a3f86;
+  --accent-soft: #eaf0fb;
+  --accent-glow: rgba(36,86,184,0.16);
+  /* alias the old token names → accent, so existing references restyle automatically */
+  --phos:      var(--accent);
+  --phos-2:    var(--accent-2);
+  --phos-deep: var(--accent-deep);
+  --phos-glow: var(--accent-glow);
+
+  /* —— risk signal system (sober, legible on light) —— */
+  --rojo:       #c0392b;  --rojo-glow:  rgba(192,57,43,0.14);
+  --amar:       #b45309;  --amar-glow:  rgba(180,83,9,0.14);
+  --verde:      #15803d;  --verde-glow: rgba(21,128,61,0.14);
+
+  /* —— elevation —— */
+  --shadow-sm: 0 1px 2px rgba(16,24,40,0.04), 0 1px 3px rgba(16,24,40,0.05);
+  --shadow:    0 1px 3px rgba(16,24,40,0.06), 0 6px 16px rgba(16,24,40,0.05);
+  --shadow-md: 0 4px 20px rgba(16,24,40,0.08), 0 2px 8px rgba(16,24,40,0.05);
+
+  /* —— type —— */
+  --display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans:    'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* —— motion —— */
+  --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  background: #0c1018;
-  color: #e6edf3;
+  min-height: 100vh;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'tnum' 1;
 }
+
 #root { min-height: 100vh; }
+
+::selection { background: var(--accent-soft); color: var(--accent-deep); }
+
+/* —— scrollbars (light) —— */
+* { scrollbar-width: thin; scrollbar-color: #c7d0dd transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: #cbd5e1; border: 2px solid transparent; background-clip: content-box; border-radius: 8px; }
+*::-webkit-scrollbar-thumb:hover { background: #aab6c6; background-clip: content-box; }
+
+button, input, select, textarea { font-family: inherit; }
+
+/* ============================================================
+   keyframes (subtle, professional)
+   ============================================================ */
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes flicker-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
