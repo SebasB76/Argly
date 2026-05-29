@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argly · Detector de posible fraude en siniestros</title>
+<style>
+  :root{
+    --bg:#0c1018; --panel:#0f1626; --panel-2:#11182a; --border:#1e2a44;
+    --text:#e6edf3; --muted:#8b9bc0; --dim:#7c8db5;
+    --accent:#2451d6; --gold:#ffd479; --verde:#51cf66; --amarillo:#ffd43b; --rojo:#ff6b6b;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--text);
+       font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+       line-height:1.55;}
+  main{max-width:1080px; margin:0 auto; padding:32px 22px 80px}
+  a{color:#9fb7ff; text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{margin:0 0 12px}
+  h2{font-size:24px; letter-spacing:.2px; padding-bottom:8px; border-bottom:1px solid var(--border)}
+  h3{font-size:16px; color:#cdd9f0}
+  p{margin:8px 0}
+  code{font-family:var(--mono); background:#141b2b; border:1px solid var(--border);
+       padding:1px 6px; border-radius:6px; font-size:.92em}
+  pre{font-family:var(--mono); background:#0a0f1c; border:1px solid var(--border);
+      border-radius:10px; padding:14px 16px; overflow:auto; font-size:13px}
+  ul{padding-left:20px}
+  li{margin:6px 0}
+  table{border-collapse:collapse; width:100%; margin:8px 0}
+  th,td{padding:9px 12px; border-bottom:1px solid var(--border); text-align:left; font-size:14px}
+  th{color:var(--dim); font-weight:600; background:#11182a}
+  section{margin:36px 0; background:var(--panel); border:1px solid var(--border);
+          border-radius:14px; padding:24px 26px}
+
+  /* hero */
+  .hero{
+    background:radial-gradient(1200px 480px at 20% -20%, #1a2a55 0%, transparent 60%),
+               radial-gradient(900px 380px at 100% 0%, #2a1438 0%, transparent 60%),
+               linear-gradient(180deg,#0f1626,#0c1018);
+    border:1px solid var(--border); border-radius:18px;
+    padding:38px 32px; margin-bottom:24px;
+  }
+  .brand{font-weight:800; font-size:42px; letter-spacing:3px; margin:0}
+  .brand small{font-weight:500; color:var(--muted); letter-spacing:.5px; font-size:16px; margin-left:8px}
+  .tag{font-size:18px; color:#cdd9f0; margin:6px 0 14px}
+  .reto{font-size:13px; color:var(--dim)}
+  .aviso{
+    margin-top:18px; display:inline-block;
+    color:var(--gold); background:#2a210a; border:1px solid #5c4a12;
+    padding:8px 12px; border-radius:8px; font-size:13px;
+  }
+  .hero-stats{
+    margin-top:24px; display:grid; grid-template-columns:repeat(5,1fr); gap:12px;
+  }
+  .stat{background:#141b2b; border:1px solid var(--border); border-radius:12px;
+        padding:14px 16px}
+  .stat b{display:block; font-size:26px; font-weight:800; color:#fff}
+  .stat span{display:block; font-size:11px; color:var(--muted); margin-top:4px;
+             text-transform:uppercase; letter-spacing:1px}
+
+  /* semáforo */
+  .pill{display:inline-block; font-weight:700; padding:3px 10px; border-radius:999px;
+        font-size:12px; color:#0c1018}
+  .pill.r{background:var(--rojo)} .pill.a{background:var(--amarillo)} .pill.v{background:var(--verde)}
+
+  /* layout helpers */
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .card{background:var(--panel-2); border:1px solid var(--border); border-radius:10px; padding:14px 16px}
+  .card h3{margin:0 0 6px; color:#cdd9f0}
+
+  /* contribuciones (ejemplo) */
+  .contribs{list-style:none; padding:0; margin:8px 0}
+  .contribs li{display:flex; gap:12px; background:#141b2b; border:1px solid var(--border);
+               border-radius:8px; padding:10px 12px; margin:6px 0}
+  .contribs li.gate{border-color:#a23341; background:#2a1418}
+  .pts{font-weight:800; color:var(--amarillo); min-width:36px}
+  .regla{font-weight:600}
+  .ev{color:var(--muted); font-size:13px}
+
+  /* demo steps */
+  .pasos{counter-reset: paso; padding-left:0; list-style:none; margin:0}
+  .pasos li{position:relative; padding:12px 14px 12px 50px; margin:8px 0;
+            background:#141b2b; border:1px solid var(--border); border-radius:10px}
+  .pasos li::before{counter-increment: paso; content: counter(paso);
+                    position:absolute; left:12px; top:50%; transform:translateY(-50%);
+                    width:28px; height:28px; border-radius:50%; background:var(--accent);
+                    color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;
+                    font-size:14px}
+
+  /* mermaid container */
+  .mermaid{background:#0a0f1c; border:1px solid var(--border); border-radius:10px;
+           padding:18px; margin-top:6px; text-align:center}
+
+  /* nav */
+  .nav{position:sticky; top:0; z-index:10;
+       background:rgba(12,16,24,.85); backdrop-filter: blur(8px);
+       border:1px solid var(--border); border-radius:999px;
+       padding:8px 14px; margin:0 auto 0; display:flex; gap:6px; flex-wrap:wrap;
+       max-width:fit-content}
+  .nav a{font-size:12px; color:var(--muted); padding:4px 10px; border-radius:999px}
+  .nav a:hover{background:#141b2b; color:#fff; text-decoration:none}
+
+  footer{margin-top:36px; color:var(--muted); font-size:13px; text-align:center;
+         padding:24px 12px}
+  footer code{color:#cdd9f0}
+
+  @media (max-width: 820px){
+    .hero-stats{grid-template-columns:repeat(2,1fr)}
+    .grid-2{grid-template-columns:1fr}
+    .brand{font-size:32px}
+  }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark',
+    themeVariables: {
+      primaryColor: '#1a2a55', primaryTextColor: '#e6edf3',
+      primaryBorderColor: '#2451d6', lineColor: '#9fb0d4',
+      tertiaryColor: '#2a1438', background: '#0a0f1c'
+    }
+  });
+</script>
+</head>
+<body>
+<main>
+
+  <header class="hero">
+    <h1 class="brand">ARGLY <small>· Antifraude de Siniestros</small></h1>
+    <p class="tag">Detector de posible fraude en siniestros, explicable y agentic.</p>
+    <p class="reto">hackIAthon 2026 · Reto Aseguradora del Sur</p>
+    <div class="aviso">⚠ Argly genera <b>alertas de revisión, no acusaciones</b> · la decisión final es del analista humano</div>
+    <div class="hero-stats">
+      <div class="stat"><b>0.93</b><span>AUC híbrido</span></div>
+      <div class="stat"><b>0.97</b><span>Precisión</span></div>
+      <div class="stat"><b>1392</b><span>Siniestros</span></div>
+      <div class="stat"><b>$1.6M</b><span>En revisión</span></div>
+      <div class="stat"><b>66</b><span>Tests verdes</span></div>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <a href="#problema">Problema</a>
+    <a href="#solucion">Solución</a>
+    <a href="#arquitectura">Arquitectura</a>
+    <a href="#score">Score</a>
+    <a href="#demo">Demo</a>
+    <a href="#metricas">Métricas</a>
+    <a href="#fuego">Pruebas de fuego</a>
+    <a href="#rubrica">Rúbrica</a>
+    <a href="#etica">Ética</a>
+    <a href="#correr">Cómo correrlo</a>
+  </nav>
+
+  <section id="problema">
+    <h2>1 · El problema</h2>
+    <ul>
+      <li>La detección manual depende del ojo del analista, reglas dispersas y cruces lentos.</li>
+      <li>Un siniestro suelto puede verse limpio: el fraude <b>organizado</b> vive en las relaciones
+          (anillos de proveedores, narrativas clonadas, frecuencias atípicas).</li>
+      <li>Resultado: tiempo perdido revisando casos limpios y exposición sostenida en pagos sospechosos.</li>
+    </ul>
+  </section>
+
+  <section id="solucion">
+    <h2>2 · La solución — Argly</h2>
+    <p>Plataforma web interna que <b>prioriza reclamos</b> con un score <b>0-100 explicable</b> + semáforo
+       <span class="pill v">🟢</span> <span class="pill a">🟡</span> <span class="pill r">🔴</span> · sistema
+       <b>híbrido</b> de reglas + ML + anomalías + grafo + NLP + agente de IA.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Qué hace</h3>
+        <ul>
+          <li>Genera score y razón por cada siniestro.</li>
+          <li>Detecta <b>anillos</b> de proveedores (grafo).</li>
+          <li>Aísla <b>narrativas clonadas</b> (NLP).</li>
+          <li>Responde en lenguaje natural (agente IA).</li>
+          <li>Emite PDF de investigación.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Qué NO hace</h3>
+        <ul>
+          <li>NO acusa de fraude.</li>
+          <li>NO rechaza siniestros ni decide pagos.</li>
+          <li>NO usa datos reales: 100% sintéticos para el reto.</li>
+          <li>NO reemplaza al analista; lo prioriza y le explica.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="arquitectura">
+    <h2>3 · Cómo funciona</h2>
+    <div class="mermaid">
+flowchart LR
+    G["Generador sintético<br/>9 patrones plantados"] --> DB[("Postgres / SQLite")]
+    DB --> F["Features de riesgo"]
+    F --> R["Motor de reglas<br/>+ Hard Gates RF"]
+    F --> M["ML supervisado<br/>RandomForest"]
+    F --> A["Anomalías<br/>Isolation Forest"]
+    F --> X["Grafo<br/>networkx"]
+    F --> N["NLP<br/>TF-IDF + coseno"]
+    R --> S["Fusión por contribuciones<br/>0-100 + semáforo"]
+    M --> S
+    A --> S
+    X --> S
+    N --> S
+    S --> API["FastAPI"]
+    API --> WEB["React<br/>war-room"]
+    API --> AG["Agente IA<br/>Gemini / DeepSeek"]
+    API --> PDF["Dossier PDF"]
+    API --> PUSH["Push al core"]
+    </div>
+    <ul>
+      <li><b>Score por contribuciones transparentes:</b> cada motor devuelve <code>{señal, puntos, evidencia}</code>; la fusión las suma a 0-100 + semáforo. El <b>desglose ES la suma</b>.</li>
+      <li><b>Hard gates</b> (RF-02 adulteración documental, RF-03 lista restrictiva, RF-04 dinámica inconsistente) fuerzan <b>ROJO</b> con precedencia.</li>
+      <li><b>Agente IA</b> planifica acciones y llama herramientas <b>deterministas</b> (catálogo de tools): no inventa números, los obtiene de la bandeja real.</li>
+    </ul>
+  </section>
+
+  <section id="score">
+    <h2>4 · Cómo se construye el score (ejemplo)</h2>
+    <p>Siniestro tipo <i>"robo a 24h de haber contratado la póliza, reportado 6 días después, monto 97% de la suma asegurada"</i>:</p>
+    <ul class="contribs">
+      <li><span class="pts">+8</span><div><div class="regla">Borde de vigencia</div><div class="ev">Siniestro a 1 días del inicio de la póliza (≤10)</div></div></li>
+      <li><span class="pts">+8</span><div><div class="regla">Demora denuncia robo</div><div class="ev">Robo reportado 6 días después (&gt;48h)</div></div></li>
+      <li><span class="pts">+5</span><div><div class="regla">Monto cercano a suma asegurada</div><div class="ev">Reclamo = 97% de la suma asegurada</div></div></li>
+      <li><span class="pts">+48</span><div><div class="regla">Modelo ML</div><div class="ev">Probabilidad de fraude del modelo: 95%</div></div></li>
+    </ul>
+    <p style="margin-top:14px">Total: <b>69</b> · <span class="pill a">AMARILLO</span> · <b>Recomendación:</b> escalar para revisión documental.</p>
+  </section>
+
+  <section id="demo">
+    <h2>5 · Demo en vivo (4 minutos)</h2>
+    <ol class="pasos">
+      <li><b>Bandeja "Most Wanted"</b> priorizada por riesgo, con filtro por semáforo y monto en revisión visible.</li>
+      <li><b>Detalle del caso</b>: score, desglose por regla, evidencia, recomendación y botón <b>Descargar dossier PDF</b>.</li>
+      <li><b>🧪 Scorear un siniestro nuevo</b>: el jurado define los inputs (o usa el preset "robo a 24h") y ve el score + el porqué <b>en vivo</b>.</li>
+      <li><b>🔎 Pregúntale a Argly</b> en lenguaje natural: <i>"¿qué proveedores concentran las alertas rojas?"</i> → responde con los anillos detectados (P0001 / P0002).</li>
+      <li><b>🕸️ Redes detectadas</b>: cards con proveedor, n_siniestros, n_asegurados y exposición.</li>
+    </ol>
+  </section>
+
+  <section id="metricas">
+    <h2>6 · Métricas reales (test held-out, 422 casos)</h2>
+    <div class="grid-2">
+      <div>
+        <table>
+          <thead><tr><th>Métrica</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>AUC solo-reglas</td><td>0.85</td></tr>
+            <tr><td><b>AUC híbrido</b></td><td><b>0.93</b></td></tr>
+            <tr><td>AUC modelo ML</td><td>0.95</td></tr>
+            <tr><td><b>Precisión</b></td><td><b>0.97</b></td></tr>
+            <tr><td>Recall</td><td>0.80</td></tr>
+            <tr><td>F1</td><td>0.88</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table>
+          <thead><tr><th>Distribución</th><th>Casos</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pill v">VERDE</span> flujo normal</td><td>1146</td></tr>
+            <tr><td><span class="pill a">AMARILLO</span> revisión documental</td><td>172</td></tr>
+            <tr><td><span class="pill r">ROJO</span> revisión especializada</td><td>74</td></tr>
+            <tr><td><b>Monto en revisión</b></td><td><b>$1.605.659</b></td></tr>
+            <tr><td>Total siniestros</td><td>1392</td></tr>
+            <tr><td>Tests automatizados</td><td>66 ✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p style="margin-top:10px"><b>Sistema reproducible</b> (semilla fija). Train/test separados: los anillos del test usan proveedores <b>distintos</b> a los del entrenamiento (sin métricas circulares).</p>
+  </section>
+
+  <section id="fuego">
+    <h2>7 · Pruebas de fuego del jurado</h2>
+    <table>
+      <thead><tr><th>Prueba (sec. 23 del reto)</th><th>Cubierta por</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>Consulta agéntica en lenguaje natural</td><td><code>POST /api/preguntar</code> + chat en la web</td><td>✓</td></tr>
+        <tr><td>Scorear un siniestro nuevo en vivo y explicar el riesgo</td><td><code>POST /api/scorear</code> + form 🧪 en la web</td><td>✓</td></tr>
+        <tr><td>Verificación del repositorio modular en GitHub</td><td><code>github.com/SebasB76/Argly</code> · 66 tests · <code>run.sh</code></td><td>✓</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="rubrica">
+    <h2>8 · Cobertura de la rúbrica</h2>
+    <table>
+      <thead><tr><th>Criterio</th><th>Peso</th><th>Cubierto por</th></tr></thead>
+      <tbody>
+        <tr><td>Uso de IA y prototipo</td><td>40%</td><td>ML + NLP + anomalías + agente NL con tool-calling</td></tr>
+        <tr><td>Explicabilidad y ética</td><td>25%</td><td>Contribuciones transparentes + gates + sello + trazabilidad</td></tr>
+        <tr><td>Análisis del caso</td><td>15%</td><td>Grafo de redes (networkx) + cruce multivariable</td></tr>
+        <tr><td>Tecnología y arquitectura</td><td>10%</td><td>Repo modular + API REST + 66 tests + run.sh + Mermaid docs</td></tr>
+        <tr><td>Pitch e impacto</td><td>10%</td><td>Demo redonda + métricas + monto + roadmap</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="etica">
+    <h2>9 · Ética, trazabilidad y datos</h2>
+    <ul>
+      <li><b>Score descomponible</b> hasta el dato origen (cada regla, sus puntos, su evidencia).</li>
+      <li><b>Sello "alerta ≠ acusación"</b> en API, web, PDF y avisos.</li>
+      <li><b>Humano en el ciclo:</b> la API no decide pagos.</li>
+      <li><b>Datos 100% sintéticos</b>, sin PII real, sin credenciales en el repo (<code>.env</code> ignorado).</li>
+      <li><b>Train/test honesto:</b> los rings del test usan proveedores distintos a los del train.</li>
+      <li><b>Auditoría de sesgo</b> por ciudad/segmento como práctica.</li>
+    </ul>
+  </section>
+
+  <section id="correr">
+    <h2>10 · Cómo correrlo</h2>
+<pre>cd argly
+./run.sh setup     # crea venv, instala deps de Python y del front
+./run.sh demo      # levanta API (:8000) + web (:5173)
+# abre http://localhost:5173
+</pre>
+    <p>Otros comandos: <code>./run.sh test</code> (66 tests) · <code>./run.sh pipeline</code> (bandeja + métricas) · <code>./run.sh api</code> (Swagger en <code>/docs</code>).</p>
+    <h3 style="margin-top:18px">Endpoints clave</h3>
+    <table>
+      <thead><tr><th>Endpoint</th><th>Devuelve</th></tr></thead>
+      <tbody>
+        <tr><td><code>GET /api/resumen</code></td><td>totales por semáforo + monto en revisión</td></tr>
+        <tr><td><code>GET /api/casos?nivel=&limit=</code></td><td>bandeja priorizada</td></tr>
+        <tr><td><code>GET /api/casos/{id}</code></td><td>score + desglose + evidencia + recomendación</td></tr>
+        <tr><td><code>POST /api/scorear</code></td><td><b>puntúa un siniestro nuevo</b> en vivo + explica</td></tr>
+        <tr><td><code>POST /api/preguntar</code></td><td>agente: respuesta en lenguaje natural</td></tr>
+        <tr><td><code>GET /api/redes</code></td><td>anillos (proveedores que concentran alertas)</td></tr>
+        <tr><td><code>GET /api/narrativas-similares</code></td><td>pares de narrativas casi idénticas</td></tr>
+        <tr><td><code>GET /api/casos/{id}/dossier</code></td><td>PDF de investigación</td></tr>
+        <tr><td><code>GET /api/casos/{id}/aviso</code></td><td>preview WhatsApp/correo</td></tr>
+        <tr><td><code>POST /api/casos/{id}/push</code></td><td>push del score al core (mock)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>11 · Stack y próximos pasos</h2>
+    <p><b>Stack:</b> Python · FastAPI · PostgreSQL/SQLite · React (Vite) · scikit-learn · networkx · sentence-similarity (TF-IDF/coseno) · LLM compatible-OpenAI (Gemini / DeepSeek / Groq).</p>
+    <h3>Próximos pasos</h3>
+    <ul>
+      <li><b>Integración real:</b> WhatsApp/correo con credenciales del cliente; push al core (Oracle).</li>
+      <li><b>Refinamiento:</b> re-entrenar con datos reales bajo gobernanza; calibración por ramo.</li>
+      <li><b>Operación:</b> dashboards de tendencias y alertas en tiempo real.</li>
+      <li><b>Gobierno del modelo:</b> auditoría periódica de sesgo, política de retraining.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Repo: <code>github.com/SebasB76/Argly</code> · <code>./run.sh demo</code> · 66 tests verdes · hackIAthon 2026.
+  </footer>
+
+</main>
+</body>
+</html>
