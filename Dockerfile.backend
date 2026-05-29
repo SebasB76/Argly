@@ -1,0 +1,18 @@
+# Backend Argly: API FastAPI. Listo para Render/Railway/Fly (usa $PORT + Postgres).
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# psycopg2-binary trae sus wheels; no hace falta compilar. Sin build-essential.
+COPY requirements-docker.txt .
+RUN pip install --no-cache-dir -r requirements-docker.txt
+
+# Código y datos (data/ solo tiene .gitkeep; los CSV se generan en memoria)
+COPY src ./src
+COPY data ./data
+
+EXPOSE 8000
+
+# --host 0.0.0.0 para acceso externo. Render/Railway/Fly inyectan $PORT; si no
+# existe, cae a 8000. Forma shell para que se expanda la variable.
+CMD ["sh", "-c", "uvicorn src.app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

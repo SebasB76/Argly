@@ -13,8 +13,13 @@ psycopg2-binary       # driver Postgres (no necesario en dev con SQLite)
 # === NLP ===
 sentence-transformers # embeddings para similitud de narrativas
 
-# === Agente de IA (LLM barato compatible-OpenAI: DeepSeek / Groq) ===
-openai                # cliente compatible-OpenAI (base_url -> DeepSeek/Groq)
+# === Agente de IA (LLM compatible-OpenAI: DeepSeek / Groq, o Gemini vía HTTP) ===
+openai                # cliente compatible-OpenAI (base_url -> DeepSeek/Groq); Gemini usa httpx
+
+# === Notebooks (exploración / modelo / evaluación) ===
+matplotlib
+jupyter
+nbformat
 
 # === Datos sintéticos ===
 faker
@@ -23,9 +28,11 @@ faker
 fastapi
 uvicorn[standard]
 python-dotenv
+python-multipart      # subida de archivos (importar dataset)
 
 # === Artefactos / reportes ===
-reportlab             # generación de PDF (dossier de investigación)
+reportlab             # generación de PDF (dossier + reporte ejecutivo)
+openpyxl              # exportación de la bandeja a Excel (auditoría)
 
 # === Testing ===
 pytest

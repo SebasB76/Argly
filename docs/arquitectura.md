@@ -18,15 +18,17 @@ anomalías + grafo + NLP + agente de IA. Construcción **core-first** (ver
    + semáforo. **No es solo suma:** hay hard gates (RF-01..04 → Rojo sí o sí),
    topes por señal y total, y precedencia (gate > suma). El desglose ES la lista
    de contribuciones. Detalle en `reglas_negocio.md`.
-   - **Reglas** — rúbrica del reto + RF-01..07 (núcleo, E1).
-   - **ML supervisado** — XGBoost + SHAP (E2).
+   - **Reglas** — rúbrica del reto (14 señales) + RF-01..07 (núcleo, E1).
+   - **ML supervisado** — RandomForest + SHAP para explicabilidad (E2).
    - **Anomalías** — Isolation Forest (E2).
    - **Grafo** — networkx backend: anillos, identidad compartida (E4).
    - **NLP** — embeddings locales: similitud de narrativas, coherencia (E4).
-4. **Agente investigador** (E5). Tool-calling sobre la base: historial, red de
-   proveedor, narrativas similares, consistencia documental, desglose de score.
-   **Narra** datos que ya calculan los motores (no los inventa). Responde las 12
-   preguntas del reto + libres. Fallback determinista si la API del LLM falla.
+4. **Agente investigador** (E5). El LLM **planifica** qué herramienta determinista
+   ejecutar (catálogo de ~17 tools: búsqueda, explicación, Pareto de proveedores,
+   ahorro, redes, etc.) y luego **redacta** la respuesta con los datos obtenidos —
+   nunca inventa números. Responde las 12 preguntas del reto + libres. Si no hay
+   LLM configurado, el agente avisa de indisponibilidad; el resto del sistema
+   (scoring, bandeja, API, scoreo en vivo) es 100% determinista y funciona offline.
 5. **Enriquecimiento** (precomputado, sin APIs en vivo). Señales geo (distancias
    entre lugares con coordenadas sintéticas), clima (`clima_declarado` vs
    `clima_real`) y Lista Restrictiva, todo **sembrado en la DB** por el
@@ -64,8 +66,9 @@ notificaciones + pulido.
 
 - **Nombre:** Argly.
 - **Stack:** React (SPA) + FastAPI + PostgreSQL.
-- **LLM:** 1 proveedor barato compatible-OpenAI (DeepSeek o Llama vía Groq) + 1
-  fallback determinista. **Sin** Claude SDK, Gemini ni Ollama.
+- **LLM:** proveedor compatible-OpenAI (DeepSeek/Groq) **o Gemini** (Google), con
+  autodetección por variable de entorno y reintentos con backoff. El agente usa
+  planificación de herramientas (tool-calling propio). Sin Claude SDK ni Ollama.
 - **Datos:** 100% sintéticos propios, con train/test separados.
 - **Geo/clima/lista:** simulados y precomputados en la DB (sin APIs en vivo).
 - **Grafo:** solo backend, sin visualización por ahora.

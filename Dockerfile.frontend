@@ -1,0 +1,16 @@
+# Frontend Argly: war-room React servido por el dev server de Vite (con HMR).
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Instala deps primero para aprovechar la cache de capas.
+COPY frontend/package*.json ./
+RUN npm install
+
+# Resto del código del front (node_modules queda excluido por .dockerignore).
+COPY frontend ./
+
+EXPOSE 5173
+
+# --host expone el dev server fuera del contenedor.
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

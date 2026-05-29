@@ -23,8 +23,12 @@ siniestros ni decide pagos. Toda decisión final es de un analista humano.
   sintéticos**, no prueba generalización al mundo real. Para no inflar métricas,
   el test set usa variantes de patrón **no vistas** en entrenamiento, y se
   compara `solo-reglas` vs `híbrido`.
-- Dependencia de API externa: solo el LLM del agente; geo/clima/lista están
-  precomputados en la DB. Si el LLM falla, hay **fallback determinista**.
+- Dependencia de API externa: **solo** el agente conversacional usa un LLM
+  (DeepSeek/Groq o Gemini); geo/clima/lista están precomputados en la DB. Si el
+  LLM no está configurado o falla, el agente avisa con claridad, pero el núcleo
+  (scoring, bandeja, API, scoreo en vivo) es **100% determinista** y funciona sin red.
+- Explicabilidad ML: usa **SHAP** (TreeExplainer) si está instalado; si no, cae a
+  la importancia de variables del RandomForest (siempre disponible).
 
 ## Riesgos y mitigaciones
 
