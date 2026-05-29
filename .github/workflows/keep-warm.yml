@@ -1,0 +1,25 @@
+name: keep-warm
+# Mantiene despierto el backend de Render (el free tier se duerme tras ~15 min sin
+# tráfico, y el cold start es lento porque la app entrena el modelo al arrancar).
+# Pinga /health cada 5 min. Cuando ya no haga falta (p.ej. tras el demo o si subes
+# a un plan de pago), deshabilita o borra este workflow para no gastar horas free.
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # cada 5 min (margen frente a los retrasos del scheduler)
+  workflow_dispatch: {}      # permite ejecutarlo a mano desde la pestaña Actions
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping backend /health
+        run: |
+          url="https://argly-api.onrender.com/health"
+          for i in 1 2 3 4 5; do
+            code=$(curl -fsS -m 90 -o /dev/null -w '%{http_code}' "$url" || echo 000)
+            echo "intento $i -> HTTP $code"
+            if [ "$code" = "200" ]; then echo "backend despierto ✓"; exit 0; fi
+            sleep 25
+          done
+          echo "::warning::el backend no respondió 200 tras 5 intentos (igual el ping resetea el timer de inactividad)"
+          exit 0
