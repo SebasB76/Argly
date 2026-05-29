@@ -16,7 +16,7 @@
 
 .main { display: grid; grid-template-rows: auto 1fr; gap: 12px; padding: 16px; }
 .kpis { margin-bottom: 6px }
-.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 0; }
+.stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin: 0; }
 .card { background: #141b2b; border: 1px solid #1e2a44; border-radius: 12px; padding: 14px 16px; }
 .card .v { font-size: 24px; font-weight: 800; }
 .card .l { font-size: 12px; color: #8b9bc0; margin-top: 4px; }

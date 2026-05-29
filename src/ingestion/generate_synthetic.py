@@ -160,6 +160,9 @@ def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dic
     placa_by_aseg = {}
     for v in vehiculos:
         placa_by_aseg.setdefault(v["id_asegurado"], v["placa"])
+    # Conductor "propio" único por asegurado (1:1). Los patrones de fraude por
+    # conductor compartido sobrescriben este id con uno común (C00001/C00002).
+    cond_by_aseg = {a["id_asegurado"]: f"C{10000 + idx:05d}" for idx, a in enumerate(asegurados)}
 
     sin = []
     sid = 0
@@ -184,6 +187,8 @@ def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dic
             id_siniestro=nuevo_id(), id_poliza=pol["id_poliza"], id_asegurado=pol["id_asegurado"],
             id_proveedor=id_prov or random.choice(pool_legit),
             placa=placa_by_aseg.get(pol["id_asegurado"], ""),
+            id_conductor=cond_by_aseg.get(pol["id_asegurado"], "C00000"),
+            perdida_total=False,
             ramo=ramo, cobertura=cobertura,
             fecha_ocurrencia=ocurr, fecha_reporte=reporte,
             monto_reclamado=reclamado, monto_estimado=round(reclamado * random.uniform(0.85, 1.05), 2),
@@ -281,6 +286,44 @@ def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dic
         s["tipo_impacto"] = "volcadura"
         sin.append(s)
 
+    # --- Patrón: alta frecuencia por conductor (mismo conductor, varios asegurados) ---
+    for cond in ["C00001", "C00002"]:
+        for a in random.sample(asegurados, 4):
+            pols_a = [p for p in polizas if p["id_asegurado"] == a["id_asegurado"]]
+            if not pols_a:
+                continue
+            s = base(random.choice(pols_a), "frecuencia_conductor", 1)
+            s["id_conductor"] = cond
+            sin.append(s)
+
+    # --- Patrón: alta frecuencia de reclamos solo RC (Responsabilidad Civil) ---
+    for a in random.sample(asegurados, 10):
+        pols_a = [p for p in polizas if p["id_asegurado"] == a["id_asegurado"] and p["ramo"] == "Vehículos"]
+        if not pols_a:
+            continue
+        for _ in range(3):
+            s = base(random.choice(pols_a), "frecuencia_rc", 1)
+            s["cobertura"] = "Daño a Terceros (RC)"
+            sin.append(s)
+
+    # --- Patrón: evento sin tercero identificado (daño severo, sin rastro del tercero) ---
+    for _ in range(25):
+        pol = random.choice(polizas_veh) if polizas_veh else random.choice(polizas)
+        s = base(pol, "sin_tercero", 1)
+        s["cobertura"] = "Choque"
+        s["tercero_identificado"] = False
+        s["monto_reclamado"] = round(pol["suma_asegurada"] * random.uniform(0.4, 0.7), 2)
+        sin.append(s)
+
+    # --- Patrón: Pérdida Total por Robo (PTxRB) -> RF-01 (hard gate ROJO) ---
+    for _ in range(25):
+        pol = random.choice(polizas_veh) if polizas_veh else random.choice(polizas)
+        s = base(pol, "ptxrb", 1)
+        s["cobertura"] = "Robo"
+        s["perdida_total"] = True
+        s["monto_reclamado"] = round(pol["suma_asegurada"] * random.uniform(0.9, 1.0), 2)
+        sin.append(s)
+
     df = pd.DataFrame(sin)
 
     # --- Campos derivados ---
@@ -324,10 +367,31 @@ def generar(seed: int = config.SEED, n_aseg: int = 600, n_prov: int = 80) -> dic
     faltan = df["patron"] == "doc_inconsistente"
     df.loc[faltan, "documentos_completos"] = False
 
+    # --- Enriquecimiento de tablas complementarias (campos sugeridos, sección 6.2) ---
+    aseg_df = pd.DataFrame(asegurados)
+    prov_df = pd.DataFrame(proveedores)
+    pol_df = pd.DataFrame(polizas)
+
+    npol = pol_df.groupby("id_asegurado").size()
+    aseg_df["numero_polizas"] = aseg_df["id_asegurado"].map(npol).fillna(0).astype(int)
+    nsin_aseg = df.groupby("id_asegurado").size()
+    aseg_df["reclamos_ultimos_12_meses"] = aseg_df["id_asegurado"].map(nsin_aseg).fillna(0).astype(int)
+    aseg_df["mora_actual"] = np.random.default_rng(seed).random(len(aseg_df)) < 0.15
+
+    nrec = df.groupby("id_proveedor").size()
+    prov_df["reclamos_asociados"] = prov_df["id_proveedor"].map(nrec).fillna(0).astype(int)
+    mprom = df.groupby("id_proveedor")["monto_reclamado"].mean()
+    prov_df["monto_promedio_reclamado"] = prov_df["id_proveedor"].map(mprom).fillna(0.0).round(2)
+    obs = df[df["etiqueta_fraude_simulada"] == 1].groupby("id_proveedor").size()
+    prov_df["porcentaje_casos_observados"] = (
+        (prov_df["id_proveedor"].map(obs).fillna(0)
+         / prov_df["id_proveedor"].map(nrec).replace(0, 1).fillna(1)) * 100
+    ).round(1)
+
     return {
-        "asegurados": pd.DataFrame(asegurados),
-        "proveedores": pd.DataFrame(proveedores),
-        "polizas": pd.DataFrame(polizas),
+        "asegurados": aseg_df,
+        "proveedores": prov_df,
+        "polizas": pol_df,
         "vehiculos": pd.DataFrame(vehiculos),
         "siniestros": df,
         "documentos": pd.DataFrame(docs),

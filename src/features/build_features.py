@@ -57,6 +57,27 @@ def construir_features(dfs: dict) -> pd.DataFrame:
     veh = s.loc[s["placa"] != "", "placa"].value_counts()
     f["freq_vehiculo"] = s["placa"].map(lambda p: int(veh.get(p, 0)) if p else 0)
 
+    # --- Frecuencia por conductor (mismo conductor en varios siniestros) ---
+    if "id_conductor" in s.columns:
+        f["freq_conductor"] = s.groupby("id_conductor")["id_siniestro"].transform("count").fillna(0).astype(int)
+    else:
+        f["freq_conductor"] = 0
+
+    # --- Frecuencia de reclamos SOLO RC (Responsabilidad Civil) por asegurado ---
+    f["es_solo_rc"] = s["cobertura"].eq("Daño a Terceros (RC)")
+    f["freq_solo_rc"] = (f["es_solo_rc"].astype(int)
+                         .groupby(s["id_asegurado"]).transform("sum").astype(int))
+
+    # --- Evento sin tercero identificado ---
+    if "tercero_identificado" in s.columns:
+        f["evento_sin_tercero"] = ~s["tercero_identificado"].fillna(True).astype(bool)
+    else:
+        f["evento_sin_tercero"] = False
+
+    # --- Pérdida Total por Robo (PTxRB): pérdida total + cobertura de robo (RF-01) ---
+    perdida = s["perdida_total"].fillna(False).astype(bool) if "perdida_total" in s.columns else False
+    f["es_ptxrb"] = perdida & s["cobertura"].isin(["Robo", "Pérdida Total"])
+
     # --- Geografía y clima (precomputados en los datos) ---
     f["distancia_geo_km"] = [_dist_km(a, b) for a, b in zip(s["ciudad_ocurrencia"], s["ciudad_taller"])]
     f["clima_inconsistente"] = s["clima_declarado"].ne(s["clima_real"])

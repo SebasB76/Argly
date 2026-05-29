@@ -17,12 +17,13 @@ load_dotenv(find_dotenv(), override=False)
 from src.pipeline import construir_bandeja
 from src.ingestion.generate_synthetic import generar
 from src.graph.network import detectar_redes
-from src.nlp.narrative import pares_similares
+from src.nlp.narrative import pares_similares, extraer_entidades, resumen_narrativas
 from src.ai_agent.agent import responder
+from src.ai_agent import tools
 from src.channels.pdf_dossier import generar_dossier
 from src.channels import notify
 from src.features.build_features import construir_features
-from src.models.ml_model import entrenar, FEATURES, _X
+from src.models.ml_model import entrenar, FEATURES, _X, explicacion_global, explicacion_local
 from src.rules.fraud_rules import evaluar_reglas
 from src.scoring.score import puntuar, contribucion_ml
 
@@ -32,14 +33,16 @@ app = FastAPI(title="Argly API", version="0.1.0",
 _DFS = None
 _BANDEJA = None
 _MODELO = None
+_FEATURES = None
 
 
 def _datos():
     """Genera los datos, entrena el modelo y construye la bandeja una vez (cache)."""
-    global _DFS, _BANDEJA, _MODELO
+    global _DFS, _BANDEJA, _MODELO, _FEATURES
     if _BANDEJA is None:
         _DFS = generar()
-        _MODELO, _ = entrenar(construir_features(_DFS))
+        _FEATURES = construir_features(_DFS)
+        _MODELO, _ = entrenar(_FEATURES)
         _BANDEJA = construir_bandeja(_DFS)
     return _DFS, _BANDEJA
 
@@ -77,10 +80,12 @@ def resumen():
     b = _bandeja()
     por_nivel = {k: int(v) for k, v in b["nivel"].value_counts().items()}
     monto_revision = float(b.loc[b["nivel"] != "VERDE", "monto_reclamado"].sum())
+    ahorro = tools.simulacion_ahorro(b)
     return {
         "total": int(len(b)),
         "por_nivel": por_nivel,
         "monto_en_revision": round(monto_revision, 2),
+        "ahorro_estimado": ahorro["ahorro_estimado_total"],
         "aviso": AVISO,
     }
 
@@ -146,6 +151,44 @@ def narrativas(umbral: float = 0.95):
     return {"pares": pares_similares(dfs["siniestros"], umbral=umbral), "aviso": AVISO}
 
 
+@app.get("/api/narrativas/resumen")
+def narrativas_resumen(top: int = 5):
+    """Resumen de narrativas repetidas: moldes de descripción y cuántos reclamos los comparten."""
+    dfs, _ = _datos()
+    return {"grupos": resumen_narrativas(dfs["siniestros"], top=top), "aviso": AVISO}
+
+
+@app.get("/api/casos/{id_siniestro}/entidades")
+def entidades(id_siniestro: str):
+    """Entidades extraídas de la narrativa del siniestro (placas, montos, vías, expedientes)."""
+    dfs, _ = _datos()
+    s = dfs["siniestros"]
+    row = s[s["id_siniestro"] == id_siniestro]
+    if row.empty:
+        raise HTTPException(status_code=404, detail="Siniestro no encontrado")
+    desc = str(row.iloc[0]["descripcion"])
+    return {"id_siniestro": id_siniestro, "descripcion": desc, "entidades": extraer_entidades(desc)}
+
+
+@app.get("/api/proveedores-pareto")
+def proveedores_pareto(objetivo: float = 0.8, solo_rojos: bool = True):
+    """Pareto: proveedores que concentran el `objetivo` (80%) de las alertas rojas."""
+    return {**tools.proveedores_pareto(_bandeja(), objetivo=objetivo, solo_rojos=solo_rojos), "aviso": AVISO}
+
+
+@app.get("/api/ahorro")
+def ahorro(tasa_fraude_confirmado: float = 0.35):
+    """Simulación de ahorro potencial (impacto de negocio) de priorizar con Argly."""
+    return {**tools.simulacion_ahorro(_bandeja(), tasa_fraude_confirmado=tasa_fraude_confirmado), "aviso": AVISO}
+
+
+@app.get("/api/modelo/importancias")
+def modelo_importancias():
+    """Explicabilidad GLOBAL del modelo ML (SHAP si está instalado; si no, importancia del RF)."""
+    _datos()
+    return explicacion_global(_MODELO, _FEATURES)
+
+
 @app.get("/api/casos/{id_siniestro}/dossier")
 def dossier(id_siniestro: str):
     """PDF de investigación del caso, listo para auditoría."""
@@ -183,20 +226,31 @@ class NuevoSiniestro(BaseModel):
     doc_inconsistente: bool = False
     distancia_geo_km: float = 0.0
     freq_vehiculo: int = 1
+    freq_conductor: int = 1
+    freq_solo_rc: int = 0
+    tercero_identificado: bool = True
+    perdida_total: bool = False
 
 
 def _features_de_input(c: NuevoSiniestro) -> dict:
     suma = c.suma_asegurada or 1.0
+    es_robo = c.cobertura == "Robo"
+    es_solo_rc = c.cobertura == "Daño a Terceros (RC)"
     return {
         "dias_desde_inicio_poliza": c.dias_desde_inicio_poliza,
         "dias_entre_ocurrencia_reporte": c.dias_entre_ocurrencia_reporte,
         "historial_siniestros_asegurado": c.historial_siniestros_asegurado,
-        "es_robo": c.cobertura == "Robo",
+        "es_robo": es_robo,
         "ratio_monto_suma": round(c.monto_reclamado / suma, 3),
         "proveedor_en_lista": c.proveedor_en_lista,
         "asegurado_en_lista": False,
         "freq_proveedor": 1,
         "freq_vehiculo": c.freq_vehiculo,
+        "freq_conductor": c.freq_conductor,
+        "es_solo_rc": es_solo_rc,
+        "freq_solo_rc": c.freq_solo_rc,
+        "evento_sin_tercero": not c.tercero_identificado,
+        "es_ptxrb": bool(c.perdida_total) and c.cobertura in ("Robo", "Pérdida Total"),
         "distancia_geo_km": c.distancia_geo_km,
         "clima_inconsistente": c.clima_inconsistente,
         "documentos_completos": c.documentos_completos,
@@ -225,6 +279,7 @@ def scorear(c: NuevoSiniestro):
         contribs.append(cml)
     res = puntuar(contribs)
     res["probabilidad_ml"] = round(prob, 3)
+    res["factores_modelo"] = explicacion_local(_modelo(), fila)
     res["recomendacion"] = _recomendacion(res["nivel"])
     res["aviso"] = AVISO
     return res

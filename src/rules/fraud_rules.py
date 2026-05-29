@@ -3,6 +3,10 @@
 Cada regla devuelve una Contribución `{regla, puntos, evidencia}` o None.
 Basado en la sección 7 (señales ponderadas) y 8 (reglas críticas RF) del reto.
 Las reglas RF-01..04 son **hard gates**: fuerzan nivel ROJO (ver `scoring/score.py`).
+
+Las filas (`r`) llegan como Series (pipeline) o dict (scoreo en vivo); por eso las
+reglas nuevas usan `r.get(...)` con valor por defecto para ser tolerantes a campos
+ausentes en el scoreo manual.
 """
 from __future__ import annotations
 
@@ -56,6 +60,34 @@ def _freq_vehiculo(r):
     return None
 
 
+def _freq_conductor(r):
+    v = r.get("freq_conductor", 0) or 0
+    if v >= 3:
+        return Contribucion("Alta frecuencia conductor", 8, f"{int(v)} siniestros del mismo conductor")
+    if v == 2:
+        return Contribucion("Alta frecuencia conductor", 4, "2 siniestros del mismo conductor")
+    return None
+
+
+def _freq_solo_rc(r):
+    if r.get("es_solo_rc"):
+        v = r.get("freq_solo_rc", 0) or 0
+        if v >= 3:
+            return Contribucion("Alta frecuencia solo RC", 6,
+                                f"{int(v)} reclamos del asegurado solo de Responsabilidad Civil")
+        if v == 2:
+            return Contribucion("Alta frecuencia solo RC", 3,
+                                "2 reclamos del asegurado solo de Responsabilidad Civil")
+    return None
+
+
+def _sin_tercero(r):
+    if r.get("evento_sin_tercero"):
+        return Contribucion("Evento sin tercero identificado", 5,
+                            "Daño sin tercero identificado ni rastro del responsable")
+    return None
+
+
 def _reporte_tardio(r):
     if not r["es_robo"]:
         d = r["dias_entre_ocurrencia_reporte"]
@@ -95,6 +127,13 @@ def _geo_atipica(r):
 
 # --- Reglas críticas RF (hard gates -> ROJO) ---
 
+def _rf01_ptxrb(r):
+    if r.get("es_ptxrb"):
+        return Contribucion("RF-01 Pérdida Total por Robo (PTxRB)", 10,
+                            "Pérdida total declarada con cobertura de robo", gate=True)
+    return None
+
+
 def _rf02_doc(r):
     if r["doc_inconsistente"]:
         return Contribucion("RF-02 Adulteración documental", 10, "Factura con fecha previa al evento", gate=True)
@@ -117,9 +156,10 @@ def _rf04_dinamica(r):
 
 
 REGLAS = [
-    _borde_vigencia, _demora_robo, _freq_asegurado, _freq_vehiculo, _reporte_tardio,
-    _narrativa_clonada, _monto_alto, _docs_incompletos, _geo_atipica,
-    _rf02_doc, _rf03_lista, _rf04_dinamica,
+    _borde_vigencia, _demora_robo, _freq_asegurado, _freq_vehiculo, _freq_conductor,
+    _freq_solo_rc, _reporte_tardio, _narrativa_clonada, _monto_alto, _docs_incompletos,
+    _sin_tercero, _geo_atipica,
+    _rf01_ptxrb, _rf02_doc, _rf03_lista, _rf04_dinamica,
 ]
 
 

@@ -39,3 +39,18 @@ export async function getRedes() {
   const r = await fetch(`${BASE}/redes`)
   return r.json()
 }
+
+export async function getAhorro() {
+  const r = await fetch(`${BASE}/ahorro`)
+  return r.json()
+}
+
+export async function getProveedoresPareto(objetivo = 0.8) {
+  const r = await fetch(`${BASE}/proveedores-pareto?objetivo=${objetivo}`)
+  return r.json()
+}
+
+export async function getImportancias() {
+  const r = await fetch(`${BASE}/modelo/importancias`)
+  return r.json()
+}

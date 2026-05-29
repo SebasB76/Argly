@@ -15,6 +15,9 @@ class Asegurado(Base):
     score_cliente = Column(Integer)
     telefono = Column(String)
     en_lista_restrictiva = Column(Boolean)
+    numero_polizas = Column(Integer)
+    reclamos_ultimos_12_meses = Column(Integer)
+    mora_actual = Column(Boolean)
 
 
 class Proveedor(Base):
@@ -24,6 +27,9 @@ class Proveedor(Base):
     ciudad = Column(String)
     antiguedad_meses = Column(Integer)
     en_lista_restrictiva = Column(Boolean)
+    reclamos_asociados = Column(Integer)
+    monto_promedio_reclamado = Column(Float)
+    porcentaje_casos_observados = Column(Float)
 
 
 class Poliza(Base):
@@ -60,8 +66,10 @@ class Siniestro(Base):
     id_asegurado = Column(String, index=True)
     id_proveedor = Column(String, index=True)
     placa = Column(String)
+    id_conductor = Column(String, index=True)
     ramo = Column(String)
     cobertura = Column(String)
+    perdida_total = Column(Boolean)
     fecha_ocurrencia = Column(Date)
     fecha_reporte = Column(Date)
     monto_reclamado = Column(Float)

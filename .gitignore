@@ -13,6 +13,9 @@ env/
 *.key
 *.pem
 
+# --- Logs ---
+*.log
+
 # --- Datos generados (no versionar CSV ni DB local; sí el generador) ---
 data/raw/*
 data/processed/*

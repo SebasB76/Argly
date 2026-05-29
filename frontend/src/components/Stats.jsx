@@ -10,7 +10,7 @@ function Card({ label, value, cls = '' }) {
 export default function Stats({ resumen }) {
   if (!resumen) return <div className="stats"><div className="card"><div className="l">Cargando…</div></div></div>
   const n = resumen.por_nivel || {}
-  const monto = (resumen.monto_en_revision || 0).toLocaleString('es-EC', {
+  const fmt = (v) => (v || 0).toLocaleString('es-EC', {
     style: 'currency', currency: 'USD', maximumFractionDigits: 0,
   })
   return (
@@ -19,7 +19,8 @@ export default function Stats({ resumen }) {
       <Card label="🔴 Rojo" value={n.ROJO || 0} cls="rojo" />
       <Card label="🟡 Amarillo" value={n.AMARILLO || 0} cls="amarillo" />
       <Card label="🟢 Verde" value={n.VERDE || 0} cls="verde" />
-      <Card label="Monto en revisión" value={monto} />
+      <Card label="Monto en revisión" value={fmt(resumen.monto_en_revision)} />
+      <Card label="💰 Ahorro potencial" value={fmt(resumen.ahorro_estimado)} cls="verde" />
     </div>
   )
 }

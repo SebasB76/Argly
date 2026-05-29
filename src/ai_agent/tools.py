@@ -69,6 +69,73 @@ def proveedores_top(b, n: int = 10):
              "pct_de_alertas": round(100 * a / total, 1)} for pid, a, m in filas[:n]]
 
 
+def proveedores_pareto(b, objetivo: float = 0.8, solo_rojos: bool = True):
+    """Análisis de Pareto: el grupo mínimo de proveedores que concentra el `objetivo`
+    (p. ej. 80%) de las alertas. Responde la prueba de fuego del jurado:
+    "¿Qué proveedores concentran el 80% de las alertas rojas?".
+    """
+    objetivo = float(objetivo)
+    if objetivo > 1:                       # admite 80 o 0.8
+        objetivo /= 100.0
+    base = b[b["nivel"] == "ROJO"] if solo_rojos else _flagged(b)
+    nivel_txt = "rojas" if solo_rojos else "totales"
+    total = int(len(base))
+    if total == 0:
+        return {"objetivo_pct": round(objetivo * 100), "nivel": nivel_txt, "total_alertas": 0,
+                "n_proveedores_concentran": 0, "proveedores": [],
+                "interpretacion": f"No hay alertas {nivel_txt} en la bandeja."}
+    filas = [(pid, len(grp), float(grp["monto_reclamado"].sum())) for pid, grp in base.groupby("id_proveedor")]
+    filas.sort(key=lambda x: (x[1], x[2]), reverse=True)
+    acum, out = 0, []
+    for pid, a, m in filas:
+        acum += a
+        out.append({"id_proveedor": pid, "alertas": int(a), "monto": round(m, 2),
+                    "pct_individual": round(100 * a / total, 1),
+                    "pct_acumulado": round(100 * acum / total, 1)})
+        if acum / total >= objetivo:
+            break
+    return {
+        "objetivo_pct": round(objetivo * 100),
+        "nivel": nivel_txt,
+        "total_alertas": total,
+        "total_proveedores_con_alertas": len(filas),
+        "n_proveedores_concentran": len(out),
+        "interpretacion": (f"{len(out)} de {len(filas)} proveedores concentran el "
+                           f"{round(100 * acum / total)}% de las {total} alertas {nivel_txt}."),
+        "proveedores": out,
+    }
+
+
+def simulacion_ahorro(b, tasa_fraude_confirmado: float = 0.35, costo_revision_manual: float = 80.0):
+    """Estima el ahorro potencial de priorizar con Argly (impacto de negocio).
+
+    Cifra REFERENCIAL para el pitch, no garantizada: el ahorro se aproxima como el
+    monto expuesto en casos ROJOS multiplicado por una tasa estimada de fraude que
+    se confirma tras revisión humana, más el ahorro operativo de no revisar a ciegas.
+    """
+    f = _flagged(b)
+    rojos = b[b["nivel"] == "ROJO"]
+    monto_revision = float(f["monto_reclamado"].sum())
+    monto_rojo = float(rojos["monto_reclamado"].sum())
+    ahorro_fraude = monto_rojo * float(tasa_fraude_confirmado)
+    # Ahorro operativo: priorizar evita revisar manualmente los verdes.
+    verdes = int((b["nivel"] == "VERDE").sum())
+    ahorro_operativo = verdes * float(costo_revision_manual)
+    return {
+        "casos_en_revision": int(len(f)),
+        "casos_rojos": int(len(rojos)),
+        "monto_en_revision": round(monto_revision, 2),
+        "monto_expuesto_rojo": round(monto_rojo, 2),
+        "tasa_fraude_confirmado_estimada": round(float(tasa_fraude_confirmado), 2),
+        "ahorro_por_fraude_evitado": round(ahorro_fraude, 2),
+        "ahorro_operativo_priorizacion": round(ahorro_operativo, 2),
+        "ahorro_estimado_total": round(ahorro_fraude + ahorro_operativo, 2),
+        "supuestos": (f"Ahorro por fraude = monto en casos ROJOS x {float(tasa_fraude_confirmado):.0%} "
+                      f"confirmado tras revisión humana. Ahorro operativo = {verdes} casos verdes "
+                      f"x ${costo_revision_manual:.0f} de revisión evitada. Cifra referencial."),
+    }
+
+
 def ramos_sospechosos(b):
     out = []
     for ramo, grp in b.groupby("ramo"):
@@ -233,6 +300,8 @@ TOOL_CATALOG = [
     {"name": "resumen_ejecutivo", "description": "Resumen ejecutivo de la bandeja, rojo/amarillo/verde y monto en revisión.", "args": []},
     {"name": "resumen_ml", "description": "Resumen del riesgo ML y anomalías sobre la bandeja.", "args": []},
     {"name": "proveedores_top", "description": "Proveedores que concentran más alertas.", "args": ["n"]},
+    {"name": "proveedores_pareto", "description": "Análisis de Pareto: proveedores que concentran el 80% (objetivo) de las alertas ROJAS. Úsala para '¿qué proveedores concentran el 80% de las alertas rojas?'.", "args": ["objetivo", "solo_rojos"]},
+    {"name": "simulacion_ahorro", "description": "Estima el ahorro potencial (impacto de negocio) de priorizar con Argly.", "args": ["tasa_fraude_confirmado"]},
     {"name": "ramos_sospechosos", "description": "Porcentaje de casos sospechosos por ramo.", "args": []},
     {"name": "ciudades_top", "description": "Ciudades con más alertas.", "args": ["n"]},
     {"name": "asegurados_frecuentes", "description": "Asegurados con más siniestros.", "args": ["n"]},
@@ -265,6 +334,10 @@ def ejecutar_herramienta(nombre: str, b, argumentos: dict | None = None):
         return resumen_ml(b)
     if nombre == "proveedores_top":
         return proveedores_top(b, int(n))
+    if nombre == "proveedores_pareto":
+        return proveedores_pareto(b, argumentos.get("objetivo", 0.8), argumentos.get("solo_rojos", True))
+    if nombre == "simulacion_ahorro":
+        return simulacion_ahorro(b, argumentos.get("tasa_fraude_confirmado", 0.35))
     if nombre == "ramos_sospechosos":
         return ramos_sospechosos(b)
     if nombre == "ciudades_top":

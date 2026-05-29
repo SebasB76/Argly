@@ -21,8 +21,8 @@ revisión humana.
 | **E5** | Agente de IA (consultas en lenguaje natural, 12 preguntas del reto) | ✅ |
 | **E6** | PDF dossier + push al core (mock) + avisos WhatsApp/correo | ✅ |
 
-**Métricas (test held-out, 422 casos):** AUC solo-reglas 0.85 → **híbrido 0.93** (modelo ML 0.95) · **precisión 0.97** · recall 0.80 · F1 0.88.
-**Distribución:** 1146 🟢 · 172 🟡 · 74 🔴 · **68 tests verdes** · reproducible (semilla fija).
+**Métricas (test held-out, 444 casos):** AUC solo-reglas 0.83 → **híbrido 0.92** (modelo ML 0.95) · **precisión 0.97** · recall 0.80 · F1 0.88.
+**Distribución:** 1150 🟢 · 196 🟡 · 119 🔴 · **90 tests verdes** · reproducible (semilla fija).
 
 ## Quickstart
 
@@ -36,7 +36,7 @@ Requisitos: Python 3.12, Node 18+.
 Abre **http://localhost:5173**. Otros comandos:
 
 ```bash
-./run.sh test      # corre la suite (68 tests)
+./run.sh test      # corre la suite (90 tests)
 ./run.sh pipeline  # genera la bandeja + imprime métricas
 ./run.sh api       # solo la API (docs en /docs)
 ```
@@ -51,12 +51,13 @@ Score **híbrido** por **contribuciones transparentes**: cada motor devuelve
 No es solo suma: hay **hard gates** (reglas críticas RF → ROJO), topes y precedencia.
 El desglose ES la lista de contribuciones (explicable por diseño).
 
-- **Reglas** — rúbrica de señales del reto + RF-02/03/04 como gates.
-- **ML supervisado** — RandomForest (entrenado en train held-out).
+- **Reglas** — las 14 señales del reto + RF-01..04 como hard gates (RF-01 PTxRB, RF-02 doc, RF-03 lista, RF-04 dinámica).
+- **ML supervisado** — RandomForest (entrenado en train held-out) + **SHAP** (global y local) para explicabilidad.
 - **Anomalías** — Isolation Forest para lo "no evidente".
-- **Agente de IA** — consultas en lenguaje natural (las 12 preguntas del reto); herramientas deterministas + LLM barato compatible-OpenAI (DeepSeek/Groq) opcional, con fallback.
-- **Redes (grafo)** — networkx detecta anillos (proveedores que concentran alertas).
-- **NLP** — similitud de narrativas (TF-IDF + coseno) para detectar clonadas.
+- **Agente de IA** — consultas en lenguaje natural (las 12 preguntas del reto + Pareto 80%); el LLM **planifica** la herramienta determinista y **redacta** con datos reales (DeepSeek/Groq o **Gemini**). Sin LLM, el núcleo sigue funcionando.
+- **Redes (grafo)** — networkx detecta anillos + **Pareto** de proveedores que concentran el 80% de las alertas rojas.
+- **NLP** — similitud de narrativas (TF-IDF + coseno), extracción de entidades y resumen de narrativas repetidas.
+- **Impacto de negocio** — **simulación de ahorro** potencial (monto recuperable + ahorro operativo).
 
 ## API
 
@@ -65,10 +66,15 @@ El desglose ES la lista de contribuciones (explicable por diseño).
 | `GET /api/resumen` | totales por semáforo + monto en revisión |
 | `GET /api/casos?nivel=&limit=` | bandeja priorizada |
 | `GET /api/casos/{id}` | score + desglose + evidencia + recomendación |
-| `POST /api/scorear` | **puntúa un siniestro nuevo en vivo** + explica |
+| `POST /api/scorear` | **puntúa un siniestro nuevo en vivo** + explica (con SHAP local) |
 | `POST /api/preguntar` | agente: respuesta en lenguaje natural |
 | `GET /api/redes` | anillos (proveedores que concentran alertas) |
+| `GET /api/proveedores-pareto` | **proveedores que concentran el 80% de las alertas rojas** |
+| `GET /api/ahorro` | simulación de ahorro potencial (impacto de negocio) |
+| `GET /api/modelo/importancias` | explicabilidad global del modelo (SHAP) |
 | `GET /api/narrativas-similares` | pares de narrativas casi idénticas |
+| `GET /api/narrativas/resumen` | resumen de narrativas repetidas |
+| `GET /api/casos/{id}/entidades` | entidades extraídas de la narrativa (NER) |
 | `GET /api/casos/{id}/dossier` | PDF de investigación |
 | `GET /api/casos/{id}/aviso` | preview de notificación WhatsApp/correo |
 | `POST /api/casos/{id}/push` | push del score al core (mock) |
@@ -88,11 +94,13 @@ argly/
 │   ├── pipeline.py  # datos -> features -> score -> bandeja + métricas
 │   ├── graph/       # redes/anillos (networkx)                       (E4)
 │   ├── nlp/         # similitud de narrativas (TF-IDF + coseno)       (E4)
-│   ├── ai_agent/    # agente NL + herramientas deterministas          (E5)
+│   ├── ai_agent/    # agente NL (planifica tools) + herramientas        (E5)
 │   ├── channels/    # PDF dossier + avisos WhatsApp/correo            (E6)
 ├── frontend/        # React (Vite) war-room                            (E3)
+├── notebooks/       # 01 exploración · 02 modelo · 03 evaluación
 ├── docs/            # arquitectura, modelo de datos, reglas, uso IA, límites, requerimientos
-├── tests/           # 68 tests
+├── presentation/    # pitch (argly.html + argly.pdf)
+├── tests/           # 90 tests
 └── docker-compose.yml
 ```
 
