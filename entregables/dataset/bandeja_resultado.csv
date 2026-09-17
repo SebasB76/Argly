@@ -1,0 +1,1466 @@
+id_siniestro,score,nivel,gate,n_alertas,motivo_principal,ramo,cobertura,sucursal,monto_reclamado,id_proveedor,id_asegurado
+SIN001312,100,ROJO,True,8,RF-02 Adulteración documental,Vehículos,Daño a Terceros (RC),Loja,4563.52,P0030,A00505
+SIN001319,100,ROJO,True,7,RF-02 Adulteración documental,Vida,Fallecimiento,Loja,1438.51,P0027,A00184
+SIN001302,100,ROJO,True,8,RF-02 Adulteración documental,Vehículos,Robo,Machala,2965.89,P0048,A00185
+SIN001263,98,ROJO,True,7,RF-03 Lista Restrictiva,Vehículos,Robo,Cuenca,11057.76,P0001,A00099
+SIN001308,96,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Daño a Terceros (RC),Guayaquil,13180.84,P0004,A00337
+SIN001306,95,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Robo,Guayaquil,3927.06,P0048,A00535
+SIN001311,95,ROJO,True,7,RF-02 Adulteración documental,Generales,Daño,Manta,7273.64,P0027,A00072
+SIN001313,95,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Daño a Terceros (RC),Guayaquil,2206.05,P0012,A00436
+SIN001304,95,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Daño a Terceros (RC),Quito,3876.2,P0042,A00057
+SIN001324,95,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Pérdida Total,Quito,3558.31,P0016,A00001
+SIN001325,95,ROJO,True,7,RF-02 Adulteración documental,Vida,Fallecimiento,Loja,1586.76,P0040,A00549
+SIN001326,95,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Choque,Machala,10157.23,P0004,A00388
+SIN001307,95,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Robo,Quito,7853.09,P0049,A00009
+SIN001322,94,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Choque,Ambato,3637.84,P0067,A00095
+SIN001320,94,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Choque,Ambato,15652.85,P0055,A00080
+SIN001318,93,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Choque,Manta,2777.41,P0060,A00224
+SIN001300,92,ROJO,True,6,RF-02 Adulteración documental,Hogar,Robo,Machala,1878.14,P0065,A00136
+SIN001465,91,ROJO,True,7,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Ambato,14758.2,P0072,A00490
+SIN001454,91,ROJO,True,7,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Manta,29537.61,P0032,A00395
+SIN001305,90,ROJO,True,6,RF-02 Adulteración documental,Salud,Atención Médica,Ambato,6514.58,P0051,A00354
+SIN001452,90,ROJO,True,7,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Machala,49557.56,P0046,A00242
+SIN001317,89,ROJO,True,6,RF-02 Adulteración documental,Hogar,Robo,Guayaquil,5162.19,P0004,A00132
+SIN001323,89,ROJO,True,6,RF-02 Adulteración documental,Salud,Atención Médica,Machala,1269.0,P0006,A00350
+SIN001298,89,ROJO,True,6,RF-02 Adulteración documental,Generales,Incendio,Loja,5811.32,P0031,A00546
+SIN001321,88,ROJO,True,6,RF-02 Adulteración documental,Vida,Fallecimiento,Manta,4257.76,P0030,A00062
+SIN001303,88,ROJO,True,6,RF-02 Adulteración documental,Generales,Daño,Santo Domingo,2891.84,P0012,A00443
+SIN001299,87,ROJO,True,8,RF-02 Adulteración documental,Vehículos,Daño a Terceros (RC),Cuenca,2107.44,P0068,A00351
+SIN001254,87,ROJO,True,6,RF-03 Lista Restrictiva,Vehículos,Pérdida Total,Cuenca,8366.66,P0001,A00099
+SIN001276,87,ROJO,True,6,RF-03 Lista Restrictiva,Vehículos,Robo,Ambato,12144.72,P0002,A00490
+SIN001459,85,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Manta,45207.8,P0021,A00149
+SIN001437,85,ROJO,False,6,Modelo ML,Vehículos,Choque,Manta,9856.78,P0049,A00547
+SIN001441,85,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Portoviejo,14034.57,P0079,A00034
+SIN001442,84,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Cuenca,7649.09,P0014,A00353
+SIN001446,84,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Guayaquil,18286.69,P0041,A00535
+SIN001461,84,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Riobamba,28587.08,P0070,A00011
+SIN001456,84,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Quito,19264.09,P0050,A00357
+SIN001301,84,ROJO,True,7,RF-02 Adulteración documental,Vehículos,Choque,Portoviejo,2478.4,P0045,A00440
+SIN001449,83,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Guayaquil,10990.72,P0060,A00314
+SIN001314,83,ROJO,True,7,RF-02 Adulteración documental,Vida,Fallecimiento,Manta,4631.69,P0076,A00583
+SIN001316,83,ROJO,True,7,RF-02 Adulteración documental,Salud,Atención Médica,Cuenca,6234.94,P0006,A00302
+SIN001463,83,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Santo Domingo,7275.0,P0079,A00257
+SIN001464,82,ROJO,True,7,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Loja,18191.6,P0066,A00345
+SIN001453,82,ROJO,True,7,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Portoviejo,14049.33,P0059,A00319
+SIN001427,81,ROJO,False,6,Modelo ML,Vehículos,Choque,Guayaquil,16289.9,P0036,A00232
+SIN001310,81,ROJO,True,6,RF-02 Adulteración documental,Vida,Fallecimiento,Guayaquil,6913.4,P0052,A00564
+SIN001272,80,ROJO,True,5,RF-03 Lista Restrictiva,Generales,Daño,Portoviejo,30077.3,P0002,A00273
+SIN001273,80,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Choque,Ambato,6009.44,P0002,A00195
+SIN001450,80,ROJO,True,5,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Portoviejo,28150.78,P0017,A00261
+SIN001458,79,ROJO,True,5,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Santo Domingo,46681.02,P0054,A00501
+SIN001128,79,ROJO,False,6,Modelo ML,Vehículos,Robo,Guayaquil,19853.07,P0080,A00266
+SIN001275,79,ROJO,True,5,RF-03 Lista Restrictiva,Generales,Daño,Portoviejo,22879.09,P0002,A00273
+SIN001257,79,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Robo,Santo Domingo,30497.65,P0001,A00501
+SIN001260,79,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Pérdida Total,Guayaquil,11939.22,P0001,A00341
+SIN001451,79,ROJO,True,5,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Cuenca,13638.36,P0023,A00296
+SIN001443,79,ROJO,True,5,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Santo Domingo,11333.77,P0003,A00331
+SIN001111,79,ROJO,False,6,Modelo ML,Vehículos,Robo,Quito,6494.48,P0055,A00119
+SIN001457,79,ROJO,True,5,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Riobamba,11079.08,P0024,A00422
+SIN001129,79,ROJO,False,6,Modelo ML,Vehículos,Robo,Guayaquil,9090.41,P0040,A00231
+SIN001149,79,ROJO,False,6,Modelo ML,Vehículos,Robo,Machala,3555.31,P0067,A00234
+SIN001445,78,ROJO,True,7,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Riobamba,47478.79,P0003,A00135
+SIN001144,78,ROJO,False,6,Modelo ML,Vehículos,Daño a Terceros (RC),Guayaquil,2927.6,P0027,A00236
+SIN001334,77,ROJO,False,6,Modelo ML,Vehículos,Robo,Riobamba,8071.05,P0049,A00223
+SIN001266,76,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Choque,Ambato,7575.17,P0002,A00490
+SIN001267,76,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Daño a Terceros (RC),Guayaquil,3437.2,P0002,A00153
+SIN001265,76,ROJO,True,4,RF-03 Lista Restrictiva,Generales,Incendio,Loja,7534.93,P0001,A00063
+SIN001376,76,ROJO,True,5,RF-04 Dinámica inconsistente,Vehículos,Choque,Ambato,5374.8,P0032,A00406
+SIN001375,76,ROJO,True,6,RF-04 Dinámica inconsistente,Vehículos,Robo,Loja,906.34,P0063,A00348
+SIN001256,76,ROJO,True,6,RF-03 Lista Restrictiva,Vehículos,Robo,Guayaquil,6338.4,P0001,A00341
+SIN001255,76,ROJO,True,5,RF-03 Lista Restrictiva,Salud,Atención Médica,Riobamba,2408.37,P0001,A00581
+SIN001374,76,ROJO,True,5,RF-04 Dinámica inconsistente,Vehículos,Robo,Machala,4062.01,P0055,A00571
+SIN001373,76,ROJO,True,6,RF-04 Dinámica inconsistente,Vehículos,Daño a Terceros (RC),Quito,1716.95,P0003,A00471
+SIN001379,76,ROJO,True,6,RF-04 Dinámica inconsistente,Vehículos,Robo,Loja,3765.81,P0042,A00221
+SIN001380,76,ROJO,True,5,RF-04 Dinámica inconsistente,Hogar,Incendio,Ambato,7813.64,P0045,A00482
+SIN001264,76,ROJO,True,6,RF-03 Lista Restrictiva,Vehículos,Robo,Cuenca,3199.74,P0001,A00099
+SIN001269,76,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Choque,Ambato,20356.83,P0002,A00195
+SIN001270,76,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Pérdida Total,Ambato,1535.22,P0002,A00195
+SIN001277,76,ROJO,True,4,RF-03 Lista Restrictiva,Salud,Atención Médica,Ambato,4897.31,P0002,A00354
+SIN001431,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Riobamba,27478.45,P0007,A00581
+SIN001433,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Portoviejo,25520.26,P0047,A00414
+SIN001434,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Portoviejo,9235.65,P0060,A00191
+SIN001436,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,3801.7,P0077,A00539
+SIN001424,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Riobamba,10441.27,P0050,A00306
+SIN001430,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Riobamba,21471.4,P0009,A00551
+SIN001417,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Cuenca,9168.55,P0024,A00552
+SIN001419,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Cuenca,20530.59,P0020,A00123
+SIN001387,76,ROJO,True,5,RF-04 Dinámica inconsistente,Vehículos,Pérdida Total,Machala,3324.1,P0068,A00388
+SIN001386,76,ROJO,True,4,RF-04 Dinámica inconsistente,Generales,Incendio,Ambato,6754.39,P0067,A00478
+SIN001385,76,ROJO,True,4,RF-04 Dinámica inconsistente,Vida,Fallecimiento,Guayaquil,4837.19,P0057,A00141
+SIN001384,76,ROJO,True,4,RF-04 Dinámica inconsistente,Vida,Fallecimiento,Quito,8447.17,P0078,A00309
+SIN001383,76,ROJO,True,4,RF-04 Dinámica inconsistente,Salud,Atención Médica,Riobamba,10507.38,P0041,A00102
+SIN001392,76,ROJO,True,5,RF-04 Dinámica inconsistente,Salud,Atención Médica,Machala,7821.49,P0044,A00234
+SIN001389,76,ROJO,True,4,RF-04 Dinámica inconsistente,Salud,Atención Médica,Guayaquil,1667.49,P0005,A00218
+SIN001388,76,ROJO,True,5,RF-04 Dinámica inconsistente,Vehículos,Pérdida Total,Manta,1348.39,P0028,A00206
+SIN001418,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,4546.59,P0040,A00539
+SIN001421,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Riobamba,4215.85,P0003,A00464
+SIN001455,76,ROJO,True,5,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Manta,11299.07,P0043,A00157
+SIN001460,76,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Riobamba,11193.73,P0005,A00465
+SIN001391,76,ROJO,True,2,RF-04 Dinámica inconsistente,Vehículos,Daño a Terceros (RC),Santo Domingo,1092.21,P0016,A00376
+SIN001390,76,ROJO,True,5,RF-04 Dinámica inconsistente,Vehículos,Choque,Portoviejo,2504.4,P0070,A00164
+SIN001462,76,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Loja,13564.7,P0063,A00263
+SIN001309,76,ROJO,True,4,RF-02 Adulteración documental,Hogar,Robo,Machala,2899.94,P0037,A00045
+SIN001315,76,ROJO,True,4,RF-02 Adulteración documental,Vehículos,Choque,Machala,2674.24,P0046,A00199
+SIN001447,76,ROJO,True,3,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Santo Domingo,11360.12,P0075,A00598
+SIN001444,76,ROJO,True,6,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Manta,18223.18,P0075,A00408
+SIN001268,76,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Choque,Ambato,3114.32,P0002,A00490
+SIN001262,76,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Pérdida Total,Machala,15026.83,P0001,A00242
+SIN001261,76,ROJO,True,5,RF-03 Lista Restrictiva,Salud,Atención Médica,Riobamba,1357.79,P0001,A00581
+SIN001382,76,ROJO,True,5,RF-04 Dinámica inconsistente,Vehículos,Pérdida Total,Machala,14166.01,P0037,A00585
+SIN001381,76,ROJO,True,2,RF-04 Dinámica inconsistente,Vehículos,Choque,Portoviejo,3194.93,P0055,A00419
+SIN001378,76,ROJO,True,2,RF-04 Dinámica inconsistente,Vehículos,Choque,Guayaquil,2525.82,P0011,A00247
+SIN001377,76,ROJO,True,4,RF-04 Dinámica inconsistente,Salud,Atención Médica,Santo Domingo,1353.69,P0021,A00334
+SIN001259,76,ROJO,True,4,RF-03 Lista Restrictiva,Generales,Daño,Loja,2651.02,P0001,A00063
+SIN001258,76,ROJO,True,4,RF-03 Lista Restrictiva,Generales,Daño,Loja,5001.33,P0001,A00063
+SIN001438,76,ROJO,False,5,Modelo ML,Vehículos,Choque,Ambato,3383.46,P0068,A00047
+SIN001271,76,ROJO,True,5,RF-03 Lista Restrictiva,Generales,Incendio,Portoviejo,15627.17,P0002,A00273
+SIN001274,76,ROJO,True,5,RF-03 Lista Restrictiva,Vehículos,Choque,Manta,2876.7,P0002,A00073
+SIN001366,76,ROJO,False,6,Modelo ML,Vehículos,Daño a Terceros (RC),Loja,4774.63,P0051,A00505
+SIN001327,76,ROJO,True,4,RF-02 Adulteración documental,Salud,Atención Médica,Portoviejo,1471.81,P0010,A00445
+SIN001448,76,ROJO,True,4,RF-01 Pérdida Total por Robo (PTxRB),Vehículos,Robo,Santo Domingo,11502.7,P0052,A00254
+SIN001116,75,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Loja,4340.73,P0067,A00536
+SIN001108,75,AMARILLO,False,5,Modelo ML,Salud,Atención Médica,Machala,9435.19,P0013,A00571
+SIN001432,75,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,12243.26,P0015,A00454
+SIN001120,75,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Manta,11722.51,P0011,A00152
+SIN001422,75,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,5063.7,P0009,A00143
+SIN001425,75,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Riobamba,6466.88,P0017,A00439
+SIN001137,75,AMARILLO,False,5,Modelo ML,Salud,Atención Médica,Ambato,2780.56,P0046,A00128
+SIN001139,75,AMARILLO,False,5,Modelo ML,Hogar,Incendio,Manta,16473.43,P0063,A00212
+SIN001416,75,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,13236.14,P0074,A00437
+SIN001113,75,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Cuenca,15628.5,P0034,A00346
+SIN001146,75,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,2990.33,P0054,A00420
+SIN001133,75,AMARILLO,False,5,Modelo ML,Generales,Incendio,Manta,9296.44,P0060,A00252
+SIN001423,75,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,8216.24,P0037,A00143
+SIN001122,74,AMARILLO,False,5,Modelo ML,Vida,Fallecimiento,Santo Domingo,5829.26,P0047,A00474
+SIN001201,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,3477.66,P0006,A00314
+SIN001195,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Quito,990.23,P0007,A00050
+SIN001142,74,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Riobamba,1597.73,P0033,A00464
+SIN001145,74,AMARILLO,False,5,Modelo ML,Hogar,Incendio,Machala,3293.58,P0041,A00185
+SIN001185,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Riobamba,1517.8,P0059,A00519
+SIN001179,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Loja,8223.45,P0037,A00184
+SIN001171,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Cuenca,7904.0,P0039,A00214
+SIN001167,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,5506.7,P0029,A00322
+SIN001163,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Portoviejo,3904.34,P0078,A00193
+SIN001193,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Manta,2366.82,P0053,A00532
+SIN001191,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,4146.87,P0077,A00322
+SIN001194,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Cuenca,1744.78,P0027,A00452
+SIN001106,74,AMARILLO,False,5,Modelo ML,Hogar,Robo,Ambato,6043.02,P0008,A00482
+SIN001123,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Santo Domingo,3395.28,P0046,A00331
+SIN001125,74,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Manta,1991.29,P0051,A00547
+SIN001104,74,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Riobamba,1259.8,P0029,A00422
+SIN001166,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Riobamba,7650.36,P0011,A00581
+SIN001138,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Santo Domingo,3684.71,P0045,A00401
+SIN001101,74,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Guayaquil,14509.54,P0041,A00379
+SIN001103,74,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Machala,1792.16,P0038,A00507
+SIN001131,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,558.72,P0069,A00384
+SIN001135,74,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Portoviejo,4659.56,P0012,A00034
+SIN001147,74,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Riobamba,4370.12,P0069,A00056
+SIN001152,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Quito,2700.8,P0025,A00217
+SIN001165,74,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Portoviejo,1763.06,P0031,A00191
+SIN001176,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Loja,5345.81,P0038,A00018
+SIN001162,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Portoviejo,12514.28,P0003,A00344
+SIN001161,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Santo Domingo,2426.55,P0041,A00245
+SIN001174,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Manta,19447.16,P0060,A00149
+SIN001189,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Santo Domingo,3649.38,P0068,A00437
+SIN001168,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Portoviejo,7865.16,P0077,A00297
+SIN001173,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Quito,3897.34,P0079,A00119
+SIN001175,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Riobamba,1490.01,P0032,A00480
+SIN001182,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Cuenca,3436.75,P0058,A00503
+SIN001204,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,10771.54,P0033,A00268
+SIN001199,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Portoviejo,4534.63,P0030,A00150
+SIN001208,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Loja,8208.5,P0030,A00018
+SIN001207,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Cuenca,4355.17,P0032,A00055
+SIN001209,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Quito,1208.89,P0036,A00410
+SIN001203,73,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,1425.65,P0045,A00266
+SIN001197,72,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Manta,6444.7,P0071,A00532
+SIN001198,72,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Cuenca,5403.6,P0031,A00296
+SIN001169,72,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Riobamba,6663.4,P0006,A00517
+SIN001181,71,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Cuenca,5410.66,P0026,A00055
+SIN001202,71,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Manta,4722.61,P0062,A00196
+SIN001350,71,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Portoviejo,15058.1,P0036,A00191
+SIN001285,70,AMARILLO,False,6,Modelo ML,Vehículos,Pérdida Total,Guayaquil,6647.68,P0014,A00337
+SIN001283,70,AMARILLO,False,6,Modelo ML,Vehículos,Choque,Guayaquil,12096.98,P0008,A00231
+SIN001328,70,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Machala,12260.99,P0041,A00507
+SIN001349,70,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Manta,15198.2,P0038,A00365
+SIN001339,70,AMARILLO,False,5,Modelo ML,Vida,Fallecimiento,Guayaquil,15139.43,P0065,A00336
+SIN001338,70,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Manta,12543.15,P0028,A00332
+SIN001343,70,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Ambato,50614.75,P0064,A00128
+SIN001121,69,AMARILLO,False,4,Modelo ML,Generales,Daño,Riobamba,1034.2,P0038,A00021
+SIN001112,69,AMARILLO,False,4,Modelo ML,Generales,Daño,Santo Domingo,2027.45,P0007,A00548
+SIN001126,69,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Loja,2231.74,P0039,A00527
+SIN001159,69,AMARILLO,False,4,Modelo ML,Generales,Daño,Guayaquil,4692.21,P0065,A00002
+SIN001157,69,AMARILLO,False,4,Modelo ML,Hogar,Incendio,Santo Domingo,1631.47,P0042,A00281
+SIN001151,69,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Quito,4109.61,P0031,A00053
+SIN001330,69,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Cuenca,51453.84,P0008,A00346
+SIN001124,69,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Cuenca,1603.21,P0075,A00385
+SIN001155,69,AMARILLO,False,4,Modelo ML,Generales,Incendio,Guayaquil,1541.39,P0075,A00467
+SIN001127,69,AMARILLO,False,4,Modelo ML,Vida,Fallecimiento,Portoviejo,2760.61,P0017,A00371
+SIN001154,69,AMARILLO,False,4,Modelo ML,Generales,Incendio,Portoviejo,2864.15,P0030,A00371
+SIN001110,69,AMARILLO,False,4,Modelo ML,Hogar,Daño,Santo Domingo,8896.77,P0031,A00396
+SIN001102,69,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Ambato,2127.38,P0020,A00594
+SIN001118,69,AMARILLO,False,4,Modelo ML,Vida,Fallecimiento,Portoviejo,5802.27,P0016,A00005
+SIN001130,68,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Ambato,11790.66,P0077,A00036
+SIN001360,68,AMARILLO,False,6,Modelo ML,Vehículos,Daño a Terceros (RC),Riobamba,11428.62,P0015,A00543
+SIN001370,68,AMARILLO,False,6,Modelo ML,Vehículos,Daño a Terceros (RC),Quito,3106.61,P0052,A00050
+SIN001359,66,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Guayaquil,3782.92,P0035,A00175
+SIN001355,65,AMARILLO,False,5,Modelo ML,Salud,Atención Médica,Cuenca,3285.61,P0016,A00250
+SIN001363,65,AMARILLO,False,5,Modelo ML,Salud,Atención Médica,Guayaquil,1369.94,P0011,A00453
+SIN001364,65,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Guayaquil,7514.16,P0070,A00337
+SIN001435,65,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Cuenca,8654.55,P0076,A00413
+SIN001429,65,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Manta,7125.17,P0059,A00157
+SIN001353,65,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Cuenca,2553.48,P0059,A00544
+SIN001282,65,AMARILLO,False,6,Modelo ML,Vehículos,Daño a Terceros (RC),Machala,1517.88,P0077,A00531
+SIN001356,65,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Portoviejo,9712.14,P0006,A00297
+SIN001439,64,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Manta,3477.41,P0066,A00390
+SIN001351,64,AMARILLO,False,4,Modelo ML,Hogar,Daño,Riobamba,31417.15,P0070,A00270
+SIN001371,64,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Machala,1586.58,P0039,A00293
+SIN001440,64,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Santo Domingo,32346.49,P0015,A00208
+SIN001348,64,AMARILLO,False,4,Modelo ML,Vida,Fallecimiento,Quito,30890.97,P0066,A00309
+SIN001109,64,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Portoviejo,11211.17,P0051,A00573
+SIN001114,64,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Ambato,4829.81,P0072,A00097
+SIN001156,64,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Ambato,2349.24,P0013,A00167
+SIN001115,63,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Ambato,6829.73,P0045,A00167
+SIN001136,63,AMARILLO,False,5,Modelo ML,Hogar,Incendio,Cuenca,3525.74,P0022,A00228
+SIN001119,63,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Guayaquil,2110.89,P0024,A00064
+SIN001140,63,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Manta,4508.98,P0030,A00125
+SIN001180,63,AMARILLO,False,6,Modelo ML,Vehículos,Robo,Guayaquil,3644.91,P0035,A00204
+SIN001341,63,AMARILLO,False,4,Modelo ML,Hogar,Daño,Guayaquil,48033.45,P0052,A00106
+SIN001347,63,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Quito,20090.31,P0042,A00053
+SIN001346,63,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Guayaquil,12473.99,P0021,A00046
+SIN001288,63,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Quito,2776.11,P0024,A00137
+SIN001362,63,AMARILLO,False,5,Modelo ML,Salud,Atención Médica,Quito,2776.59,P0079,A00119
+SIN001148,62,AMARILLO,False,5,Modelo ML,Vehículos,Choque,Loja,11076.46,P0035,A00077
+SIN001172,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Loja,2075.86,P0023,A00263
+SIN001170,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Quito,9270.43,P0037,A00187
+SIN001192,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Ambato,3464.68,P0033,A00194
+SIN001187,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Santo Domingo,4078.6,P0029,A00556
+SIN001184,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Manta,3413.48,P0009,A00013
+SIN001210,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Riobamba,1879.15,P0041,A00394
+SIN001278,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,2693.74,P0027,A00384
+SIN001200,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Santo Domingo,4975.95,P0014,A00290
+SIN001196,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Machala,2006.56,P0053,A00313
+SIN001289,62,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Quito,2675.68,P0054,A00104
+SIN001134,61,AMARILLO,False,4,Modelo ML,Generales,Incendio,Portoviejo,19163.91,P0020,A00114
+SIN001153,61,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Portoviejo,3154.62,P0013,A00462
+SIN001158,61,AMARILLO,False,4,Modelo ML,Hogar,Incendio,Riobamba,7902.66,P0069,A00434
+SIN001206,61,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Manta,3943.29,P0012,A00583
+SIN001297,60,AMARILLO,False,5,Modelo ML,Salud,Atención Médica,Riobamba,3735.31,P0051,A00391
+SIN001290,60,AMARILLO,False,5,Modelo ML,Salud,Atención Médica,Manta,1778.93,P0078,A00179
+SIN001107,60,AMARILLO,False,4,Modelo ML,Vida,Fallecimiento,Quito,5303.28,P0060,A00511
+SIN001294,60,AMARILLO,False,5,Modelo ML,Hogar,Daño,Machala,1639.8,P0030,A00151
+SIN001132,60,AMARILLO,False,4,Modelo ML,Hogar,Incendio,Santo Domingo,2009.63,P0028,A00118
+SIN001105,60,AMARILLO,False,4,Modelo ML,Hogar,Robo,Riobamba,4628.5,P0075,A00159
+SIN001150,60,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Cuenca,1249.07,P0066,A00324
+SIN001143,60,AMARILLO,False,4,Modelo ML,Generales,Daño,Quito,1093.24,P0039,A00512
+SIN001368,59,AMARILLO,False,4,Modelo ML,Vida,Fallecimiento,Riobamba,11069.83,P0043,A00060
+SIN001336,59,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Guayaquil,50628.23,P0010,A00382
+SIN001281,59,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Portoviejo,6431.19,P0014,A00596
+SIN001369,59,AMARILLO,False,4,Modelo ML,Hogar,Incendio,Portoviejo,7829.2,P0024,A00229
+SIN001280,59,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Cuenca,5100.3,P0052,A00544
+SIN001329,59,AMARILLO,False,5,Modelo ML,Vida,Fallecimiento,Quito,48275.87,P0075,A00023
+SIN001291,58,AMARILLO,False,5,Modelo ML,Generales,Daño,Loja,7199.93,P0007,A00292
+SIN001344,58,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Loja,30367.69,P0047,A00441
+SIN001292,58,AMARILLO,False,5,Modelo ML,Vehículos,Pérdida Total,Riobamba,10983.87,P0076,A00398
+SIN001295,58,AMARILLO,False,6,Modelo ML,Vehículos,Robo,Cuenca,9106.68,P0013,A00108
+SIN001337,56,AMARILLO,False,4,Modelo ML,Hogar,Daño,Machala,11427.15,P0073,A00265
+SIN001340,56,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Loja,47612.47,P0043,A00487
+SIN001332,56,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Manta,19988.53,P0078,A00374
+SIN001352,56,AMARILLO,False,4,Modelo ML,Generales,Incendio,Manta,15479.2,P0033,A00504
+SIN001279,56,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Guayaquil,4523.22,P0031,A00002
+SIN001335,56,AMARILLO,False,4,Modelo ML,Generales,Incendio,Manta,20992.47,P0042,A00074
+SIN001345,55,AMARILLO,False,3,Modelo ML,Vehículos,Robo,Riobamba,11454.58,P0075,A00307
+SIN001293,55,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Ambato,1875.38,P0031,A00299
+SIN001183,55,AMARILLO,False,3,Modelo ML,Vehículos,Robo,Loja,8782.42,P0068,A00089
+SIN001361,54,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Santo Domingo,625.72,P0037,A00230
+SIN001365,54,AMARILLO,False,5,Modelo ML,Hogar,Incendio,Ambato,9430.29,P0049,A00484
+SIN001287,54,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Portoviejo,2456.84,P0049,A00288
+SIN001428,54,AMARILLO,False,2,Modelo ML,Vehículos,Choque,Riobamba,3425.03,P0072,A00367
+SIN001420,54,AMARILLO,False,2,Modelo ML,Vehículos,Choque,Portoviejo,13201.23,P0072,A00186
+SIN001413,53,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Cuenca,5163.98,P0062,A00066
+SIN001212,53,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Manta,3594.95,P0062,A00387
+SIN001426,53,AMARILLO,False,2,Modelo ML,Vehículos,Choque,Loja,18404.77,P0056,A00044
+SIN001117,52,AMARILLO,False,2,Modelo ML,Salud,Atención Médica,Machala,3649.87,P0070,A00377
+SIN001409,52,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Loja,6620.73,P0074,A00184
+SIN001405,52,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Cuenca,2290.45,P0006,A00030
+SIN001284,52,AMARILLO,False,5,Modelo ML,Vehículos,Robo,Guayaquil,5886.69,P0053,A00584
+SIN001141,52,AMARILLO,False,2,Modelo ML,Vehículos,Pérdida Total,Cuenca,4349.69,P0053,A00158
+SIN001415,52,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Cuenca,9430.51,P0074,A00066
+SIN001414,52,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Cuenca,8209.36,P0050,A00066
+SIN001160,52,AMARILLO,False,2,Modelo ML,Vehículos,Choque,Manta,4029.39,P0029,A00315
+SIN001358,51,AMARILLO,False,4,Modelo ML,Hogar,Daño,Machala,3914.72,P0010,A00265
+SIN001357,51,AMARILLO,False,4,Modelo ML,Generales,Daño,Ambato,2756.9,P0056,A00485
+SIN000237,51,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Loja,8612.08,P0070,A00184
+SIN000567,51,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Guayaquil,3117.4,P0049,A00232
+SIN001211,51,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Manta,1049.14,P0016,A00387
+SIN000539,51,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Guayaquil,5504.91,P0076,A00232
+SIN001213,50,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Manta,5964.58,P0008,A00387
+SIN000012,50,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Manta,2618.86,P0017,A00387
+SIN001296,49,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Loja,4454.82,P0019,A00345
+SIN001406,49,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Cuenca,1266.91,P0011,A00030
+SIN001408,49,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Loja,2929.78,P0064,A00184
+SIN001402,49,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Quito,7982.89,P0072,A00091
+SIN001177,49,AMARILLO,False,2,Modelo ML,Vehículos,Robo,Portoviejo,803.27,P0072,A00076
+SIN001410,49,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Manta,770.55,P0037,A00365
+SIN001404,48,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Cuenca,3079.93,P0061,A00030
+SIN001342,48,AMARILLO,False,2,Modelo ML,Vehículos,Daño a Terceros (RC),Ambato,20665.68,P0030,A00248
+SIN001403,48,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Quito,7655.3,P0029,A00091
+SIN001407,48,AMARILLO,False,5,Modelo ML,Vehículos,Daño a Terceros (RC),Loja,3730.57,P0047,A00184
+SIN001331,47,AMARILLO,False,2,Modelo ML,Vida,Fallecimiento,Portoviejo,15030.75,P0060,A00412
+SIN001333,47,AMARILLO,False,2,Modelo ML,Salud,Atención Médica,Loja,7732.33,P0048,A00024
+SIN001214,46,AMARILLO,False,4,Modelo ML,Vehículos,Choque,Manta,2375.55,P0080,A00387
+SIN000284,44,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Cuenca,7433.93,P0070,A00066
+SIN000500,43,AMARILLO,False,4,Modelo ML,Vehículos,Pérdida Total,Cuenca,1859.17,P0031,A00030
+SIN000800,43,AMARILLO,False,4,Modelo ML,Salud,Atención Médica,Cuenca,9892.38,P0056,A00066
+SIN001367,43,AMARILLO,False,2,Modelo ML,Vida,Fallecimiento,Loja,1986.63,P0029,A00117
+SIN001372,43,AMARILLO,False,2,Modelo ML,Vida,Fallecimiento,Manta,1917.86,P0005,A00356
+SIN001354,42,AMARILLO,False,2,Modelo ML,Vehículos,Choque,Ambato,1422.53,P0036,A00019
+SIN001286,38,VERDE,False,2,Modelo ML,Vehículos,Daño a Terceros (RC),Machala,4623.51,P0016,A00570
+SIN000871,34,VERDE,False,5,Demora denuncia robo,Vehículos,Robo,Machala,5283.39,P0050,A00086
+SIN000073,34,VERDE,False,5,Demora denuncia robo,Vehículos,Robo,Guayaquil,493.07,P0026,A00481
+SIN000034,34,VERDE,False,5,Demora denuncia robo,Vehículos,Robo,Riobamba,2079.16,P0053,A00461
+SIN000630,32,VERDE,False,5,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,10891.01,P0003,A00560
+SIN000459,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Machala,4365.5,P0007,A00234
+SIN000113,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Cuenca,3068.44,P0023,A00300
+SIN000148,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,7261.02,P0079,A00341
+SIN001178,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Portoviejo,3021.85,P0048,A00565
+SIN000139,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Portoviejo,2246.48,P0015,A00193
+SIN000313,30,VERDE,False,4,Demora denuncia robo,Hogar,Robo,Quito,843.66,P0019,A00380
+SIN000025,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,5405.19,P0067,A00148
+SIN000050,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Loja,3461.29,P0026,A00103
+SIN000886,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Manta,1444.79,P0060,A00224
+SIN000888,30,VERDE,False,4,Demora denuncia robo,Hogar,Robo,Guayaquil,2731.07,P0037,A00481
+SIN000898,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Portoviejo,3102.25,P0023,A00255
+SIN000420,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,6062.49,P0028,A00341
+SIN000158,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Manta,639.75,P0053,A00477
+SIN001205,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,14409.01,P0076,A00380
+SIN000372,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,2886.03,P0013,A00436
+SIN001057,30,VERDE,False,4,Demora denuncia robo,Hogar,Robo,Machala,1479.3,P0079,A00305
+SIN001188,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Cuenca,4104.07,P0032,A00526
+SIN001164,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,459.91,P0027,A00134
+SIN000543,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Loja,2261.58,P0066,A00260
+SIN000549,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Manta,1140.48,P0045,A00332
+SIN000519,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Santo Domingo,4278.99,P0064,A00474
+SIN000530,30,VERDE,False,4,Demora denuncia robo,Hogar,Robo,Portoviejo,2719.13,P0060,A00261
+SIN001068,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Ambato,1682.36,P0038,A00425
+SIN001048,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,724.08,P0080,A00137
+SIN000671,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,6384.67,P0075,A00380
+SIN000070,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Ambato,3332.65,P0057,A00195
+SIN000692,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,19931.19,P0062,A00337
+SIN000666,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,4291.34,P0055,A00268
+SIN000882,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Portoviejo,7183.39,P0048,A00273
+SIN001021,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Ambato,7976.83,P0080,A00406
+SIN001013,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,3072.83,P0067,A00057
+SIN000820,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,18376.4,P0043,A00284
+SIN000981,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Manta,6154.25,P0031,A00329
+SIN000799,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Ambato,4138.2,P0079,A00406
+SIN000999,30,VERDE,False,4,Demora denuncia robo,Hogar,Robo,Machala,5188.67,P0004,A00305
+SIN001032,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Riobamba,3616.73,P0061,A00439
+SIN000744,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Loja,3943.47,P0047,A00397
+SIN000735,30,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Guayaquil,2249.35,P0040,A00379
+SIN001401,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,18300.34,P0060,A00091
+SIN000528,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,6655.96,P0039,A00312
+SIN000242,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,9367.78,P0042,A00312
+SIN000982,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,3738.23,P0032,A00284
+SIN000298,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,6418.07,P0029,A00312
+SIN000826,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,7229.73,P0039,A00284
+SIN000080,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,4299.31,P0050,A00284
+SIN000711,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,10789.44,P0039,A00232
+SIN000253,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,14553.41,P0022,A00560
+SIN000915,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,2990.32,P0069,A00505
+SIN000431,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,6168.14,P0023,A00560
+SIN000159,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,3099.09,P0044,A00232
+SIN001411,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,4678.12,P0079,A00365
+SIN001412,28,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,1654.69,P0046,A00365
+SIN000775,27,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,1211.21,P0012,A00099
+SIN000757,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,1280.3,P0064,A00401
+SIN000919,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,681.35,P0003,A00539
+SIN001044,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,4384.74,P0043,A00237
+SIN000734,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,1805.04,P0023,A00221
+SIN001028,26,VERDE,False,4,Alta frecuencia asegurado,Hogar,Robo,Machala,1689.85,P0039,A00305
+SIN000301,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Loja,652.96,P0067,A00221
+SIN000280,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Manta,2322.03,P0043,A00477
+SIN000791,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,2864.74,P0061,A00034
+SIN000786,26,VERDE,False,4,Alta frecuencia asegurado,Hogar,Incendio,Manta,17897.77,P0007,A00212
+SIN000989,26,VERDE,False,4,Alta frecuencia asegurado,Salud,Atención Médica,Quito,4140.2,P0037,A00427
+SIN000974,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,14249.6,P0026,A00337
+SIN000885,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,2685.11,P0028,A00236
+SIN000947,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,2655.07,P0050,A00401
+SIN000837,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,1883.71,P0034,A00543
+SIN000809,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,4065.34,P0070,A00142
+SIN000862,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Loja,4392.38,P0060,A00103
+SIN000832,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,2080.52,P0074,A00177
+SIN000595,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,3064.39,P0017,A00067
+SIN000615,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Quito,11595.89,P0032,A00284
+SIN000199,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,1537.87,P0034,A00336
+SIN000607,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,5176.29,P0025,A00255
+SIN000212,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Machala,1581.66,P0071,A00531
+SIN000218,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Loja,9859.24,P0060,A00018
+SIN000082,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,995.01,P0039,A00134
+SIN000076,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Quito,6158.83,P0076,A00078
+SIN001093,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,2140.82,P0070,A00533
+SIN001085,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,846.93,P0017,A00359
+SIN001056,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Machala,13862.4,P0064,A00305
+SIN000650,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,3182.03,P0009,A00155
+SIN000357,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,2383.36,P0077,A00245
+SIN000065,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Manta,1173.02,P0054,A00224
+SIN000090,26,VERDE,False,4,Alta frecuencia asegurado,Generales,Incendio,Manta,7572.59,P0078,A00072
+SIN000088,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,6119.67,P0007,A00273
+SIN000395,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,5922.43,P0061,A00061
+SIN000140,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,16302.13,P0046,A00560
+SIN000121,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Ambato,5529.85,P0050,A00051
+SIN000540,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Machala,1824.97,P0052,A00151
+SIN000197,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Machala,4755.31,P0060,A00086
+SIN000093,26,VERDE,False,4,Alta frecuencia asegurado,Salud,Atención Médica,Manta,7810.46,P0062,A00395
+SIN000138,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,5505.37,P0011,A00255
+SIN000485,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,1210.82,P0029,A00420
+SIN001251,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,1072.65,P0010,A00134
+SIN000009,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,1049.85,P0004,A00223
+SIN000433,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,8196.13,P0047,A00452
+SIN001238,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,2571.54,P0052,A00192
+SIN000872,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Loja,1045.95,P0035,A00554
+SIN000247,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,522.97,P0073,A00427
+SIN000903,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,7357.99,P0003,A00406
+SIN000901,26,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Robo,Quito,9301.59,P0045,A00256
+SIN000860,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,2824.8,P0028,A00330
+SIN000246,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,16588.58,P0074,A00231
+SIN000234,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,3673.99,P0010,A00423
+SIN000257,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,5013.77,P0037,A00543
+SIN000784,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,12762.18,P0004,A00093
+SIN000765,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,4789.72,P0058,A00195
+SIN000317,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,2057.04,P0013,A00150
+SIN001051,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,1588.07,P0018,A00452
+SIN000722,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,1161.15,P0035,A00519
+SIN000707,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,3054.4,P0059,A00150
+SIN000687,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,2188.78,P0065,A00491
+SIN000686,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,4274.94,P0048,A00344
+SIN000048,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,1279.09,P0028,A00050
+SIN001100,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,14779.13,P0025,A00423
+SIN000213,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,1156.44,P0027,A00257
+SIN000597,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,1638.86,P0012,A00531
+SIN000586,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,9918.62,P0030,A00417
+SIN000190,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,5589.6,P0017,A00417
+SIN000187,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,5165.75,P0033,A00491
+SIN000566,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,447.68,P0010,A00330
+SIN000505,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,1113.68,P0003,A00236
+SIN000132,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,700.91,P0050,A00195
+SIN000391,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,2231.74,P0041,A00093
+SIN000418,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,3684.78,P0048,A00344
+SIN000474,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,3058.23,P0058,A00452
+SIN000179,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,708.56,P0045,A00257
+SIN000907,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,2669.66,P0071,A00519
+SIN000906,25,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,10842.79,P0038,A00231
+SIN001235,24,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Portoviejo,3134.1,P0045,A00105
+SIN000681,24,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Guayaquil,2167.73,P0077,A00264
+SIN000580,24,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Cuenca,5805.4,P0044,A00183
+SIN000417,24,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Santo Domingo,2331.19,P0008,A00233
+SIN001084,24,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Cuenca,2230.68,P0036,A00449
+SIN001230,24,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Portoviejo,4049.57,P0009,A00229
+SIN001233,24,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Portoviejo,7014.0,P0054,A00229
+SIN000935,23,VERDE,False,5,Demora denuncia robo,Vehículos,Robo,Santo Domingo,3141.72,P0012,A00188
+SIN000388,23,VERDE,False,5,Demora denuncia robo,Vehículos,Robo,Manta,7413.36,P0016,A00456
+SIN000325,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,4109.65,P0019,A00051
+SIN000326,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,1255.54,P0013,A00104
+SIN000297,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,15478.75,P0004,A00346
+SIN000751,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,2873.64,P0041,A00491
+SIN000753,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,2587.48,P0004,A00055
+SIN000755,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Riobamba,2147.49,P0010,A00417
+SIN001059,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,11543.37,P0059,A00214
+SIN001031,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,1225.67,P0024,A00426
+SIN001033,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,2986.34,P0027,A00104
+SIN001053,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,835.67,P0080,A00287
+SIN001036,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Quito,7328.59,P0034,A00001
+SIN001040,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,3153.48,P0018,A00008
+SIN001071,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,19468.19,P0009,A00242
+SIN001072,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Daño,Cuenca,2138.62,P0047,A00526
+SIN001074,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,6559.04,P0026,A00357
+SIN001076,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,767.41,P0066,A00290
+SIN001078,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Machala,9294.85,P0005,A00359
+SIN000738,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,3357.92,P0053,A00551
+SIN001049,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,1689.1,P0025,A00381
+SIN000739,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,12002.93,P0013,A00501
+SIN000740,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,1980.58,P0006,A00050
+SIN000741,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,4141.62,P0047,A00452
+SIN001034,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,2654.2,P0005,A00223
+SIN000777,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,2264.89,P0062,A00475
+SIN000781,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,5109.09,P0056,A00596
+SIN000783,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,4041.62,P0036,A00042
+SIN001000,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,3897.41,P0064,A00331
+SIN001001,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Portoviejo,937.85,P0071,A00193
+SIN001004,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,1139.77,P0025,A00533
+SIN001005,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Loja,790.79,P0065,A00536
+SIN001007,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,9419.25,P0042,A00357
+SIN001010,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,3010.62,P0040,A00437
+SIN001042,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,1294.3,P0022,A00152
+SIN000728,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,6071.31,P0017,A00214
+SIN000729,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,17568.33,P0072,A00423
+SIN000731,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,3647.3,P0024,A00069
+SIN001015,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,1165.53,P0038,A00314
+SIN000321,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,1664.51,P0065,A00047
+SIN001022,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,9268.83,P0036,A00212
+SIN001023,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,8959.15,P0074,A00379
+SIN001024,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,1229.89,P0041,A00033
+SIN000768,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,15295.32,P0011,A00061
+SIN000769,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,3991.77,P0010,A00243
+SIN000774,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,2724.42,P0048,A00362
+SIN000747,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,4259.3,P0021,A00503
+SIN000748,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,1459.98,P0067,A00362
+SIN000749,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,2451.89,P0029,A00398
+SIN000750,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,17491.06,P0064,A00252
+SIN000312,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,616.51,P0030,A00427
+SIN000316,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,2359.59,P0048,A00196
+SIN000319,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Machala,3769.84,P0034,A00305
+SIN000323,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,3679.16,P0031,A00544
+SIN001019,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,7004.29,P0045,A00001
+SIN000697,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Riobamba,7800.06,P0077,A00464
+SIN000698,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,17138.92,P0065,A00095
+SIN000700,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,2013.64,P0055,A00103
+SIN000705,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,16476.15,P0076,A00231
+SIN000708,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,7779.42,P0008,A00123
+SIN000657,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Portoviejo,1524.13,P0019,A00297
+SIN000658,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,2342.26,P0045,A00401
+SIN000660,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Manta,1595.99,P0009,A00547
+SIN000661,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,1695.38,P0032,A00554
+SIN000346,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,5868.15,P0051,A00152
+SIN000349,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,2923.87,P0076,A00306
+SIN000352,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,2575.34,P0053,A00238
+SIN000355,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,2457.87,P0076,A00359
+SIN000779,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,7442.98,P0048,A00517
+SIN000328,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Machala,5898.47,P0055,A00293
+SIN000331,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Daño,Machala,2859.38,P0029,A00358
+SIN000335,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,7606.74,P0051,A00329
+SIN000336,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,5983.79,P0034,A00454
+SIN000341,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,1279.46,P0037,A00073
+SIN001094,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,1111.69,P0027,A00177
+SIN000680,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,3710.25,P0048,A00391
+SIN000632,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,4184.68,P0055,A00414
+SIN000633,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Portoviejo,18998.68,P0045,A00273
+SIN000635,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,4088.65,P0043,A00565
+SIN000641,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,16410.94,P0012,A00446
+SIN000040,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,2517.34,P0022,A00599
+SIN000045,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,2212.59,P0026,A00069
+SIN000358,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,2183.49,P0066,A00599
+SIN001060,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,4352.45,P0014,A00439
+SIN000713,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,1054.55,P0066,A00519
+SIN000714,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,3739.19,P0053,A00507
+SIN000311,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,1940.93,P0022,A00491
+SIN000710,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,14201.45,P0016,A00585
+SIN001083,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,1453.49,P0006,A00454
+SIN001086,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,9749.39,P0012,A00072
+SIN001087,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,10438.03,P0041,A00128
+SIN001090,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,2829.44,P0064,A00552
+SIN001091,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,5598.44,P0076,A00185
+SIN000716,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,1565.09,P0078,A00033
+SIN000720,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,1316.7,P0023,A00384
+SIN000724,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,4093.53,P0023,A00337
+SIN000695,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,7479.89,P0016,A00475
+SIN001063,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,2232.67,P0065,A00353
+SIN001065,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Machala,1155.26,P0021,A00243
+SIN001066,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,11234.03,P0065,A00585
+SIN001069,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,7081.99,P0053,A00591
+SIN001070,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,1824.58,P0025,A00404
+SIN000683,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,1572.53,P0072,A00532
+SIN000685,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,2732.64,P0059,A00257
+SIN000689,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,3130.24,P0064,A00348
+SIN000693,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,2147.89,P0064,A00437
+SIN000694,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,7277.86,P0016,A00565
+SIN000663,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,1806.78,P0053,A00454
+SIN000665,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Daño,Machala,3338.31,P0039,A00305
+SIN000667,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,8628.76,P0020,A00344
+SIN000668,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Cuenca,2624.85,P0026,A00300
+SIN000725,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,1078.62,P0053,A00104
+SIN000032,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Machala,3113.82,P0072,A00531
+SIN000439,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,12025.28,P0034,A00339
+SIN000441,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,13203.09,P0050,A00337
+SIN000447,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,2694.28,P0017,A00128
+SIN000448,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,12231.02,P0070,A00380
+SIN000451,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,2405.4,P0066,A00549
+SIN000452,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,1823.7,P0006,A00152
+SIN000847,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Manta,6672.73,P0018,A00252
+SIN000848,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1669.67,P0029,A00450
+SIN000850,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,2535.39,P0016,A00379
+SIN000853,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,19138.21,P0053,A00501
+SIN000854,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,11801.37,P0008,A00261
+SIN000954,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,3986.4,P0070,A00164
+SIN000281,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Manta,4372.59,P0030,A00042
+SIN000957,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,2287.0,P0067,A00490
+SIN000958,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,3884.83,P0042,A00391
+SIN000960,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Machala,485.83,P0075,A00243
+SIN000840,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,19619.8,P0037,A00175
+SIN000842,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,2376.13,P0066,A00353
+SIN000843,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,9276.1,P0067,A00551
+SIN000844,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,8234.61,P0064,A00305
+SIN000845,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,1019.67,P0047,A00275
+SIN000846,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,11128.37,P0018,A00252
+SIN000015,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Loja,16690.05,P0020,A00008
+SIN000019,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,1508.77,P0003,A00221
+SIN000020,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,1610.96,P0033,A00128
+SIN000022,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,863.88,P0015,A00033
+SIN000955,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,3012.84,P0041,A00250
+SIN000921,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,8972.35,P0062,A00078
+SIN000922,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,11676.67,P0014,A00431
+SIN000924,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,4936.96,P0054,A00461
+SIN000928,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Portoviejo,6553.6,P0022,A00261
+SIN000006,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,5006.47,P0051,A00056
+SIN000887,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,4195.99,P0063,A00482
+SIN000889,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,2781.0,P0076,A00148
+SIN000890,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,10022.77,P0052,A00123
+SIN000896,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,1081.4,P0078,A00358
+SIN000049,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,1630.15,P0073,A00042
+SIN000052,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,2979.7,P0034,A00450
+SIN000054,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Machala,2769.63,P0038,A00358
+SIN000023,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,3958.72,P0064,A00410
+SIN000878,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Manta,14942.07,P0027,A00212
+SIN000908,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,1196.27,P0044,A00155
+SIN000912,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Riobamba,1259.73,P0006,A00480
+SIN000863,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,4782.28,P0041,A00531
+SIN000864,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,4311.59,P0027,A00589
+SIN000865,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Manta,1550.61,P0056,A00073
+SIN000866,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,3775.77,P0023,A00480
+SIN000867,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,2940.58,P0048,A00056
+SIN000939,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,11108.96,P0073,A00232
+SIN000941,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,690.25,P0051,A00179
+SIN000945,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,2365.08,P0004,A00517
+SIN000946,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,865.07,P0024,A00195
+SIN000948,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,5697.72,P0079,A00121
+SIN000949,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,7785.14,P0077,A00027
+SIN000876,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,10703.57,P0063,A00268
+SIN000028,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,2979.07,P0060,A00547
+SIN000259,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,4705.75,P0079,A00357
+SIN000261,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,7650.59,P0053,A00284
+SIN000262,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,2389.67,P0047,A00423
+SIN000231,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,1205.51,P0016,A00056
+SIN000233,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,3545.81,P0032,A00011
+SIN001011,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,427.24,P0025,A00425
+SIN001014,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Manta,2737.58,P0039,A00547
+SIN000796,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,2279.79,P0055,A00260
+SIN000798,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,2022.05,P0003,A00330
+SIN000802,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,2696.79,P0007,A00193
+SIN000806,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,2311.36,P0023,A00359
+SIN000984,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,1973.38,P0021,A00009
+SIN000985,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,5711.38,P0020,A00245
+SIN000002,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,1015.54,P0004,A00034
+SIN000991,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,2827.45,P0063,A00287
+SIN000995,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,7257.48,P0038,A00591
+SIN000996,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,17934.46,P0077,A00231
+SIN000997,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,7076.87,P0044,A00589
+SIN000998,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,5859.4,P0054,A00554
+SIN000819,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,12642.51,P0072,A00414
+SIN000968,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,2709.2,P0070,A00237
+SIN000304,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,19149.86,P0076,A00380
+SIN000305,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,4751.95,P0017,A00121
+SIN000310,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,7437.71,P0066,A00066
+SIN000279,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Ambato,2654.29,P0013,A00425
+SIN000670,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,5771.17,P0075,A00426
+SIN000282,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,1959.3,P0010,A00180
+SIN000990,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,9238.27,P0030,A00175
+SIN000001,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Manta,1364.08,P0072,A00547
+SIN001237,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,2723.5,P0072,A00192
+SIN000238,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Quito,2182.52,P0047,A00256
+SIN000239,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Guayaquil,929.42,P0019,A00134
+SIN000243,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Riobamba,7801.89,P0051,A00417
+SIN000244,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Machala,1238.17,P0013,A00275
+SIN000962,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,4647.3,P0013,A00436
+SIN000964,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Manta,5639.58,P0040,A00067
+SIN000823,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,11399.24,P0010,A00589
+SIN000825,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,4342.24,P0040,A00503
+SIN000836,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,6372.41,P0063,A00149
+SIN000807,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1942.61,P0018,A00236
+SIN000808,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Ambato,6342.68,P0032,A00051
+SIN000255,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,6816.66,P0063,A00185
+SIN000813,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,5605.86,P0065,A00179
+SIN000814,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,15962.87,P0060,A00423
+SIN000816,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,4921.86,P0059,A00142
+SIN000818,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Quito,15901.9,P0009,A00217
+SIN000970,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,17868.45,P0022,A00395
+SIN000971,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,1588.93,P0061,A00353
+SIN000972,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,2942.97,P0015,A00477
+SIN000976,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Machala,1486.74,P0019,A00358
+SIN000979,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Machala,2279.2,P0076,A00151
+SIN000980,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,17445.98,P0036,A00242
+SIN000792,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,4419.16,P0012,A00549
+SIN000793,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,17185.04,P0020,A00591
+SIN000795,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,2416.74,P0059,A00475
+SIN000254,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,3989.66,P0041,A00142
+SIN000811,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,13957.17,P0080,A00591
+SIN001397,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,4429.24,P0041,A00155
+SIN000110,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,2547.02,P0038,A00143
+SIN000111,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Machala,10258.01,P0075,A00585
+SIN000114,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Loja,2264.1,P0019,A00260
+SIN000116,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,4135.08,P0051,A00069
+SIN000402,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,1390.72,P0077,A00461
+SIN000403,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,3070.3,P0012,A00439
+SIN000419,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,16511.91,P0012,A00080
+SIN000421,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,2979.89,P0073,A00203
+SIN000394,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,3060.43,P0028,A00346
+SIN000396,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,3927.28,P0045,A00332
+SIN000397,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,5890.01,P0042,A00322
+SIN000401,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,819.07,P0075,A00381
+SIN000673,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Loja,1597.74,P0023,A00121
+SIN000144,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,3553.35,P0058,A00461
+SIN000145,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,4531.91,P0039,A00011
+SIN000149,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Ambato,656.53,P0066,A00558
+SIN000150,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,1275.78,P0007,A00454
+SIN000119,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Ambato,3657.32,P0044,A00047
+SIN000123,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,2994.52,P0046,A00137
+SIN000125,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,3072.46,P0023,A00179
+SIN000128,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,4203.47,P0020,A00196
+SIN000157,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,6100.97,P0053,A00452
+SIN000487,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,1894.37,P0004,A00234
+SIN000488,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,1966.64,P0048,A00203
+SIN000492,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Machala,3116.55,P0069,A00086
+SIN000494,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,10053.4,P0037,A00009
+SIN000143,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,2978.53,P0040,A00051
+SIN000561,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,3562.87,P0065,A00358
+SIN000562,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,2516.85,P0046,A00438
+SIN000536,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,2037.51,P0031,A00332
+SIN000577,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,10008.92,P0045,A00417
+SIN000404,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,2876.49,P0068,A00030
+SIN000405,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Machala,3587.44,P0027,A00364
+SIN000406,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,2729.97,P0075,A00095
+SIN000170,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Santo Domingo,4909.88,P0074,A00381
+SIN000174,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,11199.97,P0056,A00214
+SIN000175,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,5807.44,P0024,A00453
+SIN000176,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,2380.28,P0058,A00009
+SIN000214,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,9648.48,P0049,A00414
+SIN000185,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,1072.26,P0057,A00203
+SIN001395,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,2988.47,P0037,A00388
+SIN000544,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,4136.23,P0033,A00507
+SIN000545,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,4315.94,P0070,A00438
+SIN000547,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,4210.19,P0010,A00557
+SIN000550,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,1353.67,P0041,A00552
+SIN000520,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,4179.0,P0008,A00336
+SIN000523,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,5931.81,P0059,A00348
+SIN000134,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,1085.34,P0054,A00193
+SIN000510,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,432.35,P0045,A00192
+SIN000514,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,7132.9,P0079,A00404
+SIN000533,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,1701.91,P0006,A00238
+SIN000503,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,632.7,P0004,A00293
+SIN000504,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Manta,15842.11,P0038,A00149
+SIN000506,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Quito,4427.93,P0073,A00217
+SIN000508,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,11652.31,P0048,A00388
+SIN000186,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Quito,1270.67,P0003,A00256
+SIN000283,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,3175.88,P0064,A00330
+SIN000291,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,1367.12,P0067,A00477
+SIN000293,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,14335.64,P0032,A00212
+SIN000294,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,18195.84,P0008,A00080
+SIN000263,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,1219.04,P0023,A00231
+SIN000264,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Daño,Quito,2724.38,P0013,A00380
+SIN000265,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,2530.03,P0015,A00067
+SIN000269,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,7231.36,P0065,A00175
+SIN000270,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,1760.76,P0079,A00236
+SIN000274,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,10990.59,P0022,A00214
+SIN000278,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,6668.45,P0036,A00454
+SIN000007,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,11939.05,P0023,A00446
+SIN000914,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Portoviejo,9025.12,P0078,A00191
+SIN000496,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,6785.32,P0053,A00346
+SIN000930,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,6201.87,P0056,A00571
+SIN000879,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,3479.61,P0052,A00252
+SIN000884,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,404.38,P0036,A00069
+SIN000162,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Machala,844.59,P0016,A00531
+SIN000861,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,3961.77,P0023,A00454
+SIN000929,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,8867.55,P0074,A00339
+SIN000014,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1193.5,P0039,A00236
+SIN000013,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Quito,1800.49,P0074,A00427
+SIN000010,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,1062.21,P0053,A00034
+SIN000008,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,4106.55,P0011,A00596
+SIN000252,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Quito,2871.57,P0055,A00380
+SIN000250,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,1063.85,P0038,A00061
+SIN000874,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,3036.39,P0030,A00581
+SIN000873,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Santo Domingo,1145.77,P0040,A00339
+SIN000030,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,2098.64,P0073,A00259
+SIN000498,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,5353.28,P0051,A00142
+SIN000501,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,3917.24,P0004,A00398
+SIN000472,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,8856.72,P0041,A00395
+SIN000477,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,1636.6,P0057,A00558
+SIN000478,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,1890.79,P0019,A00237
+SIN001252,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,1933.24,P0016,A00134
+SIN001253,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Guayaquil,462.61,P0032,A00134
+SIN000409,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Quito,3804.31,P0069,A00001
+SIN000410,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Manta,3808.82,P0027,A00431
+SIN000413,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,1019.02,P0063,A00047
+SIN000163,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,853.74,P0027,A00450
+SIN000164,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,2223.38,P0057,A00558
+SIN000166,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Riobamba,1391.02,P0068,A00259
+SIN000856,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,8761.86,P0055,A00191
+SIN000462,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,7141.0,P0037,A00554
+SIN000464,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,17160.31,P0060,A00364
+SIN000468,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,3617.41,P0008,A00287
+SIN000469,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Portoviejo,651.61,P0039,A00533
+SIN000486,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Guayaquil,3971.45,P0080,A00027
+SIN000455,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,17929.49,P0072,A00364
+SIN000136,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Guayaquil,2875.19,P0080,A00027
+SIN000137,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Quito,2714.48,P0052,A00078
+SIN000180,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,5651.31,P0077,A00547
+SIN000151,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,4060.39,P0066,A00526
+SIN000152,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,3513.2,P0079,A00042
+SIN000155,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,2813.65,P0058,A00464
+SIN000905,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,5491.58,P0049,A00306
+SIN000932,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Loja,5159.61,P0044,A00557
+SIN000460,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Quito,2896.57,P0012,A00078
+SIN000600,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,3068.07,P0011,A00410
+SIN000601,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,6957.96,P0009,A00234
+SIN000603,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,8654.85,P0009,A00591
+SIN000215,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,1606.22,P0074,A00231
+SIN000216,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,4945.44,P0036,A00406
+SIN000220,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,3293.48,P0042,A00536
+SIN000223,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Quito,5080.02,P0065,A00001
+SIN000224,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,8103.11,P0036,A00175
+SIN000225,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,7179.57,P0018,A00061
+SIN000228,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Quito,1382.05,P0041,A00057
+SIN000200,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,2525.43,P0074,A00404
+SIN000202,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,14269.72,P0079,A00212
+SIN000359,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,3021.33,P0018,A00180
+SIN000556,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,4582.29,P0037,A00507
+SIN000367,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,4207.59,P0046,A00536
+SIN000368,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,2532.51,P0036,A00128
+SIN000369,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,3243.32,P0066,A00177
+SIN000370,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,14981.69,P0037,A00242
+SIN000371,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,890.59,P0043,A00203
+SIN000374,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,3434.2,P0031,A00426
+SIN000071,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,18920.58,P0035,A00395
+SIN000072,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,760.85,P0061,A00427
+SIN000075,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,488.22,P0043,A00093
+SIN000646,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,920.55,P0047,A00134
+SIN000616,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,5541.67,P0010,A00453
+SIN000617,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,3804.78,P0013,A00266
+SIN000618,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,4333.03,P0027,A00175
+SIN000365,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,3842.82,P0070,A00410
+SIN000917,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,4309.94,P0033,A00212
+SIN000678,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,4204.92,P0039,A00180
+SIN000648,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,7663.29,P0016,A00337
+SIN000649,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,1882.58,P0040,A00177
+SIN000651,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,4238.21,P0032,A00406
+SIN000652,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Manta,11454.01,P0039,A00072
+SIN000653,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Quito,1088.05,P0033,A00057
+SIN000654,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Riobamba,2850.95,P0022,A00259
+SIN000656,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,16061.71,P0018,A00380
+SIN000203,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Manta,1211.1,P0044,A00329
+SIN000210,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,1272.52,P0042,A00420
+SIN000211,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Quito,5671.68,P0076,A00217
+SIN000079,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,4788.57,P0054,A00275
+SIN000628,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Manta,7791.72,P0024,A00547
+SIN000055,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,9510.44,P0059,A00153
+SIN000056,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,2132.87,P0063,A00243
+SIN000057,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,5310.17,P0048,A00148
+SIN000060,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Daño,Machala,9932.16,P0059,A00185
+SIN000061,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,4452.48,P0035,A00453
+SIN000068,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,4367.78,P0026,A00535
+SIN000642,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,13113.25,P0013,A00446
+SIN000644,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,2653.6,P0068,A00425
+SIN001095,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Machala,19080.35,P0054,A00364
+SIN001097,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,4690.57,P0042,A00018
+SIN001098,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Riobamba,688.66,P0067,A00422
+SIN000620,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Quito,419.15,P0013,A00078
+SIN000625,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Portoviejo,13333.89,P0028,A00261
+SIN000627,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,3424.49,P0011,A00234
+SIN000083,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,5860.45,P0048,A00322
+SIN000198,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,7509.01,P0020,A00406
+SIN000376,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,8209.32,P0023,A00414
+SIN000578,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,3404.22,P0069,A00526
+SIN000582,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,858.1,P0022,A00549
+SIN000117,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,15221.74,P0030,A00153
+SIN000118,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,3045.95,P0048,A00008
+SIN000087,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,2496.29,P0006,A00314
+SIN000089,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Manta,2711.47,P0072,A00547
+SIN000092,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Santo Domingo,4399.64,P0078,A00474
+SIN000454,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,2587.78,P0077,A00336
+SIN000423,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,3966.76,P0057,A00234
+SIN000427,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,2055.0,P0059,A00431
+SIN000429,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,2182.18,P0048,A00422
+SIN000619,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,3631.22,P0075,A00438
+SIN000438,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,4383.16,P0065,A00214
+SIN001239,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,929.35,P0056,A00192
+SIN001240,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,2938.71,P0071,A00192
+SIN000524,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,9026.22,P0052,A00214
+SIN000525,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,2766.44,P0052,A00149
+SIN000526,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,2589.57,P0034,A00557
+SIN000527,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,5022.05,P0055,A00206
+SIN000096,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,1465.01,P0073,A00404
+SIN000097,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,2786.5,P0048,A00332
+SIN000098,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,10808.38,P0026,A00250
+SIN000101,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Santo Domingo,1499.83,P0021,A00238
+SIN000102,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Quito,15210.07,P0073,A00001
+SIN000552,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,2134.86,P0013,A00322
+SIN000555,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Ambato,3265.85,P0068,A00599
+SIN000430,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,1492.32,P0080,A00397
+SIN000378,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,4334.71,P0038,A00155
+SIN000379,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Machala,6853.04,P0063,A00086
+SIN000380,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,772.49,P0072,A00296
+SIN000383,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Machala,3102.42,P0008,A00275
+SIN000592,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Cuenca,2809.92,P0070,A00300
+SIN000593,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,6993.36,P0011,A00099
+SIN000594,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,4814.95,P0050,A00284
+SIN000598,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,4511.86,P0050,A00503
+SIN000571,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,3228.14,P0077,A00379
+SIN000572,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Guayaquil,2147.93,P0073,A00237
+SIN000573,22,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Guayaquil,1080.38,P0078,A00481
+SIN000575,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,1746.06,P0022,A00128
+SIN000576,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,2776.79,P0073,A00164
+SIN000196,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,2075.27,P0038,A00330
+SIN000390,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,6712.64,P0039,A00437
+SIN001241,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,10392.88,P0029,A00346
+SIN001242,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,5149.05,P0066,A00346
+SIN001243,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,6096.85,P0062,A00346
+SIN001247,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,1029.88,P0049,A00099
+SIN001248,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,2679.03,P0050,A00099
+SIN001249,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,6779.3,P0028,A00099
+SIN001250,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,3332.03,P0053,A00099
+SIN000161,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,2566.83,P0003,A00290
+SIN000095,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,4857.9,P0039,A00206
+SIN000188,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,519.68,P0048,A00290
+SIN000189,22,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Manta,1006.74,P0003,A00547
+SIN000191,22,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,776.52,P0054,A00397
+SIN000193,22,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,1565.07,P0015,A00203
+SIN000387,22,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,2858.94,P0024,A00362
+SIN000858,20,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Riobamba,5659.16,P0066,A00021
+SIN000167,20,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Loja,4023.54,P0006,A00294
+SIN000240,20,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Guayaquil,4086.86,P0014,A00106
+SIN000776,20,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Loja,2540.6,P0018,A00399
+SIN000794,20,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Guayaquil,3709.49,P0043,A00534
+SIN000493,20,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Machala,2164.28,P0038,A00350
+SIN000532,20,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Cuenca,4801.56,P0032,A00449
+SIN000701,20,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Loja,825.35,P0066,A00063
+SIN000516,20,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,15539.68,P0069,A00574
+SIN001234,20,VERDE,False,3,Alta frecuencia asegurado,Hogar,Robo,Portoviejo,1172.17,P0036,A00105
+SIN000758,20,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,10081.73,P0032,A00071
+SIN001003,19,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Cuenca,3001.5,P0067,A00424
+SIN001190,19,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,5752.4,P0051,A00572
+SIN000288,19,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Ambato,4999.71,P0006,A00097
+SIN000337,19,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Cuenca,14811.35,P0064,A00227
+SIN000074,19,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Manta,1544.8,P0007,A00542
+SIN000926,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Ambato,17237.95,P0016,A00478
+SIN000036,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,3363.05,P0056,A00005
+SIN000069,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Guayaquil,816.69,P0014,A00467
+SIN001400,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,4592.57,P0055,A00334
+SIN000916,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,3223.0,P0073,A00046
+SIN000104,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Machala,2331.73,P0045,A00071
+SIN000100,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Quito,11976.17,P0010,A00003
+SIN000943,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1232.16,P0044,A00046
+SIN000942,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Santo Domingo,4223.86,P0066,A00443
+SIN000938,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Guayaquil,2217.58,P0059,A00467
+SIN000105,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1737.01,P0031,A00122
+SIN000937,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Santo Domingo,4319.11,P0027,A00396
+SIN001396,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Cuenca,3429.68,P0027,A00489
+SIN001393,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,9817.89,P0078,A00478
+SIN000133,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,10938.68,P0040,A00569
+SIN000130,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,2684.65,P0020,A00587
+SIN000127,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,4239.19,P0012,A00299
+SIN000124,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,3613.24,P0021,A00292
+SIN001398,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Guayaquil,2911.03,P0049,A00534
+SIN000142,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,7438.98,P0017,A00546
+SIN000153,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,5374.95,P0009,A00046
+SIN000177,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,4302.67,P0015,A00460
+SIN000182,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,1514.89,P0061,A00385
+SIN000173,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Guayaquil,4571.83,P0013,A00132
+SIN000171,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Santo Domingo,5521.49,P0079,A00233
+SIN000827,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Ambato,9296.63,P0004,A00389
+SIN000963,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1202.55,P0035,A00218
+SIN000959,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,2594.79,P0007,A00062
+SIN000923,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,1742.59,P0076,A00435
+SIN000059,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Santo Domingo,11440.71,P0029,A00396
+SIN000064,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Loja,2919.0,P0029,A00399
+SIN000081,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,3741.34,P0022,A00141
+SIN000078,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Guayaquil,9161.67,P0077,A00132
+SIN000933,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,3498.52,P0027,A00548
+SIN000931,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,6098.8,P0050,A00405
+SIN000206,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,13630.9,P0027,A00478
+SIN000208,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Loja,2488.52,P0072,A00294
+SIN000209,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,3457.26,P0014,A00005
+SIN000183,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,1395.36,P0038,A00587
+SIN000194,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,1785.74,P0035,A00141
+SIN000951,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,2481.08,P0019,A00039
+SIN000817,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Ambato,17673.21,P0053,A00478
+SIN000205,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Guayaquil,636.44,P0063,A00264
+SIN000838,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Quito,2993.61,P0054,A00197
+SIN000833,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,10027.45,P0045,A00400
+SIN000830,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,5250.94,P0024,A00002
+SIN000831,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,528.32,P0024,A00039
+SIN000222,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Santo Domingo,2446.15,P0047,A00593
+SIN000815,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,2732.06,P0070,A00460
+SIN000822,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Machala,2362.8,P0054,A00350
+SIN000975,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,2588.52,P0012,A00102
+SIN000260,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Loja,4874.84,P0012,A00546
+SIN000235,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Quito,6279.68,P0041,A00309
+SIN000219,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Guayaquil,4226.48,P0036,A00467
+SIN000258,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,1382.69,P0067,A00555
+SIN000994,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Santo Domingo,1178.58,P0078,A00281
+SIN000987,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,11958.56,P0007,A00569
+SIN000256,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,4654.55,P0014,A00334
+SIN000251,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Santo Domingo,4593.1,P0075,A00548
+SIN000803,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Machala,1410.73,P0072,A00136
+SIN000805,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,18184.77,P0012,A00574
+SIN000277,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,8474.03,P0061,A00354
+SIN000977,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,3699.75,P0059,A00328
+SIN000276,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Quito,5225.21,P0042,A00053
+SIN000292,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,984.73,P0060,A00555
+SIN000812,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Quito,3007.94,P0056,A00053
+SIN000821,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Santo Domingo,4267.82,P0030,A00405
+SIN000287,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Riobamba,6377.74,P0004,A00270
+SIN000289,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Guayaquil,617.9,P0049,A00132
+SIN000300,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,9133.99,P0054,A00146
+SIN000306,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Portoviejo,2050.44,P0005,A00333
+SIN000320,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Loja,15250.4,P0033,A00292
+SIN000318,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Riobamba,4439.4,P0045,A00270
+SIN000314,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,1754.16,P0042,A00328
+SIN000303,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,3607.87,P0006,A00328
+SIN001016,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Riobamba,3590.22,P0011,A00021
+SIN001009,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,7403.9,P0078,A00405
+SIN001008,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,7353.39,P0018,A00002
+SIN001006,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Santo Domingo,939.39,P0052,A00233
+SIN000789,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,4162.73,P0023,A00328
+SIN000788,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Machala,994.33,P0023,A00136
+SIN000785,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Quito,1761.4,P0055,A00003
+SIN000295,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,10085.1,P0041,A00036
+SIN000782,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,10379.48,P0042,A00435
+SIN000780,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Santo Domingo,5896.86,P0075,A00593
+SIN000763,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Guayaquil,1847.38,P0053,A00467
+SIN000766,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,2321.99,P0021,A00405
+SIN000761,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Portoviejo,6441.61,P0061,A00229
+SIN001018,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Machala,10018.49,P0008,A00144
+SIN000339,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,8490.98,P0078,A00400
+SIN000334,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,5749.57,P0069,A00527
+SIN000330,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Guayaquil,5542.75,P0067,A00467
+SIN000953,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Quito,16463.68,P0032,A00003
+SIN000920,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,6641.47,P0070,A00046
+SIN000877,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,10845.63,P0026,A00183
+SIN000875,16,VERDE,False,3,Demora denuncia robo,Hogar,Robo,Riobamba,4374.49,P0020,A00434
+SIN000918,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,2972.77,P0023,A00594
+SIN000037,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,2221.47,P0068,A00122
+SIN000004,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,2450.7,P0051,A00220
+SIN000373,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,9167.97,P0023,A00071
+SIN000351,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,5956.13,P0053,A00002
+SIN000353,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Quito,2451.41,P0069,A00197
+SIN000354,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,2979.79,P0061,A00555
+SIN000356,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Portoviejo,2626.53,P0069,A00288
+SIN000327,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Loja,2067.05,P0031,A00063
+SIN000329,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Guayaquil,4546.1,P0043,A00534
+SIN000360,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,2743.64,P0018,A00569
+SIN000746,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,1489.48,P0024,A00469
+SIN000745,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1395.65,P0016,A00002
+SIN000773,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,2048.48,P0007,A00385
+SIN000363,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Guayaquil,11663.4,P0068,A00132
+SIN000389,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,5383.2,P0021,A00460
+SIN001043,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,6510.41,P0041,A00102
+SIN001037,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,2386.9,P0050,A00334
+SIN000362,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,4957.3,P0025,A00220
+SIN000422,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,6558.68,P0073,A00122
+SIN000416,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,990.25,P0027,A00299
+SIN000415,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,10229.87,P0024,A00220
+SIN000414,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Guayaquil,922.05,P0004,A00467
+SIN000408,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Machala,3069.79,P0022,A00350
+SIN001054,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,1748.41,P0056,A00435
+SIN001050,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Loja,1434.56,P0072,A00399
+SIN000737,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,1510.97,P0079,A00587
+SIN000730,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,4413.94,P0072,A00594
+SIN001046,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,3164.45,P0022,A00527
+SIN001246,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Guayaquil,2231.53,P0021,A00534
+SIN000771,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Portoviejo,1739.8,P0051,A00229
+SIN000381,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,1833.11,P0003,A00002
+SIN000377,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,3003.69,P0025,A00527
+SIN000398,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,905.73,P0054,A00460
+SIN001035,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,4887.44,P0040,A00036
+SIN000449,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Portoviejo,1947.92,P0074,A00105
+SIN000446,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,9899.12,P0032,A00060
+SIN000442,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Quito,7594.42,P0043,A00053
+SIN001236,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Portoviejo,3393.72,P0034,A00105
+SIN001232,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Portoviejo,5470.54,P0060,A00229
+SIN001231,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Portoviejo,8089.32,P0013,A00229
+SIN001229,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,1812.62,P0008,A00211
+SIN001228,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,1010.05,P0046,A00211
+SIN001227,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,3488.45,P0005,A00211
+SIN001226,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,1157.26,P0035,A00489
+SIN001225,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Cuenca,4249.41,P0068,A00489
+SIN001224,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Cuenca,3451.01,P0074,A00489
+SIN001075,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Portoviejo,4107.64,P0050,A00333
+SIN001073,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Machala,599.12,P0033,A00350
+SIN000721,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Loja,991.36,P0015,A00292
+SIN000715,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,4116.16,P0032,A00328
+SIN001223,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Cuenca,6398.74,P0032,A00489
+SIN001222,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Cuenca,6942.19,P0022,A00449
+SIN001221,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,17779.23,P0078,A00449
+SIN001220,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Cuenca,1003.23,P0027,A00449
+SIN001219,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,18753.96,P0033,A00449
+SIN001218,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Machala,10553.24,P0036,A00144
+SIN001217,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Machala,3543.67,P0080,A00144
+SIN001216,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Machala,11376.87,P0043,A00144
+SIN001215,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Machala,5951.14,P0048,A00144
+SIN000470,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Santo Domingo,4212.61,P0009,A00593
+SIN000463,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Santo Domingo,1790.32,P0022,A00281
+SIN001245,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Guayaquil,997.48,P0014,A00534
+SIN001244,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Guayaquil,1362.12,P0051,A00534
+SIN000425,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,710.46,P0038,A00173
+SIN000450,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,3996.5,P0067,A00060
+SIN000393,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,1048.14,P0059,A00460
+SIN000702,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Portoviejo,6319.77,P0079,A00333
+SIN000704,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,1134.55,P0048,A00299
+SIN000706,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Portoviejo,1994.3,P0058,A00574
+SIN001088,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Guayaquil,7950.23,P0022,A00002
+SIN000679,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,2195.1,P0057,A00039
+SIN000655,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Machala,1026.98,P0007,A00071
+SIN001096,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,13677.0,P0063,A00449
+SIN001099,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,10270.23,P0038,A00071
+SIN000482,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Machala,4516.67,P0009,A00071
+SIN000669,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,9582.23,P0077,A00354
+SIN000672,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,1021.27,P0023,A00060
+SIN000481,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Loja,2859.94,P0071,A00294
+SIN000497,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,895.05,P0017,A00173
+SIN000502,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Santo Domingo,2327.85,P0054,A00405
+SIN000473,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Quito,4070.75,P0046,A00003
+SIN000659,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Guayaquil,2111.05,P0040,A00467
+SIN000495,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Guayaquil,2923.13,P0059,A00264
+SIN000513,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,762.54,P0060,A00218
+SIN000507,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Santo Domingo,7598.5,P0020,A00396
+SIN000509,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,3738.04,P0055,A00469
+SIN000599,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Santo Domingo,3040.06,P0023,A00443
+SIN000626,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Quito,2249.35,P0040,A00053
+SIN000624,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,8112.18,P0023,A00122
+SIN000534,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,4488.01,P0073,A00469
+SIN000645,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Santo Domingo,8579.86,P0043,A00396
+SIN000640,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Machala,2138.83,P0061,A00136
+SIN000638,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,3294.42,P0027,A00288
+SIN000637,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,2969.55,P0019,A00371
+SIN000529,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Quito,5897.94,P0070,A00197
+SIN000546,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,2391.05,P0071,A00005
+SIN000541,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,1097.89,P0045,A00527
+SIN000538,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,2522.79,P0036,A00173
+SIN000537,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,10591.81,P0007,A00587
+SIN000535,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,1344.52,P0054,A00469
+SIN000565,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,4521.84,P0037,A00527
+SIN000563,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,7644.64,P0017,A00569
+SIN000560,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,1848.75,P0039,A00385
+SIN000584,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Portoviejo,6979.46,P0078,A00288
+SIN000583,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Ambato,5792.9,P0015,A00389
+SIN000611,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,11914.02,P0026,A00400
+SIN000610,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,4100.17,P0012,A00435
+SIN000606,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,3713.6,P0033,A00062
+SIN000559,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,2576.64,P0040,A00146
+SIN000558,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Cuenca,4081.17,P0078,A00183
+SIN000557,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Guayaquil,4673.46,P0049,A00106
+SIN000551,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,7217.85,P0063,A00146
+SIN000581,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Riobamba,5474.03,P0080,A00270
+SIN000568,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Riobamba,3572.12,P0011,A00102
+SIN000590,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,1291.69,P0077,A00005
+SIN000017,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Ambato,3382.05,P0041,A00389
+SIN000035,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,3063.03,P0045,A00218
+SIN000033,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,4272.77,P0076,A00435
+SIN000029,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,6697.07,P0004,A00405
+SIN000026,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Santo Domingo,1311.76,P0067,A00548
+SIN000051,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,7111.53,P0009,A00005
+SIN000046,16,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Guayaquil,4051.15,P0075,A00534
+SIN000044,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Riobamba,2114.21,P0031,A00270
+SIN000042,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,1329.95,P0038,A00062
+SIN000913,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Quito,2495.97,P0041,A00197
+SIN000911,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,5825.11,P0075,A00435
+SIN000902,16,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,5312.92,P0012,A00546
+SIN000899,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,9122.73,P0009,A00071
+SIN000894,16,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,7894.33,P0079,A00062
+SIN000021,16,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Ambato,11315.1,P0061,A00220
+SIN000676,15,VERDE,False,4,Borde de vigencia,Vehículos,Pérdida Total,Riobamba,3015.17,P0015,A00465
+SIN001394,15,VERDE,False,3,Alta frecuencia conductor,Vehículos,Pérdida Total,Santo Domingo,1746.6,P0029,A00129
+SIN000910,15,VERDE,False,4,Borde de vigencia,Vehículos,Daño a Terceros (RC),Manta,2952.59,P0044,A00402
+SIN000434,15,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,3564.02,P0063,A00226
+SIN000518,15,VERDE,False,4,Borde de vigencia,Salud,Atención Médica,Guayaquil,5386.76,P0077,A00493
+SIN000675,15,VERDE,False,4,Borde de vigencia,Vehículos,Pérdida Total,Machala,4609.92,P0038,A00318
+SIN000245,15,VERDE,False,4,Borde de vigencia,Vehículos,Choque,Manta,1366.74,P0032,A00390
+SIN000629,15,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Quito,7577.54,P0012,A00530
+SIN000440,15,VERDE,False,4,Borde de vigencia,Generales,Incendio,Quito,5451.22,P0060,A00274
+SIN000272,15,VERDE,False,4,Demora denuncia robo,Hogar,Robo,Ambato,19907.14,P0069,A00484
+SIN000742,15,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Loja,1867.58,P0074,A00239
+SIN000591,15,VERDE,False,4,Demora denuncia robo,Vehículos,Robo,Santo Domingo,4947.05,P0027,A00556
+SIN000904,15,VERDE,False,4,Borde de vigencia,Vehículos,Daño a Terceros (RC),Machala,12660.5,P0080,A00278
+SIN000063,14,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,1619.42,P0012,A00509
+SIN000893,14,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,2627.47,P0023,A00409
+SIN000778,14,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,2645.3,P0014,A00509
+SIN000217,14,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,3073.98,P0077,A00351
+SIN000605,14,VERDE,False,4,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Cuenca,2072.81,P0007,A00409
+SIN000286,12,VERDE,False,3,Borde de vigencia,Salud,Atención Médica,Loja,1235.43,P0046,A00383
+SIN000005,12,VERDE,False,3,Borde de vigencia,Salud,Atención Médica,Loja,2533.84,P0058,A00205
+SIN000103,12,VERDE,False,2,Demora denuncia robo,Vehículos,Robo,Loja,3024.88,P0049,A00115
+SIN001399,12,VERDE,False,2,Alta frecuencia conductor,Salud,Atención Médica,Quito,7753.08,P0059,A00342
+SIN001026,12,VERDE,False,2,Demora denuncia robo,Vehículos,Robo,Ambato,5873.22,P0071,A00201
+SIN000003,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,2816.7,P0023,A00058
+SIN000018,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,1941.14,P0061,A00068
+SIN000940,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,2832.4,P0079,A00172
+SIN000609,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Loja,10283.23,P0010,A00441
+SIN000574,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,3761.3,P0055,A00194
+SIN000091,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,6812.84,P0021,A00510
+SIN000094,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,3115.31,P0063,A00094
+SIN000881,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,3591.84,P0045,A00540
+SIN000880,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,2328.34,P0059,A00588
+SIN000883,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,3404.78,P0079,A00068
+SIN000891,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,1334.49,P0041,A00528
+SIN000146,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,3157.94,P0049,A00522
+SIN000564,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,2570.02,P0048,A00588
+SIN000542,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,18738.2,P0070,A00375
+SIN000631,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,906.43,P0035,A00162
+SIN000634,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,10776.96,P0025,A00540
+SIN000621,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,4151.57,P0008,A00572
+SIN000135,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,3569.39,P0004,A00313
+SIN000181,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,998.16,P0023,A00537
+SIN000491,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,2415.49,P0026,A00499
+SIN000475,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,1601.08,P0078,A00573
+SIN000517,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,1436.72,P0014,A00424
+SIN000952,11,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Santo Domingo,3128.67,P0077,A00325
+SIN000479,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Guayaquil,803.07,P0007,A00253
+SIN000476,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,7276.84,P0037,A00550
+SIN000829,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,1219.58,P0077,A00499
+SIN000480,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,1113.12,P0046,A00318
+SIN000192,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,15265.18,P0030,A00510
+SIN000849,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,10281.31,P0034,A00302
+SIN000851,11,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Machala,2078.91,P0064,A00278
+SIN000839,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Cuenca,809.98,P0048,A00413
+SIN000869,11,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Quito,1243.63,P0026,A00187
+SIN000859,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,12323.04,P0079,A00457
+SIN000857,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Quito,5768.84,P0031,A00023
+SIN000126,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,1894.73,P0045,A00386
+SIN000122,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,10673.87,P0012,A00530
+SIN000623,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,5384.01,P0030,A00131
+SIN000107,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,5826.29,P0048,A00408
+SIN000115,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,13752.27,P0030,A00456
+SIN000106,11,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Loja,1939.53,P0045,A00172
+SIN000841,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,7620.66,P0032,A00567
+SIN000585,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,1418.17,P0019,A00500
+SIN000925,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,1162.01,P0055,A00537
+SIN000273,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,3186.25,P0006,A00013
+SIN000797,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,9430.32,P0064,A00109
+SIN000988,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,15263.54,P0066,A00382
+SIN000483,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,11834.07,P0049,A00522
+SIN000484,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,4999.57,P0052,A00515
+SIN000690,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,8985.2,P0054,A00059
+SIN000236,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,11219.55,P0066,A00058
+SIN000662,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,9176.96,P0080,A00108
+SIN000835,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Portoviejo,4695.11,P0067,A00483
+SIN000967,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,4628.38,P0053,A00325
+SIN000834,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,1061.61,P0009,A00319
+SIN000221,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,4259.43,P0065,A00226
+SIN000852,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,3151.48,P0080,A00279
+SIN000466,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Manta,3174.84,P0052,A00402
+SIN000267,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,15934.43,P0009,A00098
+SIN000268,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,10517.49,P0039,A00228
+SIN000315,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,6844.42,P0076,A00515
+SIN000324,11,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Manta,1026.18,P0025,A00125
+SIN000296,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Machala,10573.36,P0068,A00457
+SIN001017,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,1170.65,P0027,A00041
+SIN000445,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Machala,3475.07,P0076,A00567
+SIN000444,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Quito,882.45,P0014,A00041
+SIN000426,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Machala,3105.05,P0062,A00094
+SIN001012,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,7363.61,P0042,A00109
+SIN001082,11,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,5962.42,P0066,A00120
+SIN000290,11,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Santo Domingo,7376.17,P0034,A00208
+SIN000285,11,VERDE,False,3,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,2097.69,P0057,A00584
+SIN000309,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Ambato,9854.02,P0036,A00271
+SIN000299,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Portoviejo,1432.59,P0079,A00521
+SIN000684,11,VERDE,False,3,Alta frecuencia asegurado,Hogar,Daño,Santo Domingo,3838.61,P0044,A00230
+SIN000682,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Santo Domingo,19828.94,P0012,A00098
+SIN000467,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Loja,6082.14,P0042,A00077
+SIN001020,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,19893.29,P0007,A00059
+SIN001027,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Quito,4141.54,P0061,A00279
+SIN000762,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Robo,Guayaquil,1644.93,P0045,A00493
+SIN000764,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,5692.06,P0039,A00521
+SIN000723,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,3520.69,P0033,A00188
+SIN000718,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Quito,1352.08,P0059,A00274
+SIN000443,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,1227.11,P0040,A00064
+SIN000696,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Portoviejo,1978.35,P0053,A00440
+SIN001041,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,2211.33,P0057,A00428
+SIN000366,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Riobamba,2332.78,P0058,A00131
+SIN000342,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Santo Domingo,3242.3,P0034,A00428
+SIN000338,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Guayaquil,4284.81,P0004,A00253
+SIN000344,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Santo Domingo,2177.68,P0007,A00375
+SIN000343,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Manta,2984.48,P0024,A00500
+SIN000348,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,4440.13,P0074,A00135
+SIN000347,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Portoviejo,2454.19,P0051,A00386
+SIN000432,11,VERDE,False,3,Alta frecuencia asegurado,Generales,Daño,Machala,15428.67,P0006,A00323
+SIN000435,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Cuenca,18394.23,P0069,A00227
+SIN000436,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,2834.45,P0061,A00542
+SIN000437,11,VERDE,False,3,Alta frecuencia asegurado,Hogar,Incendio,Portoviejo,11630.85,P0023,A00483
+SIN001052,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Manta,1566.14,P0043,A00363
+SIN000733,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Cuenca,1585.69,P0046,A00120
+SIN000016,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Loja,476.08,P0050,A00239
+SIN000412,11,VERDE,False,3,Alta frecuencia asegurado,Generales,Incendio,Machala,6456.56,P0057,A00323
+SIN000927,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Ambato,3840.22,P0005,A00271
+SIN000855,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Riobamba,1551.03,P0020,A00162
+SIN000062,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Choque,Riobamba,3092.88,P0047,A00528
+SIN000053,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Machala,15445.36,P0024,A00550
+SIN000041,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,3365.89,P0031,A00204
+SIN000043,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Daño a Terceros (RC),Manta,13169.09,P0017,A00363
+SIN000047,11,VERDE,False,3,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,1038.4,P0076,A00394
+SIN000897,11,VERDE,False,3,Alta frecuencia asegurado,Vehículos,Pérdida Total,Quito,14193.17,P0058,A00471
+SIN000895,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,4296.76,P0036,A00090
+SIN000900,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,3700.56,P0074,A00361
+SIN000909,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,4817.58,P0055,A00130
+SIN000024,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,1026.46,P0053,A00374
+SIN000027,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,2397.72,P0056,A00324
+SIN000031,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,2943.44,P0027,A00466
+SIN000084,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Riobamba,9637.66,P0003,A00258
+SIN000039,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Machala,3031.94,P0080,A00032
+SIN000038,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Guayaquil,2444.53,P0060,A00578
+SIN000067,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,10024.87,P0041,A00466
+SIN000058,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,2980.95,P0041,A00383
+SIN000732,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Cuenca,3694.79,P0079,A00320
+SIN000754,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,2188.84,P0017,A00116
+SIN001039,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,604.31,P0050,A00473
+SIN001038,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,903.86,P0042,A00368
+SIN000743,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Portoviejo,12568.21,P0054,A00114
+SIN000772,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Ambato,1751.54,P0056,A00209
+SIN000400,8,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Cuenca,7004.78,P0027,A00156
+SIN000392,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Manta,2660.34,P0043,A00504
+SIN001055,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Ambato,4686.9,P0018,A00485
+SIN000384,8,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Quito,1760.71,P0078,A00028
+SIN000386,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Manta,2820.63,P0042,A00074
+SIN000674,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,11433.8,P0017,A00054
+SIN000691,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Quito,5211.81,P0020,A00087
+SIN000457,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,947.27,P0075,A00368
+SIN000993,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,3501.28,P0032,A00130
+SIN000992,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,3908.73,P0042,A00459
+SIN000248,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,13604.88,P0077,A00487
+SIN000810,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Machala,8829.14,P0015,A00582
+SIN000230,8,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Manta,11830.46,P0004,A00597
+SIN000227,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Quito,5802.09,P0033,A00512
+SIN000709,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,5830.13,P0003,A00065
+SIN000232,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,5682.51,P0038,A00065
+SIN000465,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Manta,7400.72,P0027,A00189
+SIN000717,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,18210.97,P0074,A00486
+SIN000322,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,10019.96,P0037,A00498
+SIN000302,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,2791.48,P0049,A00168
+SIN000307,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,4207.38,P0011,A00361
+SIN000308,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,1956.51,P0053,A00174
+SIN001079,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Loja,2242.11,P0060,A00498
+SIN001062,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Loja,7448.95,P0013,A00054
+SIN000461,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,2533.87,P0037,A00272
+SIN001092,8,VERDE,False,1,Demora denuncia robo,Hogar,Robo,Ambato,4075.07,P0022,A00372
+SIN000453,8,VERDE,False,1,Demora denuncia robo,Hogar,Robo,Riobamba,695.38,P0047,A00043
+SIN000424,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,4522.07,P0020,A00048
+SIN000699,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Guayaquil,844.77,P0019,A00578
+SIN000787,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Quito,4881.99,P0055,A00511
+SIN000767,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,4532.22,P0050,A00168
+SIN000760,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Santo Domingo,2747.69,P0039,A00116
+SIN000759,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,6200.88,P0042,A00486
+SIN001029,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,3953.2,P0025,A00468
+SIN000647,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Cuenca,3306.25,P0020,A00320
+SIN000129,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,6169.43,P0022,A00463
+SIN000120,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,8106.6,P0064,A00463
+SIN000548,8,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Quito,8132.22,P0058,A00246
+SIN000521,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,10404.02,P0039,A00462
+SIN000147,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,2655.98,P0067,A00048
+SIN000141,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Quito,1309.1,P0033,A00087
+SIN000643,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Manta,5629.31,P0013,A00174
+SIN000892,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Guayaquil,3451.06,P0052,A00100
+SIN000112,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Guayaquil,5637.32,P0013,A00459
+SIN000602,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Ambato,4147.19,P0043,A00209
+SIN000612,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,2146.62,P0016,A00272
+SIN000950,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Portoviejo,7131.24,P0017,A00075
+SIN000870,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Cuenca,3021.76,P0042,A00468
+SIN000868,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Daño,Riobamba,2276.18,P0015,A00159
+SIN000131,8,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Cuenca,2291.95,P0051,A00139
+SIN000522,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Riobamba,1817.29,P0062,A00090
+SIN000172,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Manta,3438.83,P0061,A00189
+SIN000178,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Incendio,Guayaquil,2283.1,P0049,A00100
+SIN000515,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Machala,5064.76,P0066,A00032
+SIN001186,8,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Manta,856.96,P0024,A00012
+SIN000956,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Cuenca,3158.08,P0043,A00473
+SIN000207,8,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Guayaquil,3358.82,P0040,A00472
+SIN000160,8,VERDE,False,2,Alta frecuencia asegurado,Vida,Fallecimiento,Portoviejo,7290.08,P0027,A00075
+SIN000168,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Loja,2826.26,P0007,A00205
+SIN000204,8,VERDE,False,2,Alta frecuencia asegurado,Salud,Atención Médica,Guayaquil,2671.07,P0018,A00564
+SIN000271,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Incendio,Santo Domingo,2464.97,P0041,A00118
+SIN000266,8,VERDE,False,2,Alta frecuencia asegurado,Hogar,Robo,Riobamba,6554.79,P0049,A00258
+SIN000983,8,VERDE,False,2,Alta frecuencia asegurado,Generales,Daño,Machala,3918.84,P0066,A00582
+SIN000622,7,VERDE,False,2,Alta frecuencia asegurado,Vehículos,Choque,Santo Domingo,3149.58,P0044,A00129
+SIN000345,4,VERDE,False,1,Borde de vigencia,Vehículos,Robo,Machala,1590.37,P0036,A00207
+SIN000085,4,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Cuenca,2840.72,P0028,A00081
+SIN000531,4,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Guayaquil,15844.76,P0020,A00283
+SIN000569,4,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Manta,2093.71,P0046,A00378
+SIN000677,4,VERDE,False,1,Alta frecuencia asegurado,Salud,Atención Médica,Quito,4781.24,P0018,A00342
+SIN000456,4,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Manta,6198.86,P0048,A00580
+SIN000608,4,VERDE,False,1,Demora denuncia robo,Vehículos,Robo,Machala,1391.66,P0032,A00590
+SIN001025,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Riobamba,3410.14,P0056,A00225
+SIN000333,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Loja,4284.46,P0040,A00568
+SIN000340,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Portoviejo,6852.79,P0031,A00145
+SIN000736,0,VERDE,False,0,Sin alertas,Hogar,Incendio,Loja,7429.43,P0018,A00492
+SIN000727,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Manta,3063.41,P0051,A00470
+SIN001047,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Quito,2467.02,P0062,A00442
+SIN000332,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Guayaquil,19877.7,P0007,A00562
+SIN000350,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Riobamba,2589.97,P0022,A00523
+SIN000364,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Ambato,3564.74,P0030,A00524
+SIN000361,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Guayaquil,2643.25,P0003,A00010
+SIN000385,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Ambato,7717.37,P0040,A00124
+SIN000399,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Santo Domingo,2152.81,P0046,A00171
+SIN000411,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Riobamba,1957.26,P0069,A00392
+SIN000382,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Manta,4218.46,P0073,A00110
+SIN000375,0,VERDE,False,0,Sin alertas,Hogar,Robo,Riobamba,407.47,P0020,A00369
+SIN000066,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Loja,1770.31,P0052,A00210
+SIN000086,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Machala,4220.07,P0077,A00561
+SIN001058,0,VERDE,False,0,Sin alertas,Generales,Incendio,Machala,9533.26,P0025,A00182
+SIN001061,0,VERDE,False,0,Sin alertas,Generales,Incendio,Manta,2622.7,P0049,A00111
+SIN000589,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Riobamba,4175.82,P0045,A00015
+SIN000934,0,VERDE,False,0,Sin alertas,Vehículos,Pérdida Total,Loja,10345.89,P0076,A00085
+SIN000077,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Cuenca,1412.76,P0041,A00575
+SIN000752,0,VERDE,False,0,Sin alertas,Generales,Incendio,Manta,9108.35,P0079,A00286
+SIN000756,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Cuenca,3788.78,P0024,A00169
+SIN000428,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Portoviejo,13447.01,P0029,A00595
+SIN000407,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Portoviejo,3347.79,P0071,A00373
+SIN001045,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Manta,2009.23,P0008,A00304
+SIN000201,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Manta,2061.85,P0024,A00340
+SIN000229,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Machala,2273.4,P0067,A00502
+SIN000973,0,VERDE,False,0,Sin alertas,Generales,Daño,Santo Domingo,5010.79,P0009,A00311
+SIN000226,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Machala,5022.02,P0036,A00366
+SIN000969,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Riobamba,3363.77,P0065,A00235
+SIN000703,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Machala,2510.02,P0074,A00017
+SIN000249,0,VERDE,False,0,Sin alertas,Generales,Daño,Riobamba,7073.85,P0068,A00553
+SIN000241,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Loja,1059.15,P0042,A00219
+SIN000275,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Machala,527.33,P0010,A00251
+SIN000986,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Loja,2771.9,P0043,A00421
+SIN000801,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Portoviejo,4784.97,P0004,A00262
+SIN000978,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Portoviejo,2163.98,P0032,A00004
+SIN000688,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Santo Domingo,2398.52,P0076,A00429
+SIN000804,0,VERDE,False,0,Sin alertas,Vehículos,Pérdida Total,Riobamba,864.82,P0026,A00393
+SIN000664,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Santo Domingo,4878.38,P0066,A00107
+SIN000712,0,VERDE,False,0,Sin alertas,Hogar,Daño,Guayaquil,1390.38,P0055,A00127
+SIN000790,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Ambato,1898.22,P0028,A00022
+SIN001064,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Guayaquil,1994.74,P0016,A00280
+SIN001067,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Quito,2123.01,P0011,A00244
+SIN001077,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Ambato,17126.55,P0027,A00113
+SIN000726,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Machala,746.85,P0017,A00403
+SIN001030,0,VERDE,False,0,Sin alertas,Vehículos,Pérdida Total,Cuenca,1897.26,P0028,A00508
+SIN000770,0,VERDE,False,0,Sin alertas,Hogar,Robo,Riobamba,4054.86,P0071,A00215
+SIN000719,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Cuenca,7151.57,P0048,A00352
+SIN001081,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Loja,5185.87,P0019,A00455
+SIN001089,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Machala,2779.34,P0062,A00579
+SIN001002,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Riobamba,16991.32,P0037,A00576
+SIN001080,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Loja,13532.84,P0021,A00592
+SIN000458,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Ambato,6931.24,P0064,A00213
+SIN000961,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Santo Domingo,19306.89,P0011,A00140
+SIN000195,0,VERDE,False,0,Sin alertas,Hogar,Robo,Cuenca,3303.71,P0080,A00020
+SIN000184,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Quito,3390.74,P0060,A00040
+SIN000587,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Quito,1524.07,P0078,A00514
+SIN000588,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Quito,6598.95,P0025,A00088
+SIN000165,0,VERDE,False,0,Sin alertas,Hogar,Daño,Cuenca,2299.21,P0066,A00451
+SIN000824,0,VERDE,False,0,Sin alertas,Generales,Daño,Cuenca,4176.0,P0051,A00198
+SIN000169,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Ambato,3569.27,P0025,A00497
+SIN000828,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Machala,3083.66,P0035,A00433
+SIN000154,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Machala,3432.39,P0057,A00349
+SIN000156,0,VERDE,False,0,Sin alertas,Generales,Incendio,Loja,1535.5,P0065,A00277
+SIN000966,0,VERDE,False,0,Sin alertas,Generales,Daño,Ambato,496.4,P0057,A00321
+SIN000965,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Ambato,11831.23,P0038,A00038
+SIN000512,0,VERDE,False,0,Sin alertas,Generales,Incendio,Guayaquil,5360.22,P0047,A00276
+SIN000511,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Manta,1194.97,P0038,A00444
+SIN000489,0,VERDE,False,0,Sin alertas,Vehículos,Pérdida Total,Manta,4041.14,P0059,A00222
+SIN000490,0,VERDE,False,0,Sin alertas,Vehículos,Pérdida Total,Loja,3217.13,P0068,A00295
+SIN000499,0,VERDE,False,0,Sin alertas,Generales,Daño,Guayaquil,2715.82,P0046,A00289
+SIN000471,0,VERDE,False,0,Sin alertas,Vida,Fallecimiento,Loja,3777.23,P0003,A00577
+SIN000596,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Portoviejo,3141.55,P0050,A00360
+SIN000944,0,VERDE,False,0,Sin alertas,Vehículos,Pérdida Total,Quito,9828.09,P0014,A00285
+SIN000936,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Manta,751.05,P0060,A00170
+SIN000636,0,VERDE,False,0,Sin alertas,Generales,Daño,Cuenca,9186.03,P0045,A00112
+SIN000639,0,VERDE,False,0,Sin alertas,Hogar,Incendio,Portoviejo,7845.12,P0016,A00176
+SIN000553,0,VERDE,False,0,Sin alertas,Vehículos,Pérdida Total,Manta,4418.75,P0034,A00249
+SIN000554,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Quito,15823.66,P0041,A00338
+SIN000570,0,VERDE,False,0,Sin alertas,Generales,Daño,Guayaquil,15775.98,P0041,A00347
+SIN000604,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Ambato,7087.45,P0060,A00496
+SIN000579,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Machala,2612.83,P0074,A00037
+SIN000613,0,VERDE,False,0,Sin alertas,Generales,Daño,Machala,6801.76,P0056,A00079
+SIN000614,0,VERDE,False,0,Sin alertas,Vehículos,Choque,Portoviejo,1894.63,P0027,A00070
+SIN000109,0,VERDE,False,0,Sin alertas,Vehículos,Daño a Terceros (RC),Loja,3288.62,P0053,A00133
+SIN000108,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Riobamba,1291.37,P0059,A00301
+SIN000099,0,VERDE,False,0,Sin alertas,Salud,Atención Médica,Santo Domingo,1223.37,P0038,A00326
+SIN000011,0,VERDE,False,0,Sin alertas,Vehículos,Robo,Cuenca,3087.93,P0024,A00007

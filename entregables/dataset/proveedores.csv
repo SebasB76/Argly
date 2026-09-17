@@ -1,0 +1,81 @@
+id_proveedor,tipo,ciudad,antiguedad_meses,en_lista_restrictiva,reclamos_asociados,monto_promedio_reclamado,porcentaje_casos_observados
+P0001,Clínica,Ambato,208,True,12,8781.64,100.0
+P0002,Abogado,Machala,221,True,12,10877.54,100.0
+P0003,Abogado,Loja,43,False,19,6810.53,26.3
+P0004,Abogado,Cuenca,201,False,21,5864.54,14.3
+P0005,Clínica,Ambato,207,False,8,4513.4,50.0
+P0006,Taller,Riobamba,90,False,17,4212.31,35.3
+P0007,Abogado,Manta,153,False,21,7022.28,19.0
+P0008,Abogado,Cuenca,83,False,15,9637.13,33.3
+P0009,Perito,Manta,147,False,18,7894.69,22.2
+P0010,Perito,Portoviejo,231,False,15,7549.7,26.7
+P0011,Taller,Cuenca,193,False,16,5983.02,31.2
+P0012,Concesionario,Quito,71,False,23,6597.87,17.4
+P0013,Clínica,Cuenca,64,False,21,4969.53,23.8
+P0014,Clínica,Machala,213,False,15,4702.56,33.3
+P0015,Clínica,Loja,126,False,14,6526.73,21.4
+P0016,Clínica,Riobamba,162,False,20,5029.29,35.0
+P0017,Perito,Loja,97,False,18,6314.67,16.7
+P0018,Concesionario,Guayaquil,163,False,15,5530.28,0.0
+P0019,Taller,Loja,132,False,13,2338.67,7.7
+P0020,Perito,Machala,117,False,18,8180.59,16.7
+P0021,Concesionario,Machala,149,False,13,7832.22,30.8
+P0022,Taller,Guayaquil,188,False,20,5209.61,10.0
+P0023,Concesionario,Machala,218,False,27,4403.68,7.4
+P0024,Taller,Portoviejo,102,False,21,4804.0,28.6
+P0025,Clínica,Loja,212,False,15,4743.71,6.7
+P0026,Clínica,Santo Domingo,69,False,14,5533.63,7.1
+P0027,Perito,Manta,87,False,30,4452.45,26.7
+P0028,Abogado,Riobamba,34,False,13,4504.81,30.8
+P0029,Abogado,Santo Domingo,202,False,16,4942.03,50.0
+P0030,Perito,Quito,12,False,19,7151.64,42.1
+P0031,Taller,Santo Domingo,5,False,18,3969.61,38.9
+P0032,Taller,Cuenca,113,False,24,6609.23,29.2
+P0033,Concesionario,Quito,110,False,16,6035.82,31.2
+P0034,Clínica,Cuenca,226,False,14,5888.51,14.3
+P0035,Perito,Cuenca,224,False,12,4351.67,33.3
+P0036,Perito,Guayaquil,168,False,21,6136.11,28.6
+P0037,Perito,Manta,22,False,22,7183.97,36.4
+P0038,Perito,Cuenca,14,False,24,4723.47,16.7
+P0039,Concesionario,Manta,186,False,23,4829.04,17.4
+P0040,Clínica,Loja,168,False,19,3990.7,15.8
+P0041,Taller,Guayaquil,1,False,30,6210.48,26.7
+P0042,Clínica,Santo Domingo,20,False,23,5951.93,21.7
+P0043,Clínica,Riobamba,58,False,19,7928.55,21.1
+P0044,Abogado,Santo Domingo,3,False,12,3850.01,8.3
+P0045,Taller,Machala,210,False,26,4716.27,23.1
+P0046,Taller,Loja,178,False,17,6003.58,35.3
+P0047,Clínica,Santo Domingo,19,False,16,6373.42,25.0
+P0048,Clínica,Loja,23,False,27,4256.83,18.5
+P0049,Taller,Guayaquil,81,False,19,5127.72,36.8
+P0050,Perito,Manta,36,False,19,5417.88,21.1
+P0051,Concesionario,Cuenca,165,False,20,4398.97,35.0
+P0052,Clínica,Guayaquil,136,False,17,7141.04,35.3
+P0053,Abogado,Quito,157,False,26,4592.03,19.2
+P0054,Clínica,Santo Domingo,90,False,19,7246.48,21.1
+P0055,Clínica,Cuenca,236,False,20,4541.65,25.0
+P0056,Concesionario,Riobamba,176,False,15,5235.03,20.0
+P0057,Concesionario,Ambato,23,False,12,2829.86,8.3
+P0058,Taller,Cuenca,193,False,11,4474.39,9.1
+P0059,Taller,Riobamba,187,False,22,4727.22,22.7
+P0060,Concesionario,Machala,110,False,25,7129.59,36.0
+P0061,Perito,Cuenca,64,False,16,3940.86,6.2
+P0062,Perito,Guayaquil,64,False,12,5727.16,33.3
+P0063,Abogado,Riobamba,154,False,16,6254.76,18.8
+P0064,Abogado,Manta,200,False,18,8843.88,11.1
+P0065,Taller,Manta,53,False,17,5410.67,17.6
+P0066,Abogado,Riobamba,131,False,25,5788.79,20.0
+P0067,Clínica,Loja,76,False,20,3367.89,20.0
+P0068,Taller,Ambato,127,False,15,4695.49,40.0
+P0069,Concesionario,Guayaquil,62,False,14,6626.62,21.4
+P0070,Concesionario,Riobamba,19,False,19,8412.09,26.3
+P0071,Abogado,Quito,93,False,10,3309.94,20.0
+P0072,Perito,Cuenca,100,False,19,6060.34,36.8
+P0073,Abogado,Loja,94,False,15,4952.24,6.7
+P0074,Abogado,Cuenca,196,False,19,6071.91,21.1
+P0075,Concesionario,Guayaquil,5,False,19,7814.75,36.8
+P0076,Abogado,Guayaquil,4,False,21,6561.84,19.0
+P0077,Perito,Ambato,11,False,23,5683.5,21.7
+P0078,Taller,Loja,130,False,20,5973.01,30.0
+P0079,Perito,Portoviejo,197,False,24,5694.28,20.8
+P0080,Concesionario,Loja,180,False,16,5900.23,18.8

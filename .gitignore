@@ -36,3 +36,7 @@ Thumbs.db
 .idea/
 .playwright-cli/
 .vercel
+
+# vim swap files
+*.swp
+..*.swp
